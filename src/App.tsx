@@ -60,7 +60,7 @@ class App extends Component<{}, Quordle> {
                     } 
                     else 
                     {
-                        await this.analyzeGuess(text[i], i);
+                        await this.analyzeGuess(i,text[i]);
                         rows[i][num[i]] = text[i];
                         if (text[i].length > 12) 
                         {
@@ -78,21 +78,10 @@ class App extends Component<{}, Quordle> {
         this.forceUpdate();
     };
 
-    analyzeGuess = async (val: string, num: number) => 
+    analyzeGuess = async (i: number, word: string) => 
     {
-        // try {
-        //     let response = await fetch("http://localhost:4567/analyze?num=" + num + "&guess=" + val);
-        //     if (!response.ok) {
-        //         alert("The status is wrong! Expected: 200, Was: " + response.status);
-        //         return; // Don't keep trying to execute if the response is bad.
-        //     }
-        //     let text = await response.json();
-        //     wordList[num] = text.substring(1, text.length - 1);
-        // } catch (e) {
-        //     alert("There was an error contacting the server.");
-        //     console.log(e);
-        //     this.forceUpdate();
-        // }
+        let text = this.gameDriver.analyze(i, word)
+        wordList[num] = text.substring(1, text.length - 1);
     };
 
     reset()
@@ -128,16 +117,17 @@ class App extends Component<{}, Quordle> {
     swapMode()
     {
         document.body.style.backgroundColor = (darkMode ? "#262626" : "thistle");
-        let all = document.querySelectorAll("input,p,div.container,div.key-box,button");
-        for (let i = 0; i < all.length; i++) 
+
+        let divs = document.querySelectorAll("input,p,div.container,div.key-box,button");
+        for (let i = 0; i < divs.length; i++) 
         {
             if (darkMode)
             {
-                all.item(i).classList.add("dm");
+                divs[i].classList.add("dm");
             }
             else
             {
-                all.item(i).classList.remove("dm");
+                divs[i].classList.remove("dm");
             }
         }
         darkMode = !darkMode;
