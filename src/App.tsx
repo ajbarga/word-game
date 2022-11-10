@@ -20,13 +20,19 @@ let darkMode = true;
 let titleColor: string = "tB";
 let rows: any = [[], [], [], []];
 let wordList: any = ["", "", "", ""];
+let gameDriver: GameDriver;
+let obj: App;
 
 class App extends Component<{}, Quordle> {
-    private gameDriver: GameDriver = new GameDriver();
+    
 
     constructor(props: Quordle) 
     {
         super(props);
+        
+        gameDriver = new GameDriver();
+        obj = this;
+        
         for (let i = 0; i < 4; i++)
         {
             for (let j = 0; j < 9; j++)
@@ -39,12 +45,12 @@ class App extends Component<{}, Quordle> {
 
     makeGuess = async(guessVal: string) => 
     {
-        let text = this.gameDriver.guess(guessVal.toUpperCase());
+        let text = gameDriver.guess(guessVal.toUpperCase());
         if(text[0].length == 0)
         {
             titleColor = 'rTB';
-            this.forceUpdate();
-            await this.timeout(1500);
+            obj.forceUpdate();
+            await obj.timeout(1500);
             titleColor = 'tB';
         }
         else
@@ -75,19 +81,19 @@ class App extends Component<{}, Quordle> {
                 }
             }
         }
-        this.forceUpdate();
+        obj.forceUpdate();
     };
 
     analyzeGuess = async (i: number, word: string) => 
     {
-        let text = this.gameDriver.analyze(i, word)
-        wordList[num] = text.substring(1, text.length - 1);
-        this.forceUpdate();
+        let t = gameDriver.analyze(i, word).toString();
+        wordList[i] = t.substring(1, t.length - 1);
+        obj.forceUpdate();
     };
 
     reset()
     {
-        this.gameDriver.reset();
+        gameDriver.reset();
         for (let i = 0; i < 4; i++)
         {
             for (let j = 0; j < 9; j++)
@@ -101,6 +107,8 @@ class App extends Component<{}, Quordle> {
         titleColor = 'tB';
 
         (document.getElementById('wordBox') as HTMLInputElement).value = '';
+
+        obj.forceUpdate()
     };
 
     swapHelper() 

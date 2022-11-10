@@ -9,10 +9,6 @@ class GameDriver
     private wordleDrivers: WordleDriver[] = [new WordleDriver(), new WordleDriver(), new WordleDriver(), new WordleDriver()];
     private suggestionBoxes: SuggestionBox[] = [new SuggestionBox(), new SuggestionBox(), new SuggestionBox(), new SuggestionBox()];
 
-    constructor(){
-        alert("COnstructing GameDriveer")
-    }
-
     guess (word: string): string[] 
     {
         let responses: string[] = ["","","",""];
@@ -23,7 +19,7 @@ class GameDriver
         return responses;
     }
 
-    analyze(i: number, word: string): string
+    analyze(i: number, word: string): string[]
     {
         return this.suggestionBoxes[i].guesserApp(word);
     }
@@ -32,15 +28,7 @@ class GameDriver
     {
         for (let k = 0; k < 4; k++) 
         {
-            if (this.wordleDrivers[k] == undefined)
-            {
-                alert("DriverUNDEF")
-            }
             this.wordleDrivers[k].reset();
-            if (this.suggestionBoxes[k] == undefined)
-            {
-                alert("BoxUNDEF")
-            }
             this.suggestionBoxes[k].reset();
         }
     }

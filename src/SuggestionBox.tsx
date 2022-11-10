@@ -3,10 +3,10 @@
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
 import text from './resources/dictionary'
 
+let wordList: string[];
+
 class SuggestionBox
 {
-    private _wordList: string[];
-
     char(c: number): string
     {
         return String.fromCharCode(c)
@@ -79,21 +79,21 @@ class SuggestionBox
 
     constructor ()
     {
-        this._wordList = [...text];
+        wordList = [...text];
     }
 
-    guesserApp (guess: string): string
+    guesserApp (guess: string): string[]
     {
         let newList: string[] = [];
-        this.analyzeGuess(guess, this._wordList);
-        for (let m = 0; (m < this._wordList.length) && (m < 8); m++)
-            newList.push(this._wordList[m]);
-        return newList.toString();
+        this.analyzeGuess(guess, wordList);
+        for (let m = 0; (m < wordList.length) && (m < 8); m++)
+            newList.push(wordList[m]);
+        return newList;
     }
 
     reset ()
     {
-        this._wordList = [...text];
+        wordList = [...text];
     }
 
 }
