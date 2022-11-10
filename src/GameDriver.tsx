@@ -4,12 +4,17 @@
 import SuggestionBox from "./SuggestionBox";
 import WordleDriver from "./WordleDriver";
 
-class GameDriver{
-
+class GameDriver
+{
     private wordleDrivers: WordleDriver[] = [new WordleDriver(), new WordleDriver(), new WordleDriver(), new WordleDriver()];
     private suggestionBoxes: SuggestionBox[] = [new SuggestionBox(), new SuggestionBox(), new SuggestionBox(), new SuggestionBox()];
 
-    guess (word: string): string[] {
+    constructor(){
+        alert("COnstructing GameDriveer")
+    }
+
+    guess (word: string): string[] 
+    {
         let responses: string[] = ["","","",""];
         for (let i = 0; i < 4; i++) 
         {
@@ -20,17 +25,25 @@ class GameDriver{
 
     analyze(i: number, word: string): string
     {
-        return this.suggestionBoxes[i].guesserApp(word).toString();
+        return this.suggestionBoxes[i].guesserApp(word);
     }
 
-    reset() 
+    reset(): void 
     {
-        for (let i = 0; i < 4; i++) 
+        for (let k = 0; k < 4; k++) 
         {
-            this.wordleDrivers[i].reset();
+            if (this.wordleDrivers[k] == undefined)
+            {
+                alert("DriverUNDEF")
+            }
+            this.wordleDrivers[k].reset();
+            if (this.suggestionBoxes[k] == undefined)
+            {
+                alert("BoxUNDEF")
+            }
+            this.suggestionBoxes[k].reset();
         }
-        return "";
     }
-    
 }
-export default GameDriver
+
+export default GameDriver;

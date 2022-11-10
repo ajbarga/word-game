@@ -2,6 +2,7 @@
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
 import text from './resources/dictionary'
+
 class SuggestionBox
 {
     private _wordList: string[];
@@ -22,7 +23,7 @@ class SuggestionBox
         {
             let ch: number = guess.charCodeAt(2 * i);
             let ch2: number = guess.charCodeAt(2 * i + 1);
-            if (ch == 99) 
+            if (ch == 99)
             {
                 contain = contain + i + this.char(ch2);
             }
@@ -52,7 +53,7 @@ class SuggestionBox
             }
             for (let j = 0; j < contain.length; j += 2) 
             {
-                if (word.charAt(contain.charCodeAt(j) - 48) == contain.charAt(j + 1) || word.indexOf(contain.charAt(j + 1)) == -1) 
+                if (word.charAt(contain.charCodeAt(j) - 48) == contain.charAt(j + 1) || word.indexOf(contain.charAt(j + 1)) == undefined) 
                 {
                     bad = false;
                     break;
@@ -63,9 +64,8 @@ class SuggestionBox
                     let char = nContain[i]
                     yel = contain.indexOf(this.char(char)) - 1;
                     grn = possible.indexOf(this.char(char)) - 1;
-                    if (word.indexOf(this.char(nContain[i])) > -1 &&
-                            (yel == -2 || contain.charCodeAt(yel) - 48 == word.indexOf(this.char(char))) &&
-                            (grn == -2 || possible.charCodeAt(grn) - 48 != word.indexOf(this.char(char)))) {
+                    if (word.indexOf(this.char(nContain[i])) != undefined && (contain.indexOf(this.char(char)) == undefined || contain.charCodeAt(yel) - 48 == word.indexOf(this.char(char))) &&(possible.indexOf(this.char(char)) || possible.charCodeAt(grn) - 48 != word.indexOf(this.char(char)))) 
+                    {
                         delete remainingWordList[word];
                         break;
                     }
@@ -82,13 +82,13 @@ class SuggestionBox
         this._wordList = [...text];
     }
 
-    guesserApp (guess: string): string[]
+    guesserApp (guess: string): string
     {
         let newList: string[] = [];
         this.analyzeGuess(guess, this._wordList);
         for (let m = 0; (m < this._wordList.length) && (m < 8); m++)
             newList.push(this._wordList[m]);
-        return newList;
+        return newList.toString();
     }
 
     reset ()

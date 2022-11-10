@@ -82,10 +82,12 @@ class App extends Component<{}, Quordle> {
     {
         let text = this.gameDriver.analyze(i, word)
         wordList[num] = text.substring(1, text.length - 1);
+        this.forceUpdate();
     };
 
     reset()
     {
+        this.gameDriver.reset();
         for (let i = 0; i < 4; i++)
         {
             for (let j = 0; j < 9; j++)
@@ -99,9 +101,6 @@ class App extends Component<{}, Quordle> {
         titleColor = 'tB';
 
         (document.getElementById('wordBox') as HTMLInputElement).value = '';
-
-        this.gameDriver.reset();
-        this.forceUpdate();
     };
 
     swapHelper() 
