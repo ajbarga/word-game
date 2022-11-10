@@ -1,0 +1,151 @@
+input {
+    border-radius: 2px;
+    margin: 0 auto;
+    background-color: #313131;
+    display: inline-block;
+    color: pink;
+    font-family: "American Typewriter", serif;
+    font-size: larger;
+    text-align: center;
+    text-transform: uppercase;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+.word {
+    text-align: left;
+    text-indent: 26px;
+    letter-spacing: 56px;
+    caret-color: transparent;
+    user-select: disabled;
+}
+
+.word.dm {
+    border-color: black;
+    background-color: #262626;
+}
+
+.key {
+    border-color: inherit;
+    width: 10%;
+    color: pink;
+    background-color: #313131;
+}
+
+.key2 {
+    width: 11.11%;
+    border-color: inherit;
+}
+
+.key3 {
+    width: 10%;
+    border-color: inherit;
+}
+
+
+.grey {
+    background-color: grey;
+    color: pink
+}
+
+.yellow {
+    background-color: yellow;
+    color: black
+}
+
+.green {
+    background-color: lightgreen;
+    color: black
+}
+
+.dm.grey {
+    background-color: #110f0f;
+    color: #610505
+}
+
+.dm.yellow {
+    background-color: orange;
+    color: white
+}
+
+.dm.green {
+    background-color: darkgreen;
+    color: #ffffff
+}
+
+#special-d {
+    box-sizing: border-box;
+    width: 15%;
+    float: right;
+    background-image: url("../images/backspace-icon.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#special {
+    box-sizing: border-box;
+    width: 15%;
+    padding-top: 1px;
+}
+
+.key-row {
+    box-sizing: border-box;
+    height: 33.33%;
+    margin: 0 auto;
+    border-color: inherit;
+}
+
+.key-box {
+    height: 100%;
+    width: 100%;
+    max-width: 520px;
+    border-color: thistle;
+}
+
+.key-box.dm {
+    border-color: black;
+}
+
+
+button {
+    border-radius: 2px;
+    border-width: 2px;
+    box-sizing: border-box;
+    font-size: 130%;
+    font-family: "Times New Roman", serif;
+    width: 33.33%;
+    height: 100%;
+    display: inline-block;
+    border-color: black;
+}
+
+button:hover {
+    background-color: thistle;
+    transform: scale3d(0.98, 0.96, 1);
+}
+
+button.dm {
+    background-color: #313131;
+    color: #ffcfcf;
+    border-color: #000000;
+}
+
+button:hover.dm {
+    background-color: #761919;
+    color: #ff6982;
+    transform: scale3d(0.96, 0.96, 1);
+}
+
+#ans-box {
+    width: 100%;
+    user-select: disabled;
+    font-size: 65%;
+    background-color: #262626;
+    color: pink;
+    border-color: black;
+    font-stretch: condensed;
+    text-indent: -9999px;
+
+}
