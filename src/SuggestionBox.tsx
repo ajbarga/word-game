@@ -19,59 +19,69 @@ class SuggestionBox
         let possible: string = "";
         let contain: string = "";
 
-        for (let i = 0; i < 5; i++) 
-        {
-            let ch: number = guess.charCodeAt(2 * i);
-            let ch2: number = guess.charCodeAt(2 * i + 1);
-            if (ch == 99)
-            {
-                contain = contain + i + this.char(ch2);
+        for (let i = 0; i < 5; i++) {
+            let c1: number = guess.charCodeAt(2 * i);
+            let c2: number = guess.charCodeAt(2 * i + 1);
+            if (c1 == 'c'.charCodeAt(0)) {
+                contain = contain + i + this.char(c2);
             }
-            else if (ch == 101) 
-            {
-                possible = possible + i + this.char(ch2);
+            else if (c1 == 'e'.charCodeAt(0)) {
+                possible = possible + i + this.char(c2);
             }
-            else 
-            {
-                nContain.push(ch2);
+            else {
+                nContain.push(c2);
             }
         }
 
-        let yel: number;
-        let grn: number;
+        let yel: number = 0;
+        let  grn: number = 0
+        let pos: string = possible;
+        let cont: string = contain;
 
-        for (let word in fullWordList) 
-        {
+        for (let word in fullWordList) {
             let bad: boolean = true;
-            for (let j = 0; j < possible.length; j += 2) 
+            for (let j = 0; j < pos.length; j += 2) 
             {
-                if (word.charAt(possible.charCodeAt(j) - 48) != possible.charAt(j + 1)) 
+                if (word.charAt(pos.charCodeAt(j) - 48) !== pos.charAt(j + 1)) 
                 {
                     bad = false;
                     break;
                 }
             }
-            for (let j = 0; j < contain.length; j += 2) 
+            for (let j = 0; j < cont.length; j += 2) 
             {
-                if (word.charAt(contain.charCodeAt(j) - 48) == contain.charAt(j + 1) || word.indexOf(contain.charAt(j + 1)) == undefined) 
+                if (word.charAt(cont.charCodeAt(j) - 48) == cont.charAt(j + 1) ||
+                        word.indexOf(cont.charAt(j + 1)) == undefined) 
                 {
                     bad = false;
                     break;
                 }
             }
-            if (bad) {
-                for (let i = 0; i < nContain.length; i++) {
-                    let char = nContain[i]
-                    yel = contain.indexOf(this.char(char)) - 1;
-                    grn = possible.indexOf(this.char(char)) - 1;
-                    if (word.indexOf(this.char(nContain[i])) != undefined && (contain.indexOf(this.char(char)) == undefined || contain.charCodeAt(yel) - 48 == word.indexOf(this.char(char))) &&(possible.indexOf(this.char(char)) || possible.charCodeAt(grn) - 48 != word.indexOf(this.char(char)))) 
+            if (bad) 
+            {
+                for (let m = 0; m < nContain.length; m++) 
+                {
+                    let ch: number = nContain[m];
+
+                    yel = cont.indexOf(this.char(ch));
+                    grn = pos.indexOf(this.char(ch));
+
+                    yel = (yel == undefined ? -2 : yel - 1);
+                    grn = (grn == undefined ? -2 : grn - 1);
+
+                    let idx = word.indexOf(this.char(ch));
+                    if ((idx != undefined) &&
+                            (yel == -2 || cont.charCodeAt(yel) - 48 == idx) &&
+                            (grn == -2 || pos.charCodeAt(grn) - 48 !== idx))
                     {
                         delete remainingWordList[word];
                         break;
                     }
                 }
             }
-            else {
+                
+            else 
+            {
                 delete remainingWordList[word];
             }
         }
@@ -86,8 +96,18 @@ class SuggestionBox
     {
         let newList: string[] = [];
         this.analyzeGuess(guess, wordList);
-        for (let m = 0; (m < wordList.length) && (m < 8); m++)
-            newList.push(wordList[m]);
+        let m: number = 0;
+        while (m < wordList.length && newList.length < 8)
+        {
+            
+            let w: string = wordList[m];
+            if (w != undefined)
+            {
+                alert(w);
+                newList.push(wordList[m]);   
+            }
+            m++;
+        }
         return newList;
     }
 
