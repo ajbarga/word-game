@@ -1,8 +1,8 @@
 // © 2022 Alex Barga. All rights reserved.
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
-import SuggestionBox from "./SuggestionBox";
-import WordleDriver from "./WordleDriver";
+import SuggestionBox from './SuggestionBox';
+import WordleDriver from './WordleDriver';
 
 class GameDriver
 {

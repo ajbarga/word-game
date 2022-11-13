@@ -1,12 +1,12 @@
 // © 2022 Alex Barga. All rights reserved.
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
-import "./css/App.css";
+import './css/App.css';
 
-import React, { Component } from "react";
-import RowBox from "./app-components/row-box";
-import Keyboard from "./app-components/keyboard";
-import GameDriver from "./GameDriver";
+import React, { Component } from 'react';
+import RowBox from './app-components/row-box';
+import Keyboard from './app-components/keyboard';
+import GameDriver from './GameDriver';
 
 interface Quordle
 {
@@ -15,7 +15,7 @@ interface Quordle
     wordList: any;
 }
 
-const emptyWord: string = "     ";
+const emptyWord: string = '     ';
 const oneRow: string[] = [
     emptyWord, emptyWord, emptyWord,
     emptyWord, emptyWord, emptyWord,
@@ -31,12 +31,12 @@ const emptyColors: number[][] = [
 let num: any = [0, 0, 0, 0];
 let help = true;
 let darkMode = true;
-let titleColor: string = "tB";
+let titleColor: string = 'tB';
 
 let rows: string[][] = [];
 let colors: number[][][] = [];
 
-let wordList: any = ["", "", "", ""];
+let wordList: any = ['', '', '', ''];
 let gameDriver: GameDriver;
 let obj: App;
 
@@ -97,7 +97,7 @@ class App extends Component<{}, Quordle>
                     num[i]++;
                     if (response[i].length === 1)
                     {
-                        wordList[i] = "Nice Job! :)";
+                        wordList[i] = 'Nice Job! :)';
                     }
                 }
             }
@@ -129,7 +129,7 @@ class App extends Component<{}, Quordle>
         obj.resetRow();
         gameDriver.reset();
         num = [0, 0, 0, 0];
-        wordList = ["", "", "", ""];
+        wordList = ['', '', '', ''];
 
         titleColor = 'tB';
 
@@ -140,28 +140,28 @@ class App extends Component<{}, Quordle>
 
     swapHelper()
     {
-        let all = document.querySelectorAll("#ans-box");
+        let all = document.querySelectorAll('#ans-box');
         for (let i = 0; i < all.length; i++)
         {
-            (all.item(i) as HTMLButtonElement).style.textIndent = (help ? "0px" : "-9999px");
+            (all.item(i) as HTMLButtonElement).style.textIndent = (help ? '0px' : '-9999px');
         }
         help = !help;
     };
 
     swapMode()
     {
-        document.body.style.backgroundColor = (darkMode ? "#262626" : "thistle");
+        document.body.style.backgroundColor = (darkMode ? '#262626' : 'thistle');
 
-        let divs = document.querySelectorAll("input,p,div.container,div.key-box,button");
+        let divs = document.querySelectorAll('input,p,div.container,div.key-box,button');
         for (let i = 0; i < divs.length; i++)
         {
             if (darkMode)
             {
-                divs[i].classList.add("dm");
+                divs[i].classList.add('dm');
             }
             else
             {
-                divs[i].classList.remove("dm");
+                divs[i].classList.remove('dm');
             }
         }
         darkMode = !darkMode;
@@ -175,20 +175,20 @@ class App extends Component<{}, Quordle>
     render()
     {
         return (
-            <div className={"big-box"}>
-                <div className={"container tc"} id={"short"}>
+            <div className={'big-box'}>
+                <div className={'container tc'} id={'short'}>
                     <button onClick={this.reset}>RESET</button>
                     <button onClick={this.swapMode}>SWAP</button>
                     <button onClick={this.swapHelper}>HELP</button>
                 </div>
-                <div className={"container"}>
-                    <p className={"title-box"} id={titleColor}>Wordle</p>
+                <div className={'container'}>
+                    <p className={'title-box'} id={titleColor}>Wordle</p>
                 </div>
                 <RowBox rowSt={this.state.rows} colorState={this.state.colors} wordBox={wordList} />
-                <div className={"container wc"}>
-                    <input disabled={true} className={"word"} id={"wordBox"} type="text" maxLength={5} />
+                <div className={'container wc'}>
+                    <input disabled={true} className={'word'} id={'wordBox'} type='text' maxLength={5} />
                 </div>
-                <div className={"container"} id={"keyCont"}>
+                <div className={'container'} id={'keyCont'}>
                     <Keyboard getGuess={(g1: string) => this.makeGuess(g1)} />
                 </div>
             </div>

@@ -16,8 +16,8 @@ class SuggestionBox
     {
         let fullWordList: string[] = [...remainingWordList];
         let nContain: number[] = [];
-        let possible: string = "";
-        let contain: string = "";
+        let possible: string = '';
+        let contain: string = '';
 
         for (let i = 0; i < 5; i++)
         {

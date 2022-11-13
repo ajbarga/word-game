@@ -1,14 +1,14 @@
 // © 2022 Alex Barga. All rights reserved.
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
-import text from "./resources/dictionary";
-import realText from "./resources/realWords";
+import text from './resources/dictionary';
+import realText from './resources/realWords';
 const CHARS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 class WordleDriver
 {
     private _answerC: number[] = [];
-    private _answer: string = "";
+    private _answer: string = '';
     private _charInv: number[] = [...CHARS];
 
     constructor()
