@@ -67,9 +67,9 @@ p{
 
 .letter{width: 20%;}
 
-#l-w{background-color: lightgrey;}
-#l-e{background-color: lightgreen;}
-#l-c{background-color: yellow;}
-.dm#l-w{background-color: #262626;color:pink;}
-.dm#l-e{background-color: #004500;color:white;}
-.dm#l-c{background-color: orange;color: #892d2d;}
+#l-1{background-color: lightgrey;}
+#l1{background-color: lightgreen;}
+#l0{background-color: yellow;}
+.dm#l-1{background-color: #262626;color:pink;}
+.dm#l1{background-color: #004500;color:white;}
+.dm#l0{background-color: orange;color: #892d2d;}

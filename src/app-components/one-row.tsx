@@ -4,7 +4,8 @@
 import React, {Component} from "react";
 
 interface RowProps {
-    gString: any,
+    guess: string,
+    colorState: number[]
 }
 
 class OneRow extends Component<RowProps> {
@@ -12,11 +13,11 @@ class OneRow extends Component<RowProps> {
     render() {
         return (
             <div className={"container lc"}>
-                <p className={"letter"} id={"l-" + this.props.gString[0]}>{this.props.gString[1]}</p>
-                <p className={"letter"} id={"l-" + this.props.gString[2]}>{this.props.gString[3]}</p>
-                <p className={"letter"} id={"l-" + this.props.gString[4]}>{this.props.gString[5]}</p>
-                <p className={"letter"} id={"l-" + this.props.gString[6]}>{this.props.gString[7]}</p>
-                <p className={"letter"} id={"l-" + this.props.gString[8]}>{this.props.gString[9]}</p>
+                <p className={"letter"} id={"l" + this.props.colorState[0]}>{this.props.guess.charAt(0)}</p>
+                <p className={"letter"} id={"l" + this.props.colorState[1]}>{this.props.guess.charAt(1)}</p>
+                <p className={"letter"} id={"l" + this.props.colorState[2]}>{this.props.guess.charAt(2)}</p>
+                <p className={"letter"} id={"l" + this.props.colorState[3]}>{this.props.guess.charAt(3)}</p>
+                <p className={"letter"} id={"l" + this.props.colorState[4]}>{this.props.guess.charAt(4)}</p>
             </div>
         )
     }

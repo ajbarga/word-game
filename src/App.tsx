@@ -9,16 +9,26 @@ import Keyboard from "./app-components/keyboard";
 import GameDriver from "./GameDriver";
 
 interface Quordle {
-    rows: any;
+    rows: string[][]
+    colors: number[][][]
     wordList: any;
 }
 
-const q: string = "w w w w w ";
+const emptyWord: string = "     ";
+const oneRow: string[] = [emptyWord, emptyWord, emptyWord, emptyWord,emptyWord, emptyWord, emptyWord, emptyWord, emptyWord];
+
+const emptyColors: number[][] = [[-1, -1, -1, -1, -1],[-1, -1, -1, -1, -1],[-1, -1, -1, -1, -1],
+                                [-1, -1, -1, -1, -1],[-1, -1, -1, -1, -1],[-1, -1, -1, -1, -1],
+                                [-1, -1, -1, -1, -1],[-1, -1, -1, -1, -1],[-1, -1, -1, -1, -1]];
+
 let num: any = [0, 0, 0, 0];
 let help = true;
 let darkMode = true;
 let titleColor: string = "tB";
-let rows: any = [[], [], [], []];
+
+let rows: string[][] = [];
+let colors: number[][][] = [];
+
 let wordList: any = ["", "", "", ""];
 let gameDriver: GameDriver;
 let obj: App;
@@ -33,20 +43,14 @@ class App extends Component<{}, Quordle> {
         gameDriver = new GameDriver();
         obj = this;
         
-        for (let i = 0; i < 4; i++)
-        {
-            for (let j = 0; j < 9; j++)
-            {
-                rows[i][j] = q;
-            }
-        }
-        this.state = ({rows: rows, wordList: wordList});
+        this.resetRow()
+        this.state = ({rows: rows, colors: colors, wordList: wordList});
     }
 
     makeGuess = async(guessVal: string) => 
     {
-        let text = gameDriver.guess(guessVal.toUpperCase());
-        if(text[0].length == 0)
+        let response: number[][] = gameDriver.guess(guessVal.toUpperCase());
+        if(response[0].length == 0)
         {
             titleColor = 'rTB';
             obj.forceUpdate();
@@ -57,26 +61,34 @@ class App extends Component<{}, Quordle> {
         {
             for (let i = 0; i < 4; i++) 
             {
+                let gameState = response[i][0]
+                
                 if (num[i] < 9) 
                 {
-                    if (text[i].length === 15) 
+                    let rowColors: number[];
+                    if (response[i].length === 1)
                     {
-                        rows[i][num[i]] = text[i].substring(0, 10);
-                        num[i]++;
+                        rowColors = [1, 1, 1, 1, 1]
+                    }
+                    else{
+                        rowColors = response[i].splice(1, 6)
+                    }
+                    rows[i][num[i]] = guessVal
+                    colors[i][num[i]] = rowColors
+                    
+                    if (gameState === 1)
+                    {
+                        num[i] = 8;
                     } 
-                    else 
+                    else
                     {
-                        await this.analyzeGuess(i,text[i]);
-                        rows[i][num[i]] = text[i];
-                        if (text[i].length > 12) 
-                        {
-                            num[i] = 8;
-                        }
-                        num[i]++;
-                        if (text[i].length > 12) 
-                        {
-                            wordList[i] = "Nice Job! :)";
-                        }
+                        await this.analyzeGuess(i, guessVal, rowColors);
+                    }
+
+                    num[i]++;
+                    if (response[i].length === 1) 
+                    {
+                        wordList[i] = "Nice Job! :)";
                     }
                 }
             }
@@ -84,23 +96,29 @@ class App extends Component<{}, Quordle> {
         obj.forceUpdate();
     };
 
-    analyzeGuess = async (i: number, word: string) => 
+    analyzeGuess = async (i: number, word: string, colors: number[]) => 
     {
-        let t = gameDriver.analyze(i, word).toString();
+        let t = gameDriver.analyze(i, word, colors).toString();
         wordList[i] = t.substring(1, t.length - 1);
         obj.forceUpdate();
     };
 
-    reset()
+    resetRow()
     {
-        gameDriver.reset();
         for (let i = 0; i < 4; i++)
         {
             for (let j = 0; j < 9; j++)
             {
-                rows[i][j] = q;
+                rows[i] = oneRow;
+                colors[i] = [...emptyColors];
             }
         }
+    }
+
+    reset()
+    {
+        this.resetRow()
+        gameDriver.reset();
         num = [0, 0, 0, 0];
         wordList = ["", "", "", ""];
 
@@ -157,7 +175,7 @@ class App extends Component<{}, Quordle> {
                 <div className={"container"}>
                     <p className={"title-box"} id={titleColor}>Wordle</p>
                 </div>
-                <RowBox rowSt={this.state.rows} wordBox={wordList}/>
+                <RowBox rowSt={this.state.rows} colorState={this.state.colors} wordBox={wordList}/>
                 <div className={"container wc"}>
                     <input disabled={true} className={"word"} id={"wordBox"} type="text" maxLength={5}/>
                 </div>

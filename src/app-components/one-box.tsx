@@ -5,7 +5,8 @@ import React, {Component} from "react";
 import OneRow from './one-row';
 
 interface OneBoxProps {
-    box: any,
+    box: string[],
+    colors: number[][]
     wordBox: string,
 }
 
@@ -18,15 +19,15 @@ class OneBox extends Component<OneBoxProps> {
     render() {
         return (
             <div className={"row"}>
-                <OneRow gString={this.makeRow(this.props.box[0])}/>
-                <OneRow gString={this.makeRow(this.props.box[1])}/>
-                <OneRow gString={this.makeRow(this.props.box[2])}/>
-                <OneRow gString={this.makeRow(this.props.box[3])}/>
-                <OneRow gString={this.makeRow(this.props.box[4])}/>
-                <OneRow gString={this.makeRow(this.props.box[5])}/>
-                <OneRow gString={this.makeRow(this.props.box[6])}/>
-                <OneRow gString={this.makeRow(this.props.box[7])}/>
-                <OneRow gString={this.makeRow(this.props.box[8])}/>
+                <OneRow guess={this.props.box[0]} colorState={this.props.colors[0]}/>
+                <OneRow guess={this.props.box[1]} colorState={this.props.colors[1]}/>
+                <OneRow guess={this.props.box[2]} colorState={this.props.colors[2]}/>
+                <OneRow guess={this.props.box[3]} colorState={this.props.colors[3]}/>
+                <OneRow guess={this.props.box[4]} colorState={this.props.colors[4]}/>
+                <OneRow guess={this.props.box[5]} colorState={this.props.colors[5]}/>
+                <OneRow guess={this.props.box[6]} colorState={this.props.colors[6]}/>
+                <OneRow guess={this.props.box[7]} colorState={this.props.colors[7]}/>
+                <OneRow guess={this.props.box[8]} colorState={this.props.colors[8]}/>
                 <div className={"container lc"}>
                     <input type={"button"} className={"key"} id={"ans-box"} value={this.props.wordBox} disabled/>
                 </div>

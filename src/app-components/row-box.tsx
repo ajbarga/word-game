@@ -5,7 +5,8 @@ import React, {Component} from "react";
 import OneBox from './one-box';
 
 interface RowBoxProps {
-    rowSt: [[any], [any], [any], [any]],
+    rowSt: string[][],
+    colorState: number[][][],
     wordBox: [string, string, string, string],
 }
 
@@ -14,10 +15,10 @@ class RowBox extends Component<RowBoxProps> {
     render() {
         return (
             <div>
-                <OneBox box={this.props.rowSt[0]} wordBox={this.props.wordBox[0]}/>
-                <OneBox box={this.props.rowSt[1]} wordBox={this.props.wordBox[1]}/>
-                <OneBox box={this.props.rowSt[2]} wordBox={this.props.wordBox[2]}/>
-                <OneBox box={this.props.rowSt[3]} wordBox={this.props.wordBox[3]}/>
+                <OneBox box={this.props.rowSt[0]} colors={this.props.colorState[0]} wordBox={this.props.wordBox[0]}/>
+                <OneBox box={this.props.rowSt[1]} colors={this.props.colorState[1]} wordBox={this.props.wordBox[1]}/>
+                <OneBox box={this.props.rowSt[2]} colors={this.props.colorState[2]} wordBox={this.props.wordBox[2]}/>
+                <OneBox box={this.props.rowSt[3]} colors={this.props.colorState[3]} wordBox={this.props.wordBox[3]}/>
             </div>
         );
     }
