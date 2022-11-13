@@ -28,7 +28,7 @@ const emptyColors: number[][] = [
     [-1, -1, -1, -1, -1], [-1, -1, -1, -1, -1], [-1, -1, -1, -1, -1]
 ];
 
-let num: any = [0, 0, 0, 0];
+
 let help = true;
 let titleColor: string = 'tB';
 let wordList: any = ['', '', '', ''];
@@ -37,12 +37,14 @@ let App: WordleApp;
 let gameDriver: GameDriver;
 let rows: string[][];
 let colors: number[][][];
+let guessCount: number[];
 
 class WordleApp extends Component<{}, Wordle>
 {
     private _gameDriver: GameDriver = new GameDriver();
     private _rowState: string[][] = [];
     private _colorState: number[][][] = [];
+    private _guessesLeft: number[] = [];
 
     constructor(props: Wordle)
     {
@@ -52,8 +54,9 @@ class WordleApp extends Component<{}, Wordle>
         gameDriver = this._gameDriver;
         rows = this._rowState;
         colors = this._colorState;
+        guessCount = this._guessesLeft;
 
-        this.resetRow();
+        this.resetRows();
         this.state = ({ rows: rows, colors: colors, wordList: wordList });
     }
 
@@ -68,24 +71,24 @@ class WordleApp extends Component<{}, Wordle>
         {
             for (let i = 0; i < 4; i++)
             {
-                if (num[i] < 9)
+                if (guessCount[i] < 9)
                 {
                     let rowColors: number[] = (
                         response[i].length === 1 ? [1, 1, 1, 1, 1] : response[i]
                     );
 
-                    rows[i][num[i]] = guessVal.toLowerCase();
-                    colors[i][num[i]] = rowColors;
+                    rows[i][guessCount[i]] = guessVal.toLowerCase();
+                    colors[i][guessCount[i]] = rowColors;
 
                     await App.analyzeGuess(i, guessVal, rowColors);
 
                     if (response[i].length === 1)
                     {
-                        num[i] = 9;
+                        guessCount[i] = 9;
                     }
                     else
                     {
-                        num[i]++;
+                        guessCount[i]++;
                     }
                 }
             }
@@ -108,8 +111,10 @@ class WordleApp extends Component<{}, Wordle>
         titleColor = 'tB';
     }
 
-    resetRow() 
+    resetRows() 
     {
+        guessCount = [0, 0, 0, 0];
+        wordList = ['', '', '', ''];
         for (let i = 0; i < 4; i++)
         {
             for (let j = 0; j < 9; j++)
@@ -122,10 +127,8 @@ class WordleApp extends Component<{}, Wordle>
 
     reset()
     {
-        App.resetRow();
+        App.resetRows();
         gameDriver.reset();
-        num = [0, 0, 0, 0];
-        wordList = ['', '', '', ''];
         titleColor = 'tB';
         (document.getElementById('wordBox') as HTMLInputElement).value = '';
 
