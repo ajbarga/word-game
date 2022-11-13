@@ -8,11 +8,11 @@ import RowBox from './app-components/row-box';
 import Keyboard from './app-components/keyboard';
 import GameDriver from './GameDriver';
 
-interface Quordle
+interface Wordle
 {
     rows: string[][];
     colors: number[][][];
-    wordList: any;
+    wordList: string[];
 }
 
 const emptyWord: string = '     ';
@@ -30,89 +30,85 @@ const emptyColors: number[][] = [
 
 let num: any = [0, 0, 0, 0];
 let help = true;
-let darkMode = true;
 let titleColor: string = 'tB';
-
-let rows: string[][] = [];
-let colors: number[][][] = [];
-
 let wordList: any = ['', '', '', ''];
+
+let App: WordleApp;
 let gameDriver: GameDriver;
-let obj: App;
+let rows: string[][];
+let colors: number[][][];
 
-class App extends Component<{}, Quordle>
+class WordleApp extends Component<{}, Wordle>
 {
+    private _gameDriver: GameDriver = new GameDriver();
+    private _rowState: string[][] = [];
+    private _colorState: number[][][] = [];
 
-
-    constructor(props: Quordle)
+    constructor(props: Wordle)
     {
         super(props);
+        App = this;
 
-        gameDriver = new GameDriver();
-        obj = this;
+        gameDriver = this._gameDriver;
+        rows = this._rowState;
+        colors = this._colorState;
 
         this.resetRow();
         this.state = ({ rows: rows, colors: colors, wordList: wordList });
     }
 
-    makeGuess = async (guessVal: string) =>
+    async makeGuess(guessVal: string)
     {
         let response: number[][] = gameDriver.guess(guessVal.toUpperCase());
         if (response[0].length == 0)
         {
-            titleColor = 'rTB';
-            obj.forceUpdate();
-            await obj.timeout(1500);
-            titleColor = 'tB';
+            await App.invalidGuessSequence();
         }
         else
         {
             for (let i = 0; i < 4; i++)
             {
-                let gameState = response[i][0];
-
                 if (num[i] < 9)
                 {
-                    let rowColors: number[];
-                    if (response[i].length === 1)
-                    {
-                        rowColors = [1, 1, 1, 1, 1];
-                    }
-                    else
-                    {
-                        rowColors = response[i].splice(1, 6);
-                    }
+                    let rowColors: number[] = (
+                        response[i].length === 1 ? [1, 1, 1, 1, 1] : response[i]
+                    );
+
                     rows[i][num[i]] = guessVal.toLowerCase();
                     colors[i][num[i]] = rowColors;
 
-                    if (gameState === 1)
+                    await App.analyzeGuess(i, guessVal, rowColors);
+
+                    if (response[i].length === 1)
                     {
-                        num[i] = 8;
+                        num[i] = 9;
                     }
                     else
                     {
-                        await this.analyzeGuess(i, guessVal, rowColors);
-                    }
-
-                    num[i]++;
-                    if (response[i].length === 1)
-                    {
-                        wordList[i] = 'Nice Job! :)';
+                        num[i]++;
                     }
                 }
             }
         }
-        obj.forceUpdate();
+        App.forceUpdate();
     };
 
-    analyzeGuess = async (i: number, word: string, colors: number[]) =>
+    async analyzeGuess(i: number, word: string, colors: number[])
     {
         let t = gameDriver.analyze(i, word, colors).toString();
         wordList[i] = t.substring(1, t.length - 1);
-        obj.forceUpdate();
+        App.forceUpdate();
     };
 
-    resetRow()
+    async invalidGuessSequence()
+    {
+        titleColor = 'rTB';
+        App.forceUpdate();
+        await App.timeout(1500);
+        titleColor = 'tB';
+    }
+
+    resetRow() 
     {
         for (let i = 0; i < 4; i++)
         {
@@ -122,20 +118,18 @@ class App extends Component<{}, Quordle>
                 colors[i] = [...emptyColors];
             }
         }
-    }
+    };
 
     reset()
     {
-        obj.resetRow();
+        App.resetRow();
         gameDriver.reset();
         num = [0, 0, 0, 0];
         wordList = ['', '', '', ''];
-
         titleColor = 'tB';
-
         (document.getElementById('wordBox') as HTMLInputElement).value = '';
 
-        obj.forceUpdate();
+        App.forceUpdate();
     };
 
     swapHelper()
@@ -148,24 +142,21 @@ class App extends Component<{}, Quordle>
         help = !help;
     };
 
-    swapMode()
+    swapColorMode()
     {
-        document.body.style.backgroundColor = (darkMode ? '#262626' : 'thistle');
-
         let divs = document.querySelectorAll('input,p,div.container,div.key-box,button');
-        for (let i = 0; i < divs.length; i++)
+        let isDarkMode: boolean = divs[0].classList.contains('dm');
+
+        document.body.style.backgroundColor = (isDarkMode ? 'thistle' : '#262626');
+        if (isDarkMode)
         {
-            if (darkMode)
-            {
-                divs[i].classList.add('dm');
-            }
-            else
-            {
-                divs[i].classList.remove('dm');
-            }
+            divs.forEach(i => i.classList.remove('dm'));
         }
-        darkMode = !darkMode;
-    }
+        else
+        {
+            divs.forEach(i => i.classList.add('dm'));
+        }
+    };
 
     timeout(delay: number)
     {
@@ -177,23 +168,23 @@ class App extends Component<{}, Quordle>
         return (
             <div className={'big-box'}>
                 <div className={'container tc'} id={'short'}>
-                    <button onClick={this.reset}>RESET</button>
-                    <button onClick={this.swapMode}>SWAP</button>
-                    <button onClick={this.swapHelper}>HELP</button>
+                    <button onClick={App.reset}>RESET</button>
+                    <button onClick={App.swapColorMode}>SWAP</button>
+                    <button onClick={App.swapHelper}>HELP</button>
                 </div>
                 <div className={'container'}>
                     <p className={'title-box'} id={titleColor}>Wordle</p>
                 </div>
-                <RowBox rowSt={this.state.rows} colorState={this.state.colors} wordBox={wordList} />
+                <RowBox rowSt={App.state.rows} colorState={App.state.colors} wordBox={wordList} />
                 <div className={'container wc'}>
                     <input disabled={true} className={'word'} id={'wordBox'} type='text' maxLength={5} />
                 </div>
                 <div className={'container'} id={'keyCont'}>
-                    <Keyboard getGuess={(g1: string) => this.makeGuess(g1)} />
+                    <Keyboard getGuess={(g1: string) => App.makeGuess(g1)} />
                 </div>
             </div>
         );
-    }
+    };
 }
 
-export default App;
+export default WordleApp;
