@@ -70,10 +70,11 @@ class App extends Component<{}, Quordle> {
                     {
                         rowColors = [1, 1, 1, 1, 1]
                     }
-                    else{
+                    else
+                    {
                         rowColors = response[i].splice(1, 6)
                     }
-                    rows[i][num[i]] = guessVal
+                    rows[i][num[i]] = guessVal.toLowerCase()
                     colors[i][num[i]] = rowColors
                     
                     if (gameState === 1)
@@ -109,7 +110,7 @@ class App extends Component<{}, Quordle> {
         {
             for (let j = 0; j < 9; j++)
             {
-                rows[i] = oneRow;
+                rows[i] = [...oneRow];
                 colors[i] = [...emptyColors];
             }
         }
@@ -117,7 +118,7 @@ class App extends Component<{}, Quordle> {
 
     reset()
     {
-        this.resetRow()
+        obj.resetRow()
         gameDriver.reset();
         num = [0, 0, 0, 0];
         wordList = ["", "", "", ""];
