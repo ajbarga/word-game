@@ -3,7 +3,7 @@
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
 import text from "./resources/dictionary";
 import realText from "./resources/realWords";
-const CHARS = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+const CHARS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 class WordleDriver
 {
@@ -13,7 +13,7 @@ class WordleDriver
 
     constructor()
     {
-        this.reset()
+        this.reset();
     }
 
     pickWord(): string
@@ -29,18 +29,18 @@ class WordleDriver
 
     char(c: number): string
     {
-        return String.fromCharCode(c)
+        return String.fromCharCode(c);
     }
 
-    makeGuess (word: string): number[]
+    makeGuess(word: string): number[]
     {
         let response: number[] = [0, 0, 0, 0, 0];
-        let charAt: number[] = [...this._charInv]
-        
+        let charAt: number[] = [...this._charInv];
+
         if (word == this._answer)
         {
-            return [0]
-        } 
+            return [0];
+        }
 
         if (this.isGuessable(word)) 
         {
@@ -48,7 +48,7 @@ class WordleDriver
             {
                 let ch = word.charCodeAt(i);
                 let count = charAt[ch - 65];
-                
+
                 if (this._answerC[i] == ch) 
                 {
                     response[i] = 1;
@@ -56,21 +56,21 @@ class WordleDriver
                 }
                 else if (count > 0 && (count > 1 || word.charCodeAt(this._answer.indexOf(this.char(ch))) != ch))
                 {
-                    response[i] = 0
+                    response[i] = 0;
                     charAt[ch - 65]--;
                 }
                 else
                 {
-                    response[i] = -1
+                    response[i] = -1;
                 }
 
             }
-            return response
+            return response;
         }
         return [];
     }
 
-    reset ()
+    reset()
     {
         this._answer = this.pickWord();
         this._answerC = [];

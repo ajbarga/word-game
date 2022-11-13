@@ -1,16 +1,18 @@
 // © 2022 Alex Barga. All rights reserved.
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
-import React, {Component} from "react";
+import React, { Component } from "react";
 
-interface RowProps {
+interface RowProps
+{
     guess: string,
-    colorState: number[]
+    colorState: number[];
 }
 
 class OneRow extends Component<RowProps> {
 
-    render() {
+    render()
+    {
         return (
             <div className={"container lc"}>
                 <p className={"letter"} id={"l" + this.props.colorState[0]}>{this.props.guess.charAt(0)}</p>
@@ -19,7 +21,7 @@ class OneRow extends Component<RowProps> {
                 <p className={"letter"} id={"l" + this.props.colorState[3]}>{this.props.guess.charAt(3)}</p>
                 <p className={"letter"} id={"l" + this.props.colorState[4]}>{this.props.guess.charAt(4)}</p>
             </div>
-        )
+        );
     }
 }
 

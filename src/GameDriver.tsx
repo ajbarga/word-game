@@ -9,9 +9,9 @@ class GameDriver
     private wordleDrivers: WordleDriver[] = [new WordleDriver(), new WordleDriver(), new WordleDriver(), new WordleDriver()];
     private suggestionBoxes: SuggestionBox[] = [new SuggestionBox(), new SuggestionBox(), new SuggestionBox(), new SuggestionBox()];
 
-    guess (word: string): number[][] 
+    guess(word: string): number[][] 
     {
-        let responses: number[][] = [[],[],[],[]];
+        let responses: number[][] = [[], [], [], []];
         for (let i = 0; i < 4; i++) 
         {
             responses[i] = this.wordleDrivers[i].makeGuess(word);

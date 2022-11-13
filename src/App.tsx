@@ -3,23 +3,30 @@
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
 import "./css/App.css";
 
-import React, {Component} from "react";
+import React, { Component } from "react";
 import RowBox from "./app-components/row-box";
 import Keyboard from "./app-components/keyboard";
 import GameDriver from "./GameDriver";
 
-interface Quordle {
-    rows: string[][]
-    colors: number[][][]
+interface Quordle
+{
+    rows: string[][];
+    colors: number[][][];
     wordList: any;
 }
 
 const emptyWord: string = "     ";
-const oneRow: string[] = [emptyWord, emptyWord, emptyWord, emptyWord,emptyWord, emptyWord, emptyWord, emptyWord, emptyWord];
+const oneRow: string[] = [
+    emptyWord, emptyWord, emptyWord,
+    emptyWord, emptyWord, emptyWord,
+    emptyWord, emptyWord, emptyWord
+];
 
-const emptyColors: number[][] = [[-1, -1, -1, -1, -1],[-1, -1, -1, -1, -1],[-1, -1, -1, -1, -1],
-                                [-1, -1, -1, -1, -1],[-1, -1, -1, -1, -1],[-1, -1, -1, -1, -1],
-                                [-1, -1, -1, -1, -1],[-1, -1, -1, -1, -1],[-1, -1, -1, -1, -1]];
+const emptyColors: number[][] = [
+    [-1, -1, -1, -1, -1], [-1, -1, -1, -1, -1], [-1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1], [-1, -1, -1, -1, -1], [-1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1], [-1, -1, -1, -1, -1], [-1, -1, -1, -1, -1]
+];
 
 let num: any = [0, 0, 0, 0];
 let help = true;
@@ -33,24 +40,25 @@ let wordList: any = ["", "", "", ""];
 let gameDriver: GameDriver;
 let obj: App;
 
-class App extends Component<{}, Quordle> {
-    
+class App extends Component<{}, Quordle>
+{
 
-    constructor(props: Quordle) 
+
+    constructor(props: Quordle)
     {
         super(props);
-        
+
         gameDriver = new GameDriver();
         obj = this;
-        
-        this.resetRow()
-        this.state = ({rows: rows, colors: colors, wordList: wordList});
+
+        this.resetRow();
+        this.state = ({ rows: rows, colors: colors, wordList: wordList });
     }
 
-    makeGuess = async(guessVal: string) => 
+    makeGuess = async (guessVal: string) =>
     {
         let response: number[][] = gameDriver.guess(guessVal.toUpperCase());
-        if(response[0].length == 0)
+        if (response[0].length == 0)
         {
             titleColor = 'rTB';
             obj.forceUpdate();
@@ -59,35 +67,35 @@ class App extends Component<{}, Quordle> {
         }
         else
         {
-            for (let i = 0; i < 4; i++) 
+            for (let i = 0; i < 4; i++)
             {
-                let gameState = response[i][0]
-                
-                if (num[i] < 9) 
+                let gameState = response[i][0];
+
+                if (num[i] < 9)
                 {
                     let rowColors: number[];
                     if (response[i].length === 1)
                     {
-                        rowColors = [1, 1, 1, 1, 1]
+                        rowColors = [1, 1, 1, 1, 1];
                     }
                     else
                     {
-                        rowColors = response[i].splice(1, 6)
+                        rowColors = response[i].splice(1, 6);
                     }
-                    rows[i][num[i]] = guessVal.toLowerCase()
-                    colors[i][num[i]] = rowColors
-                    
+                    rows[i][num[i]] = guessVal.toLowerCase();
+                    colors[i][num[i]] = rowColors;
+
                     if (gameState === 1)
                     {
                         num[i] = 8;
-                    } 
+                    }
                     else
                     {
                         await this.analyzeGuess(i, guessVal, rowColors);
                     }
 
                     num[i]++;
-                    if (response[i].length === 1) 
+                    if (response[i].length === 1)
                     {
                         wordList[i] = "Nice Job! :)";
                     }
@@ -97,7 +105,7 @@ class App extends Component<{}, Quordle> {
         obj.forceUpdate();
     };
 
-    analyzeGuess = async (i: number, word: string, colors: number[]) => 
+    analyzeGuess = async (i: number, word: string, colors: number[]) =>
     {
         let t = gameDriver.analyze(i, word, colors).toString();
         wordList[i] = t.substring(1, t.length - 1);
@@ -118,7 +126,7 @@ class App extends Component<{}, Quordle> {
 
     reset()
     {
-        obj.resetRow()
+        obj.resetRow();
         gameDriver.reset();
         num = [0, 0, 0, 0];
         wordList = ["", "", "", ""];
@@ -127,10 +135,10 @@ class App extends Component<{}, Quordle> {
 
         (document.getElementById('wordBox') as HTMLInputElement).value = '';
 
-        obj.forceUpdate()
+        obj.forceUpdate();
     };
 
-    swapHelper() 
+    swapHelper()
     {
         let all = document.querySelectorAll("#ans-box");
         for (let i = 0; i < all.length; i++)
@@ -145,7 +153,7 @@ class App extends Component<{}, Quordle> {
         document.body.style.backgroundColor = (darkMode ? "#262626" : "thistle");
 
         let divs = document.querySelectorAll("input,p,div.container,div.key-box,button");
-        for (let i = 0; i < divs.length; i++) 
+        for (let i = 0; i < divs.length; i++)
         {
             if (darkMode)
             {
@@ -159,12 +167,12 @@ class App extends Component<{}, Quordle> {
         darkMode = !darkMode;
     }
 
-    timeout(delay: number) 
+    timeout(delay: number)
     {
         return new Promise(res => setTimeout(res, delay));
     };
 
-    render() 
+    render()
     {
         return (
             <div className={"big-box"}>
@@ -176,12 +184,12 @@ class App extends Component<{}, Quordle> {
                 <div className={"container"}>
                     <p className={"title-box"} id={titleColor}>Wordle</p>
                 </div>
-                <RowBox rowSt={this.state.rows} colorState={this.state.colors} wordBox={wordList}/>
+                <RowBox rowSt={this.state.rows} colorState={this.state.colors} wordBox={wordList} />
                 <div className={"container wc"}>
-                    <input disabled={true} className={"word"} id={"wordBox"} type="text" maxLength={5}/>
+                    <input disabled={true} className={"word"} id={"wordBox"} type="text" maxLength={5} />
                 </div>
                 <div className={"container"} id={"keyCont"}>
-                    <Keyboard getGuess={(g1: string) => this.makeGuess(g1)}/>
+                    <Keyboard getGuess={(g1: string) => this.makeGuess(g1)} />
                 </div>
             </div>
         );
