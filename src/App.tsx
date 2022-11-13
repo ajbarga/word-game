@@ -34,10 +34,10 @@ let titleColor: string = 'tB';
 let wordList: any = ['', '', '', ''];
 
 let App: WordleApp;
-let gameDriver: GameDriver;
-let rows: string[][];
-let colors: number[][][];
-let guessCount: number[];
+let Game: GameDriver;
+let Rows: string[][];
+let BoxColors: number[][][];
+let GuessCount: number[];
 
 class WordleApp extends Component<{}, Wordle>
 {
@@ -51,18 +51,18 @@ class WordleApp extends Component<{}, Wordle>
         super(props);
         App = this;
 
-        gameDriver = this._gameDriver;
-        rows = this._rowState;
-        colors = this._colorState;
-        guessCount = this._guessesLeft;
+        Game = this._gameDriver;
+        Rows = this._rowState;
+        BoxColors = this._colorState;
+        GuessCount = this._guessesLeft;
 
         this.resetRows();
-        this.state = ({ rows: rows, colors: colors, wordList: wordList });
+        this.state = ({ rows: Rows, colors: BoxColors, wordList: wordList });
     }
 
     async makeGuess(guessVal: string)
     {
-        let response: number[][] = gameDriver.guess(guessVal.toUpperCase());
+        let response: number[][] = Game.guess(guessVal.toUpperCase());
         if (response[0].length == 0)
         {
             await App.invalidGuessSequence();
@@ -71,25 +71,17 @@ class WordleApp extends Component<{}, Wordle>
         {
             for (let i = 0; i < 4; i++)
             {
-                if (guessCount[i] < 9)
-                {
-                    let rowColors: number[] = (
-                        response[i].length === 1 ? [1, 1, 1, 1, 1] : response[i]
-                    );
 
-                    rows[i][guessCount[i]] = guessVal.toLowerCase();
-                    colors[i][guessCount[i]] = rowColors;
+                if (GuessCount[i] < 9)
+                {
+                    let status: boolean = (response[i].length === 1);
+                    let rowColors: number[] = (status ? [1, 1, 1, 1, 1] : response[i]);
+
+                    Rows[i][GuessCount[i]] = guessVal.toLowerCase();
+                    BoxColors[i][GuessCount[i]] = rowColors;
+                    status ? GuessCount[i] = 9 : GuessCount[i]++;
 
                     await App.analyzeGuess(i, guessVal, rowColors);
-
-                    if (response[i].length === 1)
-                    {
-                        guessCount[i] = 9;
-                    }
-                    else
-                    {
-                        guessCount[i]++;
-                    }
                 }
             }
         }
@@ -98,7 +90,7 @@ class WordleApp extends Component<{}, Wordle>
 
     async analyzeGuess(i: number, word: string, colors: number[])
     {
-        let t = gameDriver.analyze(i, word, colors).toString();
+        let t = Game.analyze(i, word, colors).toString();
         wordList[i] = t.substring(1, t.length - 1);
         App.forceUpdate();
     };
@@ -113,14 +105,14 @@ class WordleApp extends Component<{}, Wordle>
 
     resetRows() 
     {
-        guessCount = [0, 0, 0, 0];
+        GuessCount = [0, 0, 0, 0];
         wordList = ['', '', '', ''];
         for (let i = 0; i < 4; i++)
         {
             for (let j = 0; j < 9; j++)
             {
-                rows[i] = [...oneRow];
-                colors[i] = [...emptyColors];
+                Rows[i] = [...oneRow];
+                BoxColors[i] = [...emptyColors];
             }
         }
     };
@@ -128,7 +120,7 @@ class WordleApp extends Component<{}, Wordle>
     reset()
     {
         App.resetRows();
-        gameDriver.reset();
+        Game.reset();
         titleColor = 'tB';
         (document.getElementById('wordBox') as HTMLInputElement).value = '';
 
@@ -137,10 +129,14 @@ class WordleApp extends Component<{}, Wordle>
 
     swapHelper()
     {
-        let all = document.querySelectorAll('#ans-box');
-        for (let i = 0; i < all.length; i++)
+        let ansBoxes: NodeListOf<HTMLButtonElement> = document.querySelectorAll('#ans-box');
+        if (help)
         {
-            (all.item(i) as HTMLButtonElement).style.textIndent = (help ? '0px' : '-9999px');
+            ansBoxes.forEach(i => i.style.textIndent = '0px');
+        }
+        else
+        {
+            ansBoxes.forEach(i => i.style.textIndent = '-9999px');
         }
         help = !help;
     };
@@ -159,6 +155,7 @@ class WordleApp extends Component<{}, Wordle>
         {
             divs.forEach(i => i.classList.add('dm'));
         }
+
     };
 
     timeout(delay: number)
