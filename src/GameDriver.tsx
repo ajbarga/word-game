@@ -19,9 +19,9 @@ class GameDriver
         return responses;
     }
 
-    analyze(i: number, word: string, colors: number[]): string[]
+    analyze(i: number, word: string, colors: number[]): string
     {
-        return this.suggestionBoxes[i].guesserApp(word, colors);
+        return this.suggestionBoxes[i].guesserApp(word, colors).toString().replaceAll(',', ', ');
     }
 
     reset(): void 

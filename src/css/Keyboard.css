@@ -147,5 +147,5 @@ button:hover.dm {
     border-color: black;
     font-stretch: condensed;
     text-indent: -9999px;
-
+    float:left;
 }

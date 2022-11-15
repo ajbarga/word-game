@@ -77,20 +77,20 @@ p {
     display: block;
 }
 
-#tB {
+#plain {
     background-color: lightgray;
 }
 
-#rTB {
+#error {
     background-color: indianred;
 }
 
-.dm#tB {
+.dm#plain {
     background-color: #262626;
     color: pink;
 }
 
-.dm#rTB {
+.dm#error {
     background-color: #570909;
     color: #000000
 }
