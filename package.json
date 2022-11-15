@@ -1,7 +1,7 @@
 {
   "name": "wordle-app",
-  "version": "0.1.0",
-  "homepage": "https://ajbarga.github.io/gh-page",
+  "version": "1.0.0",
+  "homepage": "https://ajbarga.github.io/better-wordle",
   "main": "index.tsx",
   "private": true,
   "dependencies": {
