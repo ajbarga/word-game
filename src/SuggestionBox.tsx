@@ -5,9 +5,15 @@ import realText from './resources/realWords';
 
 class SuggestionBox
 {
+    //region Non-Public Properties
+
     private _wordList: string[] = [];
 
-    analyzeGuess(guess: string, colors: number[])
+    //endregion
+
+    //region Non-Public Methods
+
+    private analyzeGuess(guess: string, colors: number[])
     {
         for(let k = this._wordList.length - 1; k > -1; k--)
         {
@@ -60,12 +66,16 @@ class SuggestionBox
         }
     }
 
+    //endregion
+
+    //region Public Interface
+
     constructor()
     {
         this.reset();
     }
 
-    guesserApp(guess: string, colors: number[]): string[]
+    makeGuess(guess: string, colors: number[]): string[]
     {
         let newList: string[] = [];
         this.analyzeGuess(guess, colors);
@@ -89,6 +99,7 @@ class SuggestionBox
         this._wordList = this._wordList.sort(() => Math.random() - 0.5)
     }
 
+    //endregion
 }
 
 export default SuggestionBox;

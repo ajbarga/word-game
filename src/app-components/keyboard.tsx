@@ -9,12 +9,19 @@ interface KeyProps
     getGuess(gs: string): void;
 }
 
-class Keyboard extends Component<KeyProps> {
-    constructor(props: any)
+class Keyboard extends Component<KeyProps> 
+{
+    //region Non-Public Interface
+
+    private constructor(props: any)
     {
         super(props);
         window.addEventListener('keydown', e => this.listener(e));
     }
+
+    //endregion
+
+    //region Event-Handlers
 
     input(e: string)
     {
@@ -42,6 +49,10 @@ class Keyboard extends Component<KeyProps> {
             this.input(e.key);
         }
     };
+
+    //endregion
+
+    //region Html Element
 
     render()
     {
@@ -168,6 +179,8 @@ class Keyboard extends Component<KeyProps> {
             </div>
         );
     }
+
+    //endregion
 }
 
 export default Keyboard;

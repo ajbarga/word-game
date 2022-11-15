@@ -11,7 +11,9 @@ interface RowBoxProps
     wordBox: string[],
 }
 
-class RowBox extends Component<RowBoxProps> {
+class RowBox extends Component<RowBoxProps> 
+{
+    //region Html Element
 
     render()
     {
@@ -24,6 +26,8 @@ class RowBox extends Component<RowBoxProps> {
             </div>
         );
     }
+    
+    //endregion
 }
 
 export default RowBox;

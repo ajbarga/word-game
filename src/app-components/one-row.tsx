@@ -9,7 +9,9 @@ interface RowProps
     colorState: number[];
 }
 
-class OneRow extends Component<RowProps> {
+class OneRow extends Component<RowProps> 
+{
+    //region Html Element
 
     render()
     {
@@ -23,6 +25,8 @@ class OneRow extends Component<RowProps> {
             </div>
         );
     }
+
+    //endregion
 }
 
 export default OneRow;
