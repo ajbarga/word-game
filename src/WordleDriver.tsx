@@ -70,6 +70,11 @@ class WordleDriver
         return [];
     }
 
+    getAnswer(): string
+    {
+        return this._answer;
+    }
+
     reset()
     {
         this._answer = this.pickWord();

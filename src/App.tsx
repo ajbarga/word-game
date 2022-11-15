@@ -15,23 +15,18 @@ interface Wordle
     wordList: string[];
 }
 
-const emptyWord: string = '     ';
-const oneRow: string[] = [
-    emptyWord, emptyWord, emptyWord,
-    emptyWord, emptyWord, emptyWord,
-    emptyWord, emptyWord, emptyWord
-];
+//empty row string
+const eR: string = '     ';
+const oneRow: string[] = [eR, eR, eR, eR, eR, eR, eR, eR, eR];
 
-const emptyColors: number[][] = [
-    [-1, -1, -1, -1, -1], [-1, -1, -1, -1, -1], [-1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1], [-1, -1, -1, -1, -1], [-1, -1, -1, -1, -1],
-    [-1, -1, -1, -1, -1], [-1, -1, -1, -1, -1], [-1, -1, -1, -1, -1]
-];
+//default row color array
+const nC: number[] = [-1, -1, -1, -1, -1]
+const emptyColors: number[][] = [nC, nC, nC, nC, nC, nC, nC, nC, nC];
 
 
 let help = true;
 let titleColor: string = 'tB';
-let wordList: any = ['', '', '', ''];
+let wordList: string[] = ['', '', '', ''];
 
 let App: WordleApp;
 let Game: GameDriver;
@@ -56,13 +51,15 @@ class WordleApp extends Component<{}, Wordle>
         BoxColors = this._colorState;
         GuessCount = this._guessesLeft;
 
-        this.resetRows();
+        this.resetGUI();
         this.state = ({ rows: Rows, colors: BoxColors, wordList: wordList });
     }
 
     async makeGuess(guessVal: string)
     {
-        let response: number[][] = Game.guess(guessVal.toUpperCase());
+        const guess = guessVal.toUpperCase()
+
+        let response: number[][] = Game.guess(guess);
         if (response[0].length == 0)
         {
             await App.invalidGuessSequence();
@@ -71,17 +68,19 @@ class WordleApp extends Component<{}, Wordle>
         {
             for (let i = 0; i < 4; i++)
             {
+                const j: number = GuessCount[i];
 
-                if (GuessCount[i] < 9)
+                if (j < 9)
                 {
-                    let status: boolean = (response[i].length === 1);
-                    let rowColors: number[] = (status ? [1, 1, 1, 1, 1] : response[i]);
+                    const isAnswer: boolean = (response[i].length === 1);
+                    const rowColors: number[] = (isAnswer ? [1, 1, 1, 1, 1] : response[i]);
 
-                    Rows[i][GuessCount[i]] = guessVal.toLowerCase();
-                    BoxColors[i][GuessCount[i]] = rowColors;
-                    status ? GuessCount[i] = 9 : GuessCount[i]++;
+                    Rows[i][j] = j > 0 ? guess : Game.getAnswer(i);
 
-                    await App.analyzeGuess(i, guessVal, rowColors);
+                    BoxColors[i][j] = rowColors;
+                    isAnswer ? GuessCount[i] = 9 : GuessCount[i]++;
+
+                    let str = await App.analyzeGuess(i, guess, rowColors);
                 }
             }
         }
@@ -103,8 +102,16 @@ class WordleApp extends Component<{}, Wordle>
         titleColor = 'tB';
     }
 
-    resetRows() 
+    reset()
     {
+        App.resetGUI();
+        Game.reset();
+        App.forceUpdate();
+    };
+
+    resetGUI() 
+    {
+        titleColor = 'tB';
         GuessCount = [0, 0, 0, 0];
         wordList = ['', '', '', ''];
         for (let i = 0; i < 4; i++)
@@ -115,16 +122,6 @@ class WordleApp extends Component<{}, Wordle>
                 BoxColors[i] = [...emptyColors];
             }
         }
-    };
-
-    reset()
-    {
-        App.resetRows();
-        Game.reset();
-        titleColor = 'tB';
-        (document.getElementById('wordBox') as HTMLInputElement).value = '';
-
-        App.forceUpdate();
     };
 
     swapHelper()

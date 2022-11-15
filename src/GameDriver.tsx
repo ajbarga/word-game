@@ -21,7 +21,7 @@ class GameDriver
 
     analyze(i: number, word: string, colors: number[]): string[]
     {
-        return this.suggestionBoxes[i].guesserApp(word);
+        return this.suggestionBoxes[i].guesserApp(word, colors);
     }
 
     reset(): void 
@@ -31,6 +31,11 @@ class GameDriver
             this.wordleDrivers[k].reset();
             this.suggestionBoxes[k].reset();
         }
+    }
+
+    getAnswer(i: number): string
+    {
+        return this.wordleDrivers[i].getAnswer();
     }
 }
 

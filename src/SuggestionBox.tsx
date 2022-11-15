@@ -7,100 +7,62 @@ let wordList: string[];
 
 class SuggestionBox
 {
+    private _wordList: string[] = [...text];
+    
     char(c: number): string
     {
         return String.fromCharCode(c);
     }
 
-    analyzeGuess(guess: string, remainingWordList: string[])
+    analyzeGuess(guess: string, colors: number[])
     {
-        let fullWordList: string[] = [...remainingWordList];
-        let nContain: number[] = [];
-        let possible: string = '';
-        let contain: string = '';
-
-        for (let i = 0; i < 5; i++)
-        {
-            let c1: number = guess.charCodeAt(2 * i);
-            let c2: number = guess.charCodeAt(2 * i + 1);
-            if (c1 == 'c'.charCodeAt(0))
-            {
-                contain = contain + i + this.char(c2);
-            }
-            else if (c1 == 'e'.charCodeAt(0))
-            {
-                possible = possible + i + this.char(c2);
-            }
-            else
-            {
-                nContain.push(c2);
-            }
-        }
+        let fullWordList: string[] = [...wordList];
 
         let yel: number = 0;
         let grn: number = 0;
-        let pos: string = possible;
-        let cont: string = contain;
 
-        for (let word in fullWordList)
+        fullWordList.forEach((word, idx) =>
         {
-            let bad: boolean = true;
-            for (let j = 0; j < pos.length; j += 2) 
+            for (let i = 0; i < 5; i++) 
             {
-                if (word.charAt(pos.charCodeAt(j) - 48) !== pos.charAt(j + 1)) 
+                if (colors[i] === 0)
                 {
-                    bad = false;
-                    break;
-                }
-            }
-            for (let j = 0; j < cont.length; j += 2) 
-            {
-                if (word.charAt(cont.charCodeAt(j) - 48) == cont.charAt(j + 1) ||
-                    word.indexOf(cont.charAt(j + 1)) == undefined) 
-                {
-                    bad = false;
-                    break;
-                }
-            }
-            if (bad) 
-            {
-                for (let m = 0; m < nContain.length; m++) 
-                {
-                    let ch: number = nContain[m];
-
-                    yel = cont.indexOf(this.char(ch));
-                    grn = pos.indexOf(this.char(ch));
-
-                    yel = (yel == undefined ? -2 : yel - 1);
-                    grn = (grn == undefined ? -2 : grn - 1);
-
-                    let idx = word.indexOf(this.char(ch));
-                    if ((idx != undefined) &&
-                        (yel == -2 || cont.charCodeAt(yel) - 48 == idx) &&
-                        (grn == -2 || pos.charCodeAt(grn) - 48 !== idx))
+                    if (word.charAt(i) == guess.charAt(i) ||
+                        word.indexOf(guess.charAt(i)) === undefined) 
                     {
-                        delete remainingWordList[word];
+                        delete wordList[wordList.indexOf(word)];
+                        break;
+                    }
+                }
+                else if(colors[i] === 1)
+                {
+                    if (word.charAt(i) != guess.charAt(i)) 
+                    {
+                        delete wordList[wordList.indexOf(word)];
+                        break;
+                    }
+                }  
+                else if (colors[i] === -1)
+                {
+                    if(word.indexOf(guess.charAt(i)) !== undefined)
+                    {
+                        delete wordList[wordList.indexOf(word)];
                         break;
                     }
                 }
             }
-
-            else 
-            {
-                delete remainingWordList[word];
-            }
-        }
+        })
     }
 
     constructor()
     {
-        wordList = [...text];
+        wordList = this._wordList;
     }
 
-    guesserApp(guess: string): string[]
+    guesserApp(guess: string, colors: number[]): string[]
     {
         let newList: string[] = [];
-        this.analyzeGuess(guess, wordList);
+        this.analyzeGuess(guess, colors);
         let m: number = 0;
         while (m < wordList.length && newList.length < 8)
         {

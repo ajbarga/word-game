@@ -8,7 +8,7 @@ interface RowBoxProps
 {
     rowSt: string[][],
     colorState: number[][][],
-    wordBox: [string, string, string, string],
+    wordBox: string[],
 }
 
 class RowBox extends Component<RowBoxProps> {
