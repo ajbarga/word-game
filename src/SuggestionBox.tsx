@@ -3,60 +3,53 @@
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
 import text from './resources/dictionary';
 
-let wordList: string[];
-
 class SuggestionBox
 {
     private _wordList: string[] = [...text];
-    
-    char(c: number): string
-    {
-        return String.fromCharCode(c);
-    }
 
     analyzeGuess(guess: string, colors: number[])
     {
-        let fullWordList: string[] = [...wordList];
-
-        let yel: number = 0;
-        let grn: number = 0;
-
-        fullWordList.forEach((word, idx) =>
+        for(let k = this._wordList.length - 1; k > -1; k--)
         {
-            for (let i = 0; i < 5; i++) 
+            let word: string = this._wordList[k];
+            if(word !== undefined)
             {
-                if (colors[i] === 0)
+                for (let i = 0; i < 5; i++) 
                 {
-                    if (word.charAt(i) == guess.charAt(i) ||
-                        word.indexOf(guess.charAt(i)) === undefined) 
+                    let char: string = guess.charAt(i)
+                    if (colors[i] === 0)
                     {
-                        delete wordList[wordList.indexOf(word)];
-                        break;
+                        if (word.charAt(i) == char ||
+                            word.indexOf(char) === undefined) 
+                        {
+                            delete this._wordList[k];
+                            break;
+                        }
                     }
-                }
-                else if(colors[i] === 1)
-                {
-                    if (word.charAt(i) != guess.charAt(i)) 
+                    else if(colors[i] === 1)
                     {
-                        delete wordList[wordList.indexOf(word)];
-                        break;
-                    }
-                }  
-                else if (colors[i] === -1)
-                {
-                    if(word.indexOf(guess.charAt(i)) !== undefined)
+                        if (word.charAt(i) != char) 
+                        {
+                            delete this._wordList[k];
+                            break;
+                        }
+                    }  
+                    else if (colors[i] === -1)
                     {
-                        delete wordList[wordList.indexOf(word)];
-                        break;
+                        if(word.indexOf(char) !== undefined && guess.indexOf(char) === i)
+                        {
+                            delete this._wordList[k];
+                            break;
+                        }
                     }
                 }
             }
-        })
+        }
     }
 
     constructor()
     {
-        wordList = this._wordList;
+        this._wordList = [...text]
     }
 
     guesserApp(guess: string, colors: number[]): string[]
@@ -64,14 +57,13 @@ class SuggestionBox
         let newList: string[] = [];
         this.analyzeGuess(guess, colors);
         let m: number = 0;
-        while (m < wordList.length && newList.length < 8)
+        while (m < this._wordList.length && newList.length < 8)
         {
 
-            let w: string = wordList[m];
+            let w: string = this._wordList[m];
             if (w != undefined)
             {
-                alert(w);
-                newList.push(wordList[m]);
+                newList.push(this._wordList[m]);
             }
             m++;
         }
@@ -80,7 +72,7 @@ class SuggestionBox
 
     reset()
     {
-        wordList = [...text];
+        this._wordList = [...text];
     }
 
 }
