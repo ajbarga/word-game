@@ -19,10 +19,10 @@ interface Wordle
 }
 
 let App: WordleApp;
-let Game: GameDriver = new GameDriver();
-let Rows: string[][] = [];
-let BoxColors: number[][][] = [];
-let GuessCount: number[] = [];
+let Game: GameDriver;
+let Rows: string[][];
+let BoxColors: number[][][];
+let GuessCount: number[];
 let WordList: string[];
 
 //empty row string
@@ -35,12 +35,27 @@ const emptyColors: number[][] = [nC, nC, nC, nC, nC, nC, nC, nC, nC];
 
 class WordleApp extends Component<{}, Wordle>
 {
+    //region Non-Public Properties
+
+    private _gameDriver: GameDriver = new GameDriver();
+    private _rows: string[][] = [];
+    private _colors: number[][][] = [];
+    private _guesses: number[] = [];
+    private _wordList: string[] = []
+
+    //endregion
+
     //region Non-Public Methods
 
     private constructor(props: Wordle)
     {
         super(props);
         App = this;
+        Game = this._gameDriver;
+        Rows = this._rows;
+        BoxColors = this._colors;
+        GuessCount = this._guesses;
+        WordList = this._wordList;
 
         this.setupInterface();
         this.state = ({ rows: Rows, colors: BoxColors, wordList: WordList, colorMode: 'DAY', responseColor: 'plain', hints: 'OFF' });
@@ -108,8 +123,8 @@ class WordleApp extends Component<{}, Wordle>
 
     private reset()
     {
-        App.setupInterface();
         Game.reset();
+        App.setupInterface();
         App.forceUpdate();
     };
 
