@@ -6,8 +6,14 @@ import WordleDriver from './WordleDriver';
 
 class GameDriver
 {
+    //region Non-Public Properties
+
     private wordleDrivers: WordleDriver[] = [new WordleDriver(), new WordleDriver(), new WordleDriver(), new WordleDriver()];
     private suggestionBoxes: SuggestionBox[] = [new SuggestionBox(), new SuggestionBox(), new SuggestionBox(), new SuggestionBox()];
+
+    //endregion
+
+    //region Public Interface
 
     guess(word: string): number[][] 
     {
@@ -21,22 +27,20 @@ class GameDriver
 
     analyze(i: number, word: string, colors: number[]): string
     {
-        return this.suggestionBoxes[i].guesserApp(word, colors).toString().replaceAll(',', ', ');
+        let response: string[] = this.suggestionBoxes[i].makeGuess(word, colors)
+        return response.toString().replaceAll(',', ', ');
     }
 
     reset(): void 
     {
-        for (let k = 0; k < 4; k++) 
+        for (let i = 0; i < 4; i++) 
         {
-            this.wordleDrivers[k].reset();
-            this.suggestionBoxes[k].reset();
+            this.wordleDrivers[i].reset();
+            this.suggestionBoxes[i].reset();
         }
     }
 
-    getAnswer(i: number): string
-    {
-        return this.wordleDrivers[i].getAnswer();
-    }
+    //endregion
 }
 
 export default GameDriver;

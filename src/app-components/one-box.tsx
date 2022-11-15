@@ -11,12 +11,9 @@ interface OneBoxProps
     wordBox: string,
 }
 
-class OneBox extends Component<OneBoxProps> {
-
-    makeRow(guess: string)
-    {
-        return guess.split('');
-    }
+class OneBox extends Component<OneBoxProps> 
+{
+    //region Html Element
 
     render()
     {
@@ -38,6 +35,8 @@ class OneBox extends Component<OneBoxProps> {
 
         );
     }
+
+    //endregion
 }
 
 export default OneBox;
