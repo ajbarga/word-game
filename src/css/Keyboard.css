@@ -4,8 +4,6 @@
 
 /*#region INPUTS**/
 input {
-	border-radius: 2px;
-	margin: 0 auto;
 	background-color: #313131;
 	display: inline-block;
 	color: #FFC0CB;
@@ -20,7 +18,7 @@ input {
 }
 .word.dm {
 	border-color: #000000;
-	background-color: #262626
+	background-color: #1e1e1e
 }
 input::selection { 
 	background-color: transparent
@@ -29,35 +27,25 @@ input::selection {
 
 /*#region KEYS*/
 .key {
-	border-color: inherit;
 	width: 10%;
 	color: #FFC0CB;
 	background-color: #313131
 }
 .key2 {
 	width: 11.11%;
-	border-color: inherit
 }
 .key3 {
 	width: 10%;
-	border-color: inherit;
-	transform: translateY(-3px)
 }
 #deleteKey {
-	box-sizing: border-box;
 	width: 15%;
-	float: right;
 	background-image: url("../images/backspace-icon.png");
 	background-repeat: no-repeat;
 	background-position: center;
-    transform: unset;
 	color: transparent;
 }
 #enterKey {
-	box-sizing: border-box;
 	width: 15%;
-	padding-top: 4px;
-	transform: translateY(0px)
 }
 /*#endregion*/
 
@@ -66,7 +54,8 @@ input::selection {
 	box-sizing: border-box;
 	height: 33.33%;
 	margin: 0 auto;
-	border-color: inherit
+	border-color: inherit;
+	float: inline-start
 }
 .key-box {
 	height: 100%;
@@ -74,8 +63,8 @@ input::selection {
 	max-width: 520px;
 	border-color: #D8BFD8
 }
-.key-box.dm {
-	border-color: #000000
+input.dm {
+	border-color: #1f1f1f
 }
 /*#endregion*/
 

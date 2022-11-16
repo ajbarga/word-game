@@ -7,8 +7,9 @@ import SingleGuess from './word-guess';
 interface SingleGameProps
 {
     box: string[],
-    colors: number[][];
+    colors: number[][],
     wordBox: string,
+    hintState: string
 }
 
 class SingleGame extends Component<SingleGameProps> 
@@ -29,10 +30,10 @@ class SingleGame extends Component<SingleGameProps>
                 <SingleGuess guess={this.props.box[7]} colorState={this.props.colors[7]} />
                 <SingleGuess guess={this.props.box[8]} colorState={this.props.colors[8]} />
                 <div className={'container wordContainer'}>
-                    <input type={'button'} className={'key'} id={'ans-box'} value={this.props.wordBox} disabled />
+                    <input type={'button'} className={'key'} id={'ans-box'} value={this.props.wordBox} 
+                        style={{color: this.props.hintState}} disabled />
                 </div>
             </div>
-
         );
     }
 

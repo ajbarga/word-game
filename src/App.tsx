@@ -2,7 +2,7 @@
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
 import React, { Component, SyntheticEvent } from 'react';
-import RowBox from './app-components/games-module';
+import GameBox from './app-components/games-module';
 import Keyboard from './app-components/keyboard';
 import GameDriver from './GameDriver';
 
@@ -15,7 +15,7 @@ interface Wordle
     wordList: string[];
     colorMode: string;
     responseColor: string;
-    hints: string;
+    hints: boolean;
 }
 
 let App: WordleApp;
@@ -26,11 +26,11 @@ let GuessCount: number[];
 let WordList: string[];
 
 //empty row string
-const eR: string = '     ';
+const eR: string = 'AAAAA';
 const oneRow: string[] = [eR, eR, eR, eR, eR, eR, eR, eR, eR];
 
 //default row color array
-const nC: number[] = [-1, -1, -1, -1, -1]
+const nC: number[] = [-2, -2, -2, -2, -2]
 const emptyColors: number[][] = [nC, nC, nC, nC, nC, nC, nC, nC, nC];
 
 class WordleApp extends Component<{}, Wordle>
@@ -58,7 +58,7 @@ class WordleApp extends Component<{}, Wordle>
         WordList = this._wordList;
 
         this.setupInterface();
-        this.state = ({ rows: Rows, colors: BoxColors, wordList: WordList, colorMode: 'DAY', responseColor: 'plain', hints: 'OFF' });
+        this.state = ({ rows: Rows, colors: BoxColors, wordList: WordList, colorMode: 'DAY', responseColor: 'plain', hints: false });
     }
 
     private makeGuess(guessVal: string): void
@@ -106,7 +106,7 @@ class WordleApp extends Component<{}, Wordle>
     private setupInterface(): void
     {
         GuessCount = [0, 0, 0, 0];
-        WordList = ['', '', '', ''];
+        WordList = ['A', 'A', 'A', 'A'];
         for (let i = 0; i < 4; i++)
         {
             for (let j = 0; j < 9; j++)
@@ -130,12 +130,9 @@ class WordleApp extends Component<{}, Wordle>
 
     private swapHintState(): void
     {
-        let isHintsOn: boolean = App.state.hints == 'ON';
-
-        let ansBoxes: NodeListOf<HTMLButtonElement> = document.querySelectorAll('#ans-box');
-        ansBoxes.forEach(i => isHintsOn ? i.style.textIndent = '-9999px' : i.style.textIndent = '0px');
+        let isHintsOn: boolean = !App.state.hints;
         
-        App.setState({hints: (isHintsOn ? 'OFF' : 'ON')})
+        App.setState({hints: isHintsOn})
     };
 
     private swapColorMode(): void
@@ -165,19 +162,23 @@ class WordleApp extends Component<{}, Wordle>
         return (
             <div className={'big-box'}>
                 <div className={'container'} id={'headerBox'}>
-                    <input type='button' className='headerButton' onClick={(e)=>{App.reset();App.disable(e)}} value={'RESET'} />
-                    <input type='button' className='headerButton' onClick={(e)=>{App.swapColorMode();App.disable(e)}} value={'MODE: ' + App.state.colorMode} />
-                    <input type='button' className='headerButton' onClick={(e)=>{App.swapHintState();App.disable(e)}} value={'HINTS: ' + App.state.hints} />
+                    <input type='button' className='headerButton' 
+                        onClick={(e)=>{App.reset();App.disable(e)}} value={'RESET'} />
+                    <input type='button' className='headerButton' 
+                        onClick={(e)=>{App.swapColorMode();App.disable(e)}} value={'MODE: ' + App.state.colorMode} />
+                    <input type='button' className='headerButton' 
+                        onClick={(e)=>{App.swapHintState();App.disable(e)}} value={'HINTS: ' + (App.state.hints ? 'ON' : 'OFF')} />
                 </div>
                 <div className={'container'} id={'headerBox'}>
                     <p className={'title-box'} id={App.state.responseColor}>Wordle</p>
                 </div>
-                <RowBox rowSt={App.state.rows} colorState={App.state.colors} wordBox={WordList} />
+                <GameBox rowSt={App.state.rows} colorState={App.state.colors} 
+                    wordBox={App.state.wordList} hintState={App.state.hints ? '#FFC0CB' : 'transparent'}/>
                 <div className={'container'} id={'wordInputBox'}>
                     <input disabled={true} className={'wordInput'} id={'wordBox'} type={'text'} maxLength={5} />
                 </div>
                 <div className={'container'} id={'keyContainer'}>
-                    <Keyboard getGuess={(g) => App.makeGuess(g)} />
+                    <Keyboard getGuess={App.makeGuess} />
                 </div>
             </div>
         );
