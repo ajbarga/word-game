@@ -71,9 +71,11 @@ p {
    margin: 0 auto;
    width: 500px;
 }
-div.gameBox{
-    display: contents;
-    margin: 0 auto;
+div.gameBox {
+    display: inline-flex;
+    max-width: 1000px;
+    min-width: 500px;
+    flex-wrap: wrap;
 }
 
 .wordInput {
