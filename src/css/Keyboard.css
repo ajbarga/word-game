@@ -48,7 +48,7 @@ input {
 	background-image: url("../images/backspace-icon.png");
 	background-repeat: no-repeat;
 	background-position: center;
-	transform: translateY(-1px)
+    transform: unset;
 }
 #enterKey {
 	box-sizing: border-box;
