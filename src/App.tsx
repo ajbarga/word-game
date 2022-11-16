@@ -1,7 +1,7 @@
 // © 2022 Alex Barga. All rights reserved.
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
-import React, { Component } from 'react';
+import React, { Component, SyntheticEvent } from 'react';
 import RowBox from './app-components/games-module';
 import Keyboard from './app-components/keyboard';
 import GameDriver from './GameDriver';
@@ -149,6 +149,13 @@ class WordleApp extends Component<{}, Wordle>
         App.setState({ colorMode: (isDarkMode ? "DAY" : "NIGHT")});
     };
 
+    private async disable(e: SyntheticEvent)
+    {
+        (e.target as HTMLInputElement).disabled = true;
+        await new Promise(r => setTimeout(r, 5));
+        (e.target as HTMLInputElement).disabled = false;
+    }
+
     //endregion
 
     //region Html Element
@@ -158,9 +165,9 @@ class WordleApp extends Component<{}, Wordle>
         return (
             <div className={'big-box'}>
                 <div className={'container'} id={'headerBox'}>
-                    <input type='button' className="headerButton" onClick={App.reset} value={"RESET"}/>
-                    <input type='button' className="headerButton" onClick={App.swapColorMode} value={"MODE: " + App.state.colorMode} />
-                    <input type='button' className="headerButton" onClick={App.swapHintState} value={"HINTS: " + App.state.hints} />
+                    <input type='button' className="headerButton" onClick={(e)=>{App.reset();App.disable(e)}} value={"RESET"} />
+                    <input type='button' className="headerButton" onClick={(e)=>{App.swapColorMode();App.disable(e)}} value={"MODE: " + App.state.colorMode} />
+                    <input type='button' className="headerButton" onClick={(e)=>{App.swapHintState();App.disable(e)}} value={"HINTS: " + App.state.hints} />
                 </div>
                 <div className={'container'} id={'headerBox'}>
                     <p className={'title-box'} id={App.state.responseColor}>Wordle</p>

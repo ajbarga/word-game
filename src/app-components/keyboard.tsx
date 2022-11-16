@@ -28,7 +28,8 @@ class Keyboard extends Component<KeyProps>
 
     input(keyPress: SyntheticEvent) 
     {
-        Keys.inputKey((keyPress.target as HTMLInputElement).value)
+        Keys.inputKey((keyPress.target as HTMLInputElement).value);
+        Keys.disable(keyPress);
     }
 
     inputKey(e: string) 
@@ -57,6 +58,13 @@ class Keyboard extends Component<KeyProps>
             Keys.inputKey(e.key);
         }
     };
+
+    private async disable(e: SyntheticEvent)
+    {
+        (e.target as HTMLInputElement).disabled = true;
+        await new Promise(r => setTimeout(r, 5));
+        (e.target as HTMLInputElement).disabled = false;
+    }
 
     //endregion
 
