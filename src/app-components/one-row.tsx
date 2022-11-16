@@ -16,7 +16,7 @@ class OneRow extends Component<RowProps>
     render()
     {
         return (
-            <div className={'container lc'}>
+            <div className={'container wordContainer'}>
                 <p className={'letter'} id={'l' + this.props.colorState[0]}>{this.props.guess.charAt(0)}</p>
                 <p className={'letter'} id={'l' + this.props.colorState[1]}>{this.props.guess.charAt(1)}</p>
                 <p className={'letter'} id={'l' + this.props.colorState[2]}>{this.props.guess.charAt(2)}</p>

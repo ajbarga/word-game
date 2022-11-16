@@ -157,12 +157,12 @@ class WordleApp extends Component<{}, Wordle>
     {
         return (
             <div className={'big-box'}>
-                <div className={'container tc'} id={'short'}>
+                <div className={'container'} id={'titleBox'}>
                     <button onClick={App.reset}>RESET</button>
                     <button onClick={App.swapColorMode}>MODE: {App.state.colorMode}</button>
                     <button onClick={App.swapHintState}>HINTS: {App.state.hints}</button>
                 </div>
-                <div className={'container'}>
+                <div className={'container'} id={'titleBox'}>
                     <p className={'title-box'} id={App.state.responseColor}>Wordle</p>
                 </div>
                 <RowBox rowSt={App.state.rows} colorState={App.state.colors} wordBox={WordList} />

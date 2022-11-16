@@ -28,7 +28,7 @@ class OneBox extends Component<OneBoxProps>
                 <OneRow guess={this.props.box[6]} colorState={this.props.colors[6]} />
                 <OneRow guess={this.props.box[7]} colorState={this.props.colors[7]} />
                 <OneRow guess={this.props.box[8]} colorState={this.props.colors[8]} />
-                <div className={'container lc'}>
+                <div className={'container wordContainer'}>
                     <input type={'button'} className={'key'} id={'ans-box'} value={this.props.wordBox} disabled />
                 </div>
             </div>
