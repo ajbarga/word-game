@@ -20,7 +20,7 @@ class SuggestionBox
             let word: string = this._possibleWords[k];
             if(word !== undefined)
             {
-                let containedChars: string = "";
+                let containedChars: string = '';
                 let isDeleted: boolean = false;
 
                 for (let i = 0; i < 5; i++) 

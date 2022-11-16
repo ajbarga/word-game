@@ -22,16 +22,6 @@ class Keyboard extends Component<KeyProps>
         window.addEventListener('keydown', e => this.listener(e));
     }
 
-    //endregion
-
-    //region Event-Handlers
-
-    input(keyPress: SyntheticEvent) 
-    {
-        Keys.inputKey((keyPress.target as HTMLInputElement).value);
-        Keys.disable(keyPress);
-    }
-
     inputKey(e: string) 
     {
         let text: HTMLInputElement = document.getElementById('wordBox') as HTMLInputElement;
@@ -50,16 +40,25 @@ class Keyboard extends Component<KeyProps>
         }
     }
 
+    //endregion
+
+    //region Event-Handlers
+
+    input(keyPress: SyntheticEvent) 
+    {
+        Keys.inputKey((keyPress.target as HTMLInputElement).value);
+        Keys.disable(keyPress);
+    }
+
     listener(e: any) 
     {
         let char: number = e.keyCode;
-        if (char === 8 || char === 13 || (char > 64 && char < 91) || (char > 96 && char < 123)) 
-        {
+        if (char === 8 || char === 13 || (char > 64 && char < 91) || (char > 96 && char < 123)) {
             Keys.inputKey(e.key);
         }
     };
 
-    private async disable(e: SyntheticEvent)
+    private async disable(e: SyntheticEvent) 
     {
         (e.target as HTMLInputElement).disabled = true;
         await new Promise(r => setTimeout(r, 5));

@@ -77,7 +77,7 @@ class WordleApp extends Component<{}, Wordle>
                     if(response[i].length === 1)
                     {
                         BoxColors[i][j] = [1, 1, 1, 1, 1] ;
-                        WordList[i] = ":)\tNice Job\t<3";
+                        WordList[i] = ':)\tNice Job\t<3';
                         GuessCount[i] = 9;
                     }
                     else
@@ -146,7 +146,7 @@ class WordleApp extends Component<{}, Wordle>
         divs.forEach(i => isDarkMode ? i.classList.remove('dm') : i.classList.add('dm'));
         document.body.style.backgroundColor = (isDarkMode ? 'thistle' : '#262626');
 
-        App.setState({ colorMode: (isDarkMode ? "DAY" : "NIGHT")});
+        App.setState({ colorMode: (isDarkMode ? 'DAY' : 'NIGHT')});
     };
 
     private async disable(e: SyntheticEvent)
@@ -165,9 +165,9 @@ class WordleApp extends Component<{}, Wordle>
         return (
             <div className={'big-box'}>
                 <div className={'container'} id={'headerBox'}>
-                    <input type='button' className="headerButton" onClick={(e)=>{App.reset();App.disable(e)}} value={"RESET"} />
-                    <input type='button' className="headerButton" onClick={(e)=>{App.swapColorMode();App.disable(e)}} value={"MODE: " + App.state.colorMode} />
-                    <input type='button' className="headerButton" onClick={(e)=>{App.swapHintState();App.disable(e)}} value={"HINTS: " + App.state.hints} />
+                    <input type='button' className='headerButton' onClick={(e)=>{App.reset();App.disable(e)}} value={'RESET'} />
+                    <input type='button' className='headerButton' onClick={(e)=>{App.swapColorMode();App.disable(e)}} value={'MODE: ' + App.state.colorMode} />
+                    <input type='button' className='headerButton' onClick={(e)=>{App.swapHintState();App.disable(e)}} value={'HINTS: ' + App.state.hints} />
                 </div>
                 <div className={'container'} id={'headerBox'}>
                     <p className={'title-box'} id={App.state.responseColor}>Wordle</p>
