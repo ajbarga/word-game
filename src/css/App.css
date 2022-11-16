@@ -3,7 +3,7 @@
 /* mechanical or otherwise, is prohibited without the prior  written consent of the owner. */
 
 /*#region GENERAL COMPONENTS*/
-div {
+div,span {
 	box-sizing: border-box
 }
 body {
