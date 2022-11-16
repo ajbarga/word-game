@@ -1,135 +1,115 @@
+/* © 2022 Alex Barga. All rights reserved.
+/* Reproduction or transmission in whole or in part, in any form or by any means, electronic,
+/* mechanical or otherwise, is prohibited without the prior  written consent of the owner. */
+
 div {
-    box-sizing: border-box;
+	box-sizing: border-box
 }
-
 div.row {
-    box-sizing: border-box;
-    display: inline-block;
-    min-width: 200px;
-    max-width:250px;
-    width: 100%;
+	box-sizing: border-box;
+	display: inline-block;
+	min-width: 200px;
+	max-width: 250px;
+	width: 100%
 }
-
 body {
-    margin: 0 auto;
-    padding-top: 30px;
-    align-content: center;
-    text-align: center;
-    background-color: thistle;
+	margin: 0 auto;
+	padding-top: 30px;
+	align-content: center;
+	text-align: center;
+	background-color: #D8BFD8
 }
-
 #titleBox {
-    height: fit-content;
-    box-sizing: border-box;
-    min-width: 500px;
-    width: 50%
+	height: fit-content;
+	box-sizing: border-box;
+	min-width: 500px;
+	width: 50%
 }
-
 .dm#titleBox {
-    background-color: #712b06;
+	background-color: #712b06
 }
-
 .big-box {
-    margin: 0 auto;
-    width: 100%;
+	margin: 0 auto;
+	width: 100%
 }
-
 .container {
-
-    border: 3px solid rgb(255, 148, 71);
-    margin: 0 auto;
-    min-width: -moz-fit-content;
-    min-width: fit-content;
+	border: 3px solid rgb(255, 148, 71);
+	margin: 0 auto;
+	min-width: -moz-fit-content;
+	min-width: fit-content
 }
-
 .container.dm {
-    border: 3px solid #712b06;
+	border: 3px solid #712b06
 }
-
 .wordContainer {
-    width: 100%;
-    height: .80px;
-    min-height: 40.8px;
+	width: 100%;
+	height: .80px;
+	min-height: 40.8px
 }
-
 #wordBoxContainer{
-    min-width: 1000px;
-    margin: 0 auto;
-    display: inline-block;   
+	min-width: 1000px;
+	margin: 0 auto;
+	display: inline-block
 }
-
 #keyCont {
-    min-width: 350px;
-    width: 40%;
-    max-width: 520px;
-    height: 152px
+	min-width: 350px;
+	width: 40%;
+	max-width: 520px;
+	height: 152px
 }
-
 p {
-    border: 2px solid black;
-    box-sizing: border-box;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    font-family: "American Typewriter", serif;
-    font-size: 200%;
-    display: inline-block;
+	border: 2px solid black;
+	box-sizing: border-box;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "American Typewriter", serif;
+	font-size: 200%;
+	display: inline-block
 }
-
 .title-box {
-    font-family: "Times New Roman", serif;
-    font-size: 230%;
-    display: block;
+	font-family: "Times New Roman", serif;
+	font-size: 230%;
+	display: block
 }
-
 #plain {
-    background-color: rgb(225, 225, 225);
+	background-color: rgb(225, 225, 225)
 }
-
 #error {
-    background-color: rgb(168, 14, 14);
+	background-color: rgb(168, 14, 14)
 }
-
 .dm#plain {
-    background-color: #262626;
-    color: pink;
+	background-color: #262626;
+	color: #FFC0CB
 }
-
 .dm#error {
-    background-color: #570909;
-    color: #000000
+	background-color: #570909;
+	color: #000000
 }
-
 .letter {
-    width: 20%;
-    height: 100%;
-    min-height: 36.8px;
-    text-align: center;
+	width: 20%;
+	height: 100%;
+	min-height: 36.8px;
+	text-align: center
 }
-
 #charColor-1 {
-    background-color: rgb(225, 225, 225);
+	background-color: rgb(225, 225, 225)
 }
-
 #charColor1 {
-    background-color: rgb(99, 190, 93);
+	background-color: rgb(99, 190, 93)
 }
-
 #charColor0 {
-    background-color: rgb(255, 199, 30);
+	background-color: rgb(255, 199, 30)
 }
-
 .dm#charColor-1 {
-    background-color: #262626;
-    color: pink;
+	background-color: #262626;
+	color: #FFC0CB
 }
-
 .dm#charColor1 {
-    background-color: #004500;
-    color: white;
+	background-color: #004500;
+	color: #FFFFFF
 }
-
 .dm#charColor0 {
-    background-color: orange;
-    color: #892d2d;
+	background-color: #FFA500;
+	color: #892d2d
 }
