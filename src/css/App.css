@@ -8,7 +8,7 @@ div {
 }
 body {
 	margin: 0 auto;
-	padding-top: 2%;
+	padding-top: 0.5%;
 	align-content: center;
 	text-align: center;
 	background-color: #D8BFD8
@@ -147,7 +147,7 @@ p {
 	width: 100%;
 	-webkit-user-select: none;
 	user-select: disabled;
-	font-size: 0.8vw;
+	font-size: 0.7vw;
 	background-color: #262626;
 	color: #FFC0CB;
 	border-color: #000000;
