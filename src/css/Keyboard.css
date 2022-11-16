@@ -26,25 +26,30 @@ input::selection {
 /*#endregion*/
 
 /*#region KEYS*/
-.key {
+.key{
+	border-radius: 2px;
+}
+.key.r0 {
 	width: 10%;
 	color: #FFC0CB;
-	background-color: #313131
+	background-color: #313131;
 }
-.key2 {
+.key.r1 {
 	width: 11.11%;
 }
-.key3 {
+.key.r2 {
 	width: 10%;
 }
-#deleteKey {
+.key.delete {
 	width: 15%;
 	background-image: url("../images/backspace-icon.png");
 	background-repeat: no-repeat;
 	background-position: center;
 	color: transparent;
+	float: right;
 }
-#enterKey {
+.key.enter {
+	float: left;
 	width: 15%;
 }
 /*#endregion*/
