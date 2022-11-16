@@ -99,7 +99,7 @@ input {
     box-sizing: border-box;
     width: 15%;
     padding-top: 4px;
-    transform: translateY(px);
+    transform: translateY(0px);
 }
 
 /******************* KEYBOARD BOX *******************/
