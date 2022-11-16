@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/better-wordle/precache-manifest.3c7c302db7a265b38e9a72f842f93365.js"
+  "/better-wordle/precache-manifest.f9313a92024d82979c3a008d4b1b3611.js"
 );
 
 workbox.clientsClaim();
