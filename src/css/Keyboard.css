@@ -90,7 +90,7 @@ input.headerButton {
 	font-size: 130%;
 	font-family: "Times New Roman", serif;
 	width: 33.33%;
-	height: 100%;
+    min-height: 38px;
 	min-width: 132px;
 	display: inline-block;
 	border-color: #000000;
