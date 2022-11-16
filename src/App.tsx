@@ -158,7 +158,7 @@ class WordleApp extends Component<{}, Wordle>
         return (
             <div className={'big-box'}>
                 <div className={'container'} id={'titleBox'}>
-                    <input type='button' className="headerButton" onClick={App.reset} value="RESET"/>
+                    <input type='button' className="headerButton" onClick={App.reset} value={"RESET"}/>
                     <input type='button' className="headerButton" onClick={App.swapColorMode} value={"MODE: " + App.state.colorMode} />
                     <input type='button' className="headerButton" onClick={App.swapHintState} value={"HINTS: " + App.state.hints} />
                 </div>
@@ -166,10 +166,10 @@ class WordleApp extends Component<{}, Wordle>
                     <p className={'title-box'} id={App.state.responseColor}>Wordle</p>
                 </div>
                 <RowBox rowSt={App.state.rows} colorState={App.state.colors} wordBox={WordList} />
-                <div className={'container wc'}>
-                    <input disabled={true} className={'word'} id={'wordBox'} type='text' maxLength={5} />
+                <div className={'container'} id={'wordInputBox'}>
+                    <input disabled={true} className={'wordInput'} id={'wordBox'} type={'text'} maxLength={5} />
                 </div>
-                <div className={'container'} id={'keyCont'}>
+                <div className={'container'} id={'keyContainer'}>
                     <Keyboard getGuess={(g) => App.makeGuess(g)} />
                 </div>
             </div>

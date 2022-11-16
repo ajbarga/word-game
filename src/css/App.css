@@ -14,7 +14,7 @@ div.row {
 }
 body {
 	margin: 0 auto;
-	padding-top: 30px;
+	padding-top: 2%;
 	align-content: center;
 	text-align: center;
 	background-color: #D8BFD8
@@ -36,7 +36,8 @@ body {
 	border: 3px solid rgb(255, 148, 71);
 	margin: 0 auto;
 	min-width: -moz-fit-content;
-	min-width: fit-content
+	min-width: fit-content;
+    padding: 0px;
 }
 .container.dm {
 	border: 3px solid #712b06
@@ -47,15 +48,31 @@ body {
 	min-height: 40.8px
 }
 #wordBoxContainer{
-	min-width: 1000px;
-	margin: 0 auto;
-	display: inline-block
+	min-width: 500px;
+    height: fit-content;
+	display: inline-block;
 }
-#keyCont {
+.wordInput{
+    text-align: left;
+    text-indent: 26px;
+    letter-spacing: 56px;
+    caret-color: transparent;
+    -webkit-user-select: none;
+    user-select: disabled;
+    width: 345px;
+    height: 49px;
+}
+#wordInputBox{
+    width: fit-content;
+    width:350px;
+    transform: translateY(-4px)
+}
+#keyContainer{
 	min-width: 350px;
 	width: 40%;
 	max-width: 520px;
-	height: 152px
+	height: 130px;
+    transform: translateY(-5px)
 }
 p {
 	border: 2px solid black;
