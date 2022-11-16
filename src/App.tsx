@@ -61,7 +61,7 @@ class WordleApp extends Component<{}, Wordle>
         this.state = ({ rows: Rows, colors: BoxColors, wordList: WordList, colorMode: 'DAY', responseColor: 'plain', hints: 'OFF' });
     }
 
-    private makeGuess(guessVal: string)
+    private makeGuess(guessVal: string): void
     {
         const guess: string = guessVal.toUpperCase();
         const response: number[][] = Game.guess(guess);
@@ -96,14 +96,14 @@ class WordleApp extends Component<{}, Wordle>
         }
     };
 
-    private async invalidGuessSequence()
+    private async invalidGuessSequence(): Promise<void>
     {
         App.setState({responseColor: 'error'});
         await new Promise(r => setTimeout(r, 1500));
         App.setState({responseColor: 'plain'});
     }
 
-    private setupInterface() 
+    private setupInterface(): void
     {
         GuessCount = [0, 0, 0, 0];
         WordList = ['', '', '', ''];
@@ -121,14 +121,14 @@ class WordleApp extends Component<{}, Wordle>
 
     // Region Event-Handler Buttons
 
-    private reset()
+    private reset(): void
     {
         Game.reset();
         App.setupInterface();
         App.forceUpdate();
     };
 
-    private swapHintState()
+    private swapHintState(): void
     {
         let isHintsOn: boolean = App.state.hints == 'ON';
 
@@ -138,7 +138,7 @@ class WordleApp extends Component<{}, Wordle>
         App.setState({hints: (isHintsOn ? 'OFF' : 'ON')})
     };
 
-    private swapColorMode()
+    private swapColorMode(): void
     {
         let isDarkMode: boolean = App.state.colorMode == 'NIGHT';
 

@@ -7,17 +7,17 @@ class SuggestionBox
 {
     //region Non-Public Properties
 
-    private _wordList: string[] = [];
+    private _possibleWords: string[] = [];
 
     //endregion
 
     //region Non-Public Methods
 
-    private analyzeGuess(guess: string, colors: number[])
+    private analyzeGuess(guess: string, colors: number[]): void
     {
-        for(let k = this._wordList.length - 1; k > -1; k--)
+        for(let k = this._possibleWords.length - 1; k > -1; k--)
         {
-            let word: string = this._wordList[k];
+            let word: string = this._possibleWords[k];
             if(word !== undefined)
             {
                 let containedChars: string = "";
@@ -60,7 +60,7 @@ class SuggestionBox
                 }
                 if (isDeleted)
                 {
-                    delete this._wordList[k];
+                    delete this._possibleWords[k];
                 }
             }
         }
@@ -77,26 +77,26 @@ class SuggestionBox
 
     makeGuess(guess: string, colors: number[]): string[]
     {
-        let newList: string[] = [];
+        let suggestedWords: string[] = [];
         this.analyzeGuess(guess, colors);
-        let m: number = 0;
-        while (m < this._wordList.length && newList.length < 5)
+        let count: number = 0;
+        while (count < this._possibleWords.length && suggestedWords.length < 5)
         {
 
-            let w: string = this._wordList[m];
-            if (w !== undefined)
+            let word: string = this._possibleWords[count];
+            if (word !== undefined)
             {
-                newList.push(this._wordList[m]);
+                suggestedWords.push(this._possibleWords[count]);
             }
-            m++;
+            count++;
         }
-        return newList;
+        return suggestedWords;
     }
 
-    reset()
+    reset(): void
     {
-        this._wordList = [...realText];
-        this._wordList = this._wordList.sort(() => Math.random() - 0.5)
+        this._possibleWords = [...realText];
+        this._possibleWords = this._possibleWords.sort(() => Math.random() - 0.5)
     }
 
     //endregion
