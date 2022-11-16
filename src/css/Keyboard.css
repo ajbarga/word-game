@@ -124,7 +124,13 @@ input {
 
 /******************* BUTTONS *******************/
 
-button {
+input.headerButton {
+    border-radius: unset;
+    margin: unset;
+    background-color: unset;
+    display: inline-block;
+    color: black;
+    text-transform: unset;
     border-radius: 2px;
     border-width: 2px;
     box-sizing: border-box;
@@ -135,20 +141,21 @@ button {
     min-width: 132px;
     display: inline-block;
     border-color: black;
+    background-color: rgb(225, 225, 225);
 }
 
-button:hover {
+input.headerButton:hover {
     background-color: rgb(203, 168, 202);
     transform: scale3d(0.98, 0.96, 1);
 }
 
-button.dm {
+input.headerButton.dm {
     background-color: #313131;
     color: #ffcfcf;
     border-color: #000000;
 }
 
-button:hover.dm {
+input.headerButton:hover.dm {
     background-color: #761919;
     color: #ff6982;
     transform: scale3d(0.96, 0.96, 1);
