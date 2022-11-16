@@ -147,7 +147,7 @@ p {
 	width: 100%;
 	-webkit-user-select: none;
 	user-select: disabled;
-	font-size: 65%;
+	font-size: 0.8vw;
 	background-color: #262626;
 	color: #FFC0CB;
 	border-color: #000000;
