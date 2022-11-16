@@ -1,14 +1,14 @@
 {
-  "main.css": "/better-wordle/static/css/main.ac318e0d.chunk.css",
-  "main.js": "/better-wordle/static/js/main.6c2fe6cd.chunk.js",
-  "main.js.map": "/better-wordle/static/js/main.6c2fe6cd.chunk.js.map",
+  "main.css": "/better-wordle/static/css/main.bc1f7c1b.chunk.css",
+  "main.js": "/better-wordle/static/js/main.92fdb15c.chunk.js",
+  "main.js.map": "/better-wordle/static/js/main.92fdb15c.chunk.js.map",
   "static/js/1.2fef01d8.chunk.js": "/better-wordle/static/js/1.2fef01d8.chunk.js",
   "static/js/1.2fef01d8.chunk.js.map": "/better-wordle/static/js/1.2fef01d8.chunk.js.map",
   "runtime~main.js": "/better-wordle/static/js/runtime~main.0549a949.js",
   "runtime~main.js.map": "/better-wordle/static/js/runtime~main.0549a949.js.map",
   "static/media/Keyboard.css": "/better-wordle/static/media/backspace-icon.2d22e2c0.png",
-  "static/css/main.ac318e0d.chunk.css.map": "/better-wordle/static/css/main.ac318e0d.chunk.css.map",
+  "static/css/main.bc1f7c1b.chunk.css.map": "/better-wordle/static/css/main.bc1f7c1b.chunk.css.map",
   "index.html": "/better-wordle/index.html",
-  "precache-manifest.5e33684717a9e192190e0313ede8c2d8.js": "/better-wordle/precache-manifest.5e33684717a9e192190e0313ede8c2d8.js",
+  "precache-manifest.c0db95581b16cd41e5a35e6a4359663d.js": "/better-wordle/precache-manifest.c0db95581b16cd41e5a35e6a4359663d.js",
   "service-worker.js": "/better-wordle/service-worker.js"
 }
