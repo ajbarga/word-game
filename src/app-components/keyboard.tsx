@@ -53,7 +53,7 @@ class Keyboard extends Component<KeyProps>
     listener(e: any) 
     {
         let char: number = e.keyCode;
-        if (e.key === 'Backspace' || e.key === 'Enter' || (char > 64 && char < 91) || (char > 96 && char < 123)) 
+        if (char === 8 || char === 13 || (char > 64 && char < 91) || (char > 96 && char < 123)) 
         {
             Keys.inputKey(e.key);
         }
