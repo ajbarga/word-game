@@ -2,7 +2,7 @@
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
 import React, { Component } from 'react';
-import RowBox from './app-components/row-box';
+import RowBox from './app-components/games-module';
 import Keyboard from './app-components/keyboard';
 import GameDriver from './GameDriver';
 
