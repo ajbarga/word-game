@@ -3,13 +3,13 @@
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
 import React, { Component } from 'react';
 
-interface RowProps
+interface SingleGuessProps
 {
     guess: string,
     colorState: number[];
 }
 
-class OneRow extends Component<RowProps> 
+class SingleGuess extends Component<SingleGuessProps> 
 {
     //region Html Element
 
@@ -29,4 +29,4 @@ class OneRow extends Component<RowProps>
     //endregion
 }
 
-export default OneRow;
+export default SingleGuess;
