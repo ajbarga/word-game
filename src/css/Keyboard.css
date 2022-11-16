@@ -77,8 +77,13 @@ input.dm {
 .key-box {
     height: 100%;
     width: 100%;
-    max-width: 520px;
     border-color: #D8BFD8
+}
+.container.keyContainer{
+    width: 50%;
+    min-width: 500px;
+    height: 130px;
+    transform: translateY(-4px)
 }
 /*#endregion*/
 
