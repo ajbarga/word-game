@@ -4,107 +4,119 @@
 
 /*#region INPUTS**/
 input {
-	background-color: #313131;
-	display: inline-block;
-	color: #FFC0CB;
-	font-family: "American Typewriter", serif;
-	font-size: larger;
-	text-align: center;
-	text-transform: uppercase;
-	outline: none;
-	box-sizing: border-box;
-	width: 100%;
-	height: 100%;
+    background-color: #313131;
+    display: inline-block;
+    color: #FFC0CB;
+    font-family: "American Typewriter", serif;
+    font-size: larger;
+    text-align: center;
+    text-transform: uppercase;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
 }
+
 .word.dm {
-	border-color: #000000;
-	background-color: #1e1e1e
+    border-color: #000000;
+    background-color: #1e1e1e
 }
-input::selection { 
-	background-color: transparent
+
+input::selection {
+    background-color: transparent
+}
+
+input.dm {
+    border-color: #1f1f1f
 }
 /*#endregion*/
 
 /*#region KEYS*/
-.key{
-	border-radius: 2px;
+.key {
+    border-radius: 2px;
 }
-.key.r0 {
-	width: 10%;
-	color: #FFC0CB;
-	background-color: #313131;
-}
-.key.r1 {
-	width: 11.11%;
-}
-.key.r2 {
-	width: 10%;
-}
-.key.delete {
-	width: 15%;
-	background-image: url("../images/backspace-icon.png");
-	background-repeat: no-repeat;
-	background-position: center;
-	color: transparent;
-	float: right;
-}
-.key.enter {
-	float: left;
-	width: 15%;
-}
+
+    .key.R0 {
+        width: 10%;
+        color: #FFC0CB;
+        background-color: #313131;
+    }
+
+    .key.R1 {
+        width: 11.11%;
+    }
+
+    .key.R2 {
+        width: 10%;
+    }
+
+    .key.DL {
+        width: 15%;
+        background-image: url("../images/backspace-icon.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        color: transparent;
+        float: right;
+    }
+
+    .key.EN {
+        float: left;
+        width: 15%;
+    }
 /*#endregion*/
 
 /*#region KEYBOARD BOX*/
 .key-row {
-	box-sizing: border-box;
-	height: 33.33%;
-	margin: 0 auto;
-	border-color: inherit;
-	float: inline-start
+    box-sizing: border-box;
+    height: 33.33%;
+    margin: 0 auto;
+    border-color: inherit;
+    float: inline-start
 }
+
 .key-box {
-	height: 100%;
-	width: 100%;
-	max-width: 520px;
-	border-color: #D8BFD8
-}
-input.dm {
-	border-color: #1f1f1f
+    height: 100%;
+    width: 100%;
+    max-width: 520px;
+    border-color: #D8BFD8
 }
 /*#endregion*/
 
 /*#region BUTTONS*/
 input.headerButton {
-	border-radius: unset;
-	margin: unset;
-	background-color: unset;
-	display: inline-block;
-	color: #000000;
-	text-transform: unset;
-	border-radius: 2px;
-	border-width: 2px;
-	box-sizing: border-box;
-	font-size: 130%;
-	font-family: "Times New Roman", serif;
-	width: 33.33%;
+    border-radius: unset;
+    margin: unset;
+    background-color: unset;
+    display: inline-block;
+    color: #000000;
+    text-transform: unset;
+    border-radius: 2px;
+    border-width: 2px;
+    box-sizing: border-box;
+    font-size: 130%;
+    font-family: "Times New Roman", serif;
+    width: 33.33%;
     min-height: 38px;
-	min-width: 132px;
-	display: inline-block;
-	border-color: #000000;
-	background-color: rgb(225, 225, 225)
+    min-width: 132px;
+    display: inline-block;
+    border-color: #000000;
+    background-color: rgb(225, 225, 225)
 }
-input.headerButton:hover {
-	background-color: rgb(203, 168, 202);
-	transform: scale3d(0.98, 0.96, 1)
-}
-input.headerButton.dm {
-	background-color: #313131;
-	color: #ffcfcf;
-	border-color: #000000
-}
-input.headerButton:hover.dm {
-	background-color: #761919;
-	color: #ff6982;
-	transform: scale3d(0.96, 0.96, 1)
-}
+
+    input.headerButton:hover {
+        background-color: rgb(203, 168, 202);
+        transform: scale3d(0.98, 0.96, 1)
+    }
+
+    input.headerButton.dm {
+        background-color: #313131;
+        color: #ffcfcf;
+        border-color: #000000
+    }
+
+    input.headerButton:hover.dm {
+        background-color: #761919;
+        color: #ff6982;
+        transform: scale3d(0.96, 0.96, 1)
+    }
 /*#endregion*/

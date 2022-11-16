@@ -17,11 +17,11 @@ class SingleGuess extends Component<SingleGuessProps>
     {
         return (
             <div className={'container wordContainer'}>
-                <p className={'letter'} id={'charColor' + this.props.colorState[0]}>{this.props.guess.charAt(0)}</p>
-                <p className={'letter'} id={'charColor' + this.props.colorState[1]}>{this.props.guess.charAt(1)}</p>
-                <p className={'letter'} id={'charColor' + this.props.colorState[2]}>{this.props.guess.charAt(2)}</p>
-                <p className={'letter'} id={'charColor' + this.props.colorState[3]}>{this.props.guess.charAt(3)}</p>
-                <p className={'letter'} id={'charColor' + this.props.colorState[4]}>{this.props.guess.charAt(4)}</p>
+                <p className={'letter'} id={'boxColor' + this.props.colorState[0]}>{this.props.guess.charAt(0)}</p>
+                <p className={'letter'} id={'boxColor' + this.props.colorState[1]}>{this.props.guess.charAt(1)}</p>
+                <p className={'letter'} id={'boxColor' + this.props.colorState[2]}>{this.props.guess.charAt(2)}</p>
+                <p className={'letter'} id={'boxColor' + this.props.colorState[3]}>{this.props.guess.charAt(3)}</p>
+                <p className={'letter'} id={'boxColor' + this.props.colorState[4]}>{this.props.guess.charAt(4)}</p>
             </div>
         );
     }
