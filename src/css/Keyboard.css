@@ -79,9 +79,10 @@ input.dm {
     width: 100%;
     border-color: #D8BFD8
 }
-.container.keyContainer{
-    width: 50%;
+.keyContainer{
+    width: 100%;
     min-width: 500px;
+    max-width: 800px;
     height: 130px;
     transform: translateY(-4px)
 }
