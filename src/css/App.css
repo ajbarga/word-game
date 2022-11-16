@@ -55,14 +55,7 @@ body {
 #wordBoxContainer{
     min-width: 1000px;
     margin: 0 auto;
-    display: inline-block;
-   
-}
-
-
-
-.wc {
-    width: 350px
+    display: inline-block;   
 }
 
 #keyCont {
@@ -114,29 +107,29 @@ p {
     text-align: center;
 }
 
-#l-1 {
+#charColor-1 {
     background-color: rgb(225, 225, 225);
 }
 
-#l1 {
+#charColor1 {
     background-color: rgb(99, 190, 93);
 }
 
-#l0 {
+#charColor0 {
     background-color: rgb(255, 199, 30);
 }
 
-.dm#l-1 {
+.dm#charColor-1 {
     background-color: #262626;
     color: pink;
 }
 
-.dm#l1 {
+.dm#charColor1 {
     background-color: #004500;
     color: white;
 }
 
-.dm#l0 {
+.dm#charColor0 {
     background-color: orange;
     color: #892d2d;
 }
