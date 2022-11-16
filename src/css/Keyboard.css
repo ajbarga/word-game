@@ -84,7 +84,6 @@ input.dm {
     min-width: 500px;
     max-width: 800px;
     height: 130px;
-    transform: translateY(-4px)
 }
 /*#endregion*/
 

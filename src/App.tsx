@@ -16,6 +16,7 @@ interface Wordle
     colorMode: string;
     responseColor: string;
     hints: boolean;
+    inputValue: string[];
 }
 
 let App: WordleApp;
@@ -58,7 +59,7 @@ class WordleApp extends Component<{}, Wordle>
         WordList = this._wordList;
 
         this.setupInterface();
-        this.state = ({ rows: Rows, colors: BoxColors, wordList: WordList, colorMode: 'DAY', responseColor: 'plain', hints: false });
+        this.state = ({ rows: Rows, colors: BoxColors, wordList: WordList, colorMode: 'DAY', responseColor: 'plain', hints: false, inputValue: ['1','1','1','1','1']});
     }
 
     private makeGuess(guessVal: string): void
@@ -173,13 +174,15 @@ class WordleApp extends Component<{}, Wordle>
                     <p className={'title-box'} id={App.state.responseColor}>Wordle</p>
                 </div>
                 <GameBox rowSt={App.state.rows} colorState={App.state.colors} 
-                    wordBox={App.state.wordList} hintState={App.state.hints ? '#FFC0CB' : 'transparent'}/>
-                <div className={'container'} id={'wordInputBox'}>
-                    <input disabled={true} className={'wordInput'} id={'wordBox'} type={'text'} maxLength={5} />
+                    wordBox={App.state.wordList} hintState={App.state.hints ? '#FFC0CB' : 'transparent'} />
+                <div className={'container wordContainer input'}>
+                    <p className={'letter l' + App.state.inputValue[0]} id={'wI'}>{App.state.inputValue[0]}</p>
+                    <p className={'letter l' + App.state.inputValue[1]} id={'wI'}>{App.state.inputValue[1]}</p>
+                    <p className={'letter l' + App.state.inputValue[2]} id={'wI'}>{App.state.inputValue[2]}</p>
+                    <p className={'letter l' + App.state.inputValue[3]} id={'wI'}>{App.state.inputValue[3]}</p>
+                    <p className={'letter l' + App.state.inputValue[4]} id={'wI'}>{App.state.inputValue[4]}</p>
                 </div>
-                <div className={'container keyContainer'}>
-                    <Keyboard getGuess={App.makeGuess} />
-                </div>
+                <Keyboard getGuess={App.makeGuess} inputText={App.state.inputValue} setText={(e) => App.setState({inputValue: e})} />
             </div>
         );
     };

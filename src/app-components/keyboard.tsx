@@ -7,6 +7,8 @@ import React, { Component, SyntheticEvent } from 'react';
 interface KeyProps 
 {
     getGuess(gs: string): void;
+    setText(text: string[]): void;
+    inputText: string[];
 }
 
 let Keys: Keyboard;
@@ -24,20 +26,26 @@ class Keyboard extends Component<KeyProps>
 
     inputKey(e: string) 
     {
-        let text: HTMLInputElement = document.getElementById('wordBox') as HTMLInputElement;
+        let text: string[] = Keys.props.inputText;
+        let len: number = text.indexOf('1');
         if (e === 'Backspace') 
         {
-            text.value = text.value.substring(0, text.value.length - 1);
+            if (len !== 0)
+            {
+                text[(len < 0 ? 4 : len-1)] = '1';
+            }
+
         }
         else if (e === 'Enter') 
         {
-            this.props.getGuess(text.value);
-            text.value = '';
+            this.props.getGuess(text.join(''));
+            text = ['1', '1', '1', '1', '1'];
         }
-        else if (text.value.length < 5) 
+        else if (len !== -1) 
         {
-            text.value = text.value + e;
+            text[len] = e;
         }
+        this.props.setText(text);
     }
 
     //endregion
@@ -72,7 +80,7 @@ class Keyboard extends Component<KeyProps>
     render() 
     {
         return (
-            <div className={'key-box'}>
+            <div className={'container keyContainer'}>
                 <div className={'key-row'}>
                     <span>
                         <input className={'key R0'} type={'button'} value={'Q'} onClick={this.input} />

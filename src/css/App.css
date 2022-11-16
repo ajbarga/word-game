@@ -26,6 +26,15 @@ p {
     font-size: 200%;
     display: inline-block
 }
+    p#wI {
+       border: 2px solid transparent;
+       height: 100%;
+       color: thistle;
+       text-transform: uppercase;
+    }
+    p#wI.letter.l1{
+        color: transparent
+    }
 
 .big-box {
     -webkit-user-select: none; /* Safari */
@@ -71,6 +80,12 @@ p {
    margin: 0 auto;
    width: 500px;
 }
+.wordContainer.input {
+    background-color: #313131;
+    color: #FFC0CB;
+    height: 54px;
+}
+
 div.gameBox {
     display: inline-flex;
     max-width: 1000px;
