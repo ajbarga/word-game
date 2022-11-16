@@ -25,7 +25,11 @@ p {
 }
 .big-box {
 	margin: 0 auto;
-	width: 100%
+	width: 100%;
+	-webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Old version of Firefox */
+    -ms-user-select: none; /* Internet Explorer or Edge */
+    user-select: none; /* All modern browsers */
 }
 #headerBox {
 	height: fit-content;
@@ -71,8 +75,6 @@ p {
     text-indent: 26px;
     letter-spacing: 56px;
     caret-color: transparent;
-    -webkit-user-select: none;
-    user-select: disabled;
     width: 345px;
     height: 49px;
 }
@@ -145,8 +147,6 @@ p {
 /*#region ANSWER BOXES*/
 #ans-box {
 	width: 100%;
-	-webkit-user-select: none;
-	user-select: disabled;
 	font-size: 0.7vw;
 	background-color: #262626;
 	color: #FFC0CB;

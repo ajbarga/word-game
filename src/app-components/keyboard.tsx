@@ -106,8 +106,7 @@ class Keyboard extends Component<KeyProps>
                     <input className={'key3'} type={'button'} value={'B'} onClick={this.input} />
                     <input className={'key3'} type={'button'} value={'N'} onClick={this.input} />
                     <input className={'key3'} type={'button'} value={'M'} onClick={this.input} />
-                    <input className={'key3'} type={'button'} value={''} id={'deleteKey'} onClick={() =>
-                        Keys.inputKey('Backspace')} />
+                    <input className={'key3'} type={'button'} value={'Backspace'} id={'deleteKey'} onClick={this.input} />
                 </div>
             </div>
         );

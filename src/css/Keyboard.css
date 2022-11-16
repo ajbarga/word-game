@@ -16,12 +16,14 @@ input {
 	outline: none;
 	box-sizing: border-box;
 	width: 100%;
-	height: 100%
+	height: 100%;
 }
-
 .word.dm {
 	border-color: #000000;
 	background-color: #262626
+}
+input::selection { 
+	background-color: transparent
 }
 /*#endregion*/
 
@@ -49,6 +51,7 @@ input {
 	background-repeat: no-repeat;
 	background-position: center;
     transform: unset;
+	color: transparent;
 }
 #enterKey {
 	box-sizing: border-box;
