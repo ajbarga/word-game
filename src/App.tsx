@@ -109,7 +109,7 @@ class WordleApp extends Component<{}, Wordle>
     private setupInterface (): void
     {
         GuessCount = [0, 0, 0, 0];
-        const hintText: string = 'ENTER FIRST WORD';
+        const hintText: string = 'ENTER FIRST GUESS';
         WordList = [hintText, hintText, hintText, hintText];
         for (let i = 0; i < 4; i++)
         {
@@ -129,9 +129,7 @@ class WordleApp extends Component<{}, Wordle>
     {
         Game.reset();
         App.setupInterface();
-        const hintText: string = 'ENTER FIRST WORD';
-        App.setState({ wordList: [hintText, hintText, hintText, hintText] });
-        App.forceUpdate();
+        App.setState({ rows: Rows, colors: BoxColors, wordList: WordList });
     };
 
     private swapHintState (): void
