@@ -30,47 +30,44 @@ let GuessCount: number[];
 
 //empty row string
 const eR: string = 'AAAAA';
-const oneRow: string[] = [eR, eR, eR, eR, eR, eR, eR, eR, eR];
+const emptyRow: string[] = [eR, eR, eR, eR, eR, eR, eR, eR, eR];
 
 //default row color array
-const nC: number[] = [-2, -2, -2, -2, -2];
-const emptyColors: number[][] = [nC, nC, nC, nC, nC, nC, nC, nC, nC];
+const eC: number[] = [-2, -2, -2, -2, -2];
+const emptyColors: number[][] = [eC, eC, eC, eC, eC, eC, eC, eC, eC];
 
-const SMALL: number = 500;
+//default input box
+const emptyInput: string[] = ['1', '1', '1', '1', '1'];
+
+const SMALL: number = 501;
+window.addEventListener('resize', ()=>{App.setState({windowSmall: window.innerWidth < SMALL})});
 
 class WordleApp extends Component<{}, Wordle>
 {
-    //#region Non-Public Properties
-
-    private _gameDriver: GameDriver = new GameDriver();
-    private _rows: string[][] = [];
-    private _colors: number[][][] = [];
-    private _guesses: number[] = [];
-    private _wordList: string[] = [];
-
-    //#endregion
-
-    //#region Non-Public Methods
+    //#region Non-Public Interface
 
     private constructor(props: Wordle)
     {
         super(props);
         App = this;
-        Game = this._gameDriver;
-
-        Rows = this._rows;
-        BoxColors = this._colors;
-        GuessCount = this._guesses;
-        WordList = this._wordList;
+        Game = new GameDriver();
+        Rows = [];
+        BoxColors = [];
+        GuessCount = [];
+        WordList = [];
 
         this.setupInterface();
-        window.addEventListener('resize', ()=>{App.setState({windowSmall: window.innerWidth < SMALL})});
+
         this.state = ({ 
-            rows: Rows, colors: BoxColors, wordList: WordList, 
-            darkMode: false, responseColor: 'plain', hints: false, 
-            inputValue: ['1', '1', '1', '1', '1'], 
-            windowSmall: window.innerWidth < SMALL 
-        });    
+            rows: Rows, 
+            colors: BoxColors, 
+            wordList: WordList,
+            windowSmall: window.innerWidth < SMALL,
+            darkMode: false, 
+            hints: false,
+            responseColor: 'plain',  
+            inputValue: emptyInput, 
+        });
     }
 
     private makeGuess (guessVal: string): void
@@ -124,7 +121,7 @@ class WordleApp extends Component<{}, Wordle>
         {
             for (let j = 0; j < 9; j++)
             {
-                Rows[i] = [...oneRow];
+                Rows[i] = [...emptyRow];
                 BoxColors[i] = [...emptyColors];
             }
         }
