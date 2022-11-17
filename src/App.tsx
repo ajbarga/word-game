@@ -5,6 +5,7 @@ import React, { Component, SyntheticEvent } from 'react';
 import GameBox from './app-components/game-module';
 import Keyboard from './app-components/keyboard';
 import InputBox from './app-components/input-box';
+import HeaderButtons from './app-components/header-buttons';
 import GameDriver from './GameDriver';
 
 import './css/App.css';
@@ -16,9 +17,7 @@ interface Wordle
     wordList: string[];
     responseColor: string;
     colors: number[][][];
-    darkMode: boolean;
     hints: boolean;
-    windowSmall: boolean;
 }
 
 let App: WordleApp;
@@ -38,9 +37,6 @@ const emptyColors: number[][] = [eC, eC, eC, eC, eC, eC, eC, eC, eC];
 
 //default input box
 const emptyInput: string[] = ['1', '1', '1', '1', '1'];
-
-const SMALL: number = 501;
-window.addEventListener('resize', ()=>{App.setState({windowSmall: window.innerWidth < SMALL})});
 
 class WordleApp extends Component<{}, Wordle>
 {
@@ -62,11 +58,9 @@ class WordleApp extends Component<{}, Wordle>
             rows: Rows, 
             colors: BoxColors, 
             wordList: WordList,
-            windowSmall: window.innerWidth < SMALL,
-            darkMode: false, 
-            hints: false,
             responseColor: 'plain',  
             inputValue: emptyInput, 
+            hints: false
         });
     }
 
@@ -138,29 +132,10 @@ class WordleApp extends Component<{}, Wordle>
         App.setState({ rows: Rows, colors: BoxColors, wordList: WordList });
     };
 
-    private swapHintState (): void
+    private swapHintState()
     {
-        let isHintsOn: boolean = !App.state.hints;
-
-        App.setState({ hints: isHintsOn });
-    };
-
-    private swapColorMode (): void
-    {
-        let isDarkMode: boolean = App.state.darkMode;
-
-        let divs: NodeListOf<HTMLElement> = document.querySelectorAll('input,p,div,button');
-        divs.forEach(i => isDarkMode ? i.classList.remove('dm') : i.classList.add('dm'));
-        document.body.style.backgroundColor = (isDarkMode ? 'thistle' : '#262626');
-
-        App.setState({ darkMode: !isDarkMode });
-    };
-
-    private async disable (e: SyntheticEvent)
-    {
-        (e.target as HTMLInputElement).disabled = true;
-        await new Promise(r => setTimeout(r, 5));
-        (e.target as HTMLInputElement).disabled = false;
+        let isHintsOn: boolean = App.state.hints;
+        App.setState({hints: !isHintsOn});
     }
 
     //#endregion
@@ -174,14 +149,7 @@ class WordleApp extends Component<{}, Wordle>
                 <div className={'container headerBox'}>
                     <p className={'titleBox'} id={App.state.responseColor}>Wordle</p>
                 </div>
-                <div className={'container buttons headerBox'}>
-                    <input type='button' className='headerButton'
-                        onClick={(e) => { App.reset(); App.disable(e); }} value={'RESET'} />
-                    <input type='button' className='headerButton'
-                        onClick={(e) => { App.swapColorMode(); App.disable(e); }} value={(App.state.windowSmall ? '' : 'MODE: ') + (App.state.darkMode ? 'NIGHT' : 'DAY')} />
-                    <input type='button' className='headerButton'
-                        onClick={(e) => { App.swapHintState(); App.disable(e); }} value={'HINTS: ' + (App.state.hints ? 'ON' : 'OFF')} />
-                </div>
+                <HeaderButtons reset={App.reset} swapHintState={App.swapHintState} hints={App.state.hints}/>
                 <GameBox rowSt={App.state.rows} colorState={App.state.colors}
                     wordBox={App.state.wordList} hintState={App.state.hints ? '#FFC0CB' : 'transparent'} />
                 <InputBox text={App.state.inputValue} />
