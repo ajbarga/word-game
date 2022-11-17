@@ -6,7 +6,7 @@ import React, { Component, SyntheticEvent } from 'react';
 
 interface KeyProps 
 {
-    getGuess (gs: string): void;
+    getGuess (guess: string): void;
     setText (text: string[]): void;
     inputText: string[];
 }
