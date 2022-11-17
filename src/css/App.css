@@ -1,82 +1,109 @@
 /* © 2022 Alex Barga. All rights reserved.
  * Reproduction or transmission in whole or in part, in any form or by any means, electronic,
  * mechanical or otherwise, is prohibited without the prior  written consent of the owner.*/
-body {
+*
+{
+    box-sizing: border-box
+}
+
+body
+{
     margin: 0 auto;
-    padding-top: 0.5%;
     align-content: center;
     text-align: center;
     background-color: #D8BFD8
 }
 
-div {
-    box-sizing: border-box;
+div
+{
     margin: 0 auto;
-    padding-top: unset
 }
 
-    div.appBox {
+    div.appBox
+    {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none
     }
 
-    div.row {
-        box-sizing: border-box;
-        display: inline-block
+    div.gameBox
+    {
+        padding-bottom: 182px;
+        padding-top: 92px;
+        display: inline-flex;
+        flex-wrap: wrap;
     }
 
-    div.wordBoxContainer {
+    div.wordBox
+    {
         margin: 0 auto;
-        width: 500px
     }
 
-    div.container {
+    div.row
+    {
+        display: inline-block;
+        flex-wrap: wrap;
+    }
+
+    div.container
+    {
         border: 3px solid rgb(255, 148, 71);
         min-width: -moz-fit-content;
         min-width: fit-content
     }
 
-        div.container.dm {
+        div.container.dm
+        {
             border: 3px solid #712b06
         }
 
-        div.container.headerBox {
-            min-width: 500px;
-            width: 50%
+        div.container.headerBox
+        {
+            min-width: 250px;
+            width: 100%;
+            position: fixed;
+            background-color: rgb(255, 148, 71);
+
         }
 
-            div.container.headerBox.dm {
+            div.container.headerBox.dm
+            {
                 background-color: #712b06
             }
+            div.container.buttons.headerBox{
+                top: 50px
+            }
 
-        div.container.wordContainer {
+        div.container.wordContainer
+        {
             height: 100%;
             width: 250px;
-            box-sizing: border-box;
-            height: fit-content
         }
 
-    div#input.container.wordContainer {
+    div#input.container.wordContainer
+    {
         background-color: #313131;
         color: #FFC0CB;
-        height: fit-content
+        position: fixed;
+        bottom: 129px;
+        height: 54px;
+        max-width: 300px;
+        min-width: 250px;
+        width: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 125%;
     }
 
-        div#input.container.wordContainer.dm {
+        div#input.container.wordContainer.dm
+        {
             background-color: transparent;
             color: #FFC0CB
         }
 
-    div.gameBox {
-        display: inline-flex;
-        max-width: 1000px;
-        min-width: 500px;
-        flex-wrap: wrap
-    }
-
-p {
+p
+{
     border: 2px solid black;
     box-sizing: border-box;
     margin: 0;
@@ -85,87 +112,104 @@ p {
     display: inline-block
 }
 
-    p.titleBox {
+    p.titleBox
+    {
         font-family: "Times New Roman", serif;
         font-size: 230%;
         display: block;
         width: 100%
     }
 
-    p#plain.titleBox {
+    p#plain.titleBox
+    {
         background-color: rgb(225, 225, 225)
     }
 
-    p#error.titleBox {
+    p#error.titleBox
+    {
         background-color: rgb(168, 14, 14)
     }
 
-    p#plain.titleBox.dm {
+    p#plain.titleBox.dm
+    {
         background-color: #262626;
         color: #FFC0CB
     }
 
-    p#error.titleBox.dm {
+    p#error.titleBox.dm
+    {
         background-color: #570909;
         color: #000000
     }
 
-    p.letter {
+    p.letter
+    {
         width: 20%;
         height: 100%;
         min-height: 36.8px;
         text-align: center
     }
 
-        p.letter.word {
+        p.letter.word
+        {
             border: 1px dashed rgb(255, 151, 169);
             height: 100%;
             color: pink;
             text-transform: uppercase
         }
 
-            p.letter.word.l1 {
+            p.letter.word.l1
+            {
                 color: transparent
             }
 
-    p#boxColor-2.letter {
+    p#boxColor-2.letter
+    {
         background-color: rgb(225, 225, 225);
         color: transparent
     }
 
-        p#boxColor-2.letter.dm {
+        p#boxColor-2.letter.dm
+        {
             background-color: #262626;
             color: transparent
         }
 
-    p#boxColor-1.letter {
+    p#boxColor-1.letter
+    {
         background-color: rgb(225, 225, 225)
     }
 
-        p#boxColor-1.letter.dm {
+        p#boxColor-1.letter.dm
+        {
             background-color: #262626;
             color: #FFC0CB
         }
 
-    p#boxColor0.letter {
+    p#boxColor0.letter
+    {
         background-color: rgb(255, 199, 30)
     }
 
-        p#boxColor0.letter.dm {
+        p#boxColor0.letter.dm
+        {
             background-color: #FFA500;
             color: #892d2d
         }
 
-    p#boxColor1.letter {
+    p#boxColor1.letter
+    {
         background-color: rgb(99, 190, 93)
     }
 
-        p#boxColor1.letter.dm {
+        p#boxColor1.letter.dm
+        {
             background-color: #004500;
             color: #FFFFFF
         }
 
-input#answerBox.key {
+input#answerBox.key
+{
     width: 100%;
     font-size: 66%;
     background-color: #262626;

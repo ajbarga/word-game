@@ -4,10 +4,9 @@
 import '../css/Keyboard.css';
 import React, { Component, SyntheticEvent } from 'react';
 
-interface KeyProps 
-{
-    getGuess (guess: string): void;
-    setText (text: string[]): void;
+interface KeyProps {
+    getGuess(guess: string): void;
+    setText(text: string[]): void;
     text: string[];
 }
 
@@ -17,22 +16,18 @@ class Keyboard extends Component<KeyProps>
 {
     //#region Non-Public Interface
 
-    private constructor(props: any) 
-    {
+    private constructor(props: any) {
         super(props);
         Keys = this;
         window.addEventListener('keydown', e => this.listener(e));
     }
 
-    private inputKey (e: string) 
-    {
+    private inputKey(e: string) {
         let text: string[] = Keys.props.text;
         let len: number = text.indexOf('1');
-        switch (e)
-        {
+        switch (e) {
             case 'Backspace':
-                if (len !== 0)
-                {
+                if (len !== 0) {
                     text[(len < 0 ? 4 : len - 1)] = '1';
                 }
                 break;
@@ -41,8 +36,7 @@ class Keyboard extends Component<KeyProps>
                 text = ['1', '1', '1', '1', '1'];
                 break;
             default:
-                if (len > -1) 
-                {
+                if (len > -1) {
                     text[len] = e;
                 }
         }
@@ -53,23 +47,19 @@ class Keyboard extends Component<KeyProps>
 
     //#region Event-Handlers
 
-    private input (keyPress: SyntheticEvent)
-    {
+    private input(keyPress: SyntheticEvent) {
         Keys.inputKey((keyPress.target as HTMLInputElement).value);
         Keys.disable(keyPress);
     }
 
-    private listener (e: any)
-    {
+    private listener(e: any) {
         let char: number = e.keyCode;
-        if (char === 8 || char === 13 || (char > 64 && char < 91) || (char > 96 && char < 123))
-        {
+        if (char === 8 || char === 13 || (char > 64 && char < 91) || (char > 96 && char < 123)) {
             Keys.inputKey(e.key);
         }
     };
 
-    private async disable (e: SyntheticEvent)
-    {
+    private async disable(e: SyntheticEvent) {
         (e.target as HTMLInputElement).disabled = true;
         await new Promise(r => setTimeout(r, 5));
         (e.target as HTMLInputElement).disabled = false;
@@ -79,49 +69,42 @@ class Keyboard extends Component<KeyProps>
 
     //region Html Element
 
-    render ()
-    {
+    render() {
         return (
             <div className={'container keyContainer'}>
                 <div className={'keyRow'}>
-                    <span>
-                        <input className={'key R0'} type={'button'} value={'Q'} onClick={this.input} />
-                        <input className={'key R0'} type={'button'} value={'W'} onClick={this.input} />
-                        <input className={'key R0'} type={'button'} value={'E'} onClick={this.input} />
-                        <input className={'key R0'} type={'button'} value={'R'} onClick={this.input} />
-                        <input className={'key R0'} type={'button'} value={'T'} onClick={this.input} />
-                        <input className={'key R0'} type={'button'} value={'Y'} onClick={this.input} />
-                        <input className={'key R0'} type={'button'} value={'U'} onClick={this.input} />
-                        <input className={'key R0'} type={'button'} value={'I'} onClick={this.input} />
-                        <input className={'key R0'} type={'button'} value={'O'} onClick={this.input} />
-                        <input className={'key R0'} type={'button'} value={'P'} onClick={this.input} />
-                    </span>
+                    <input className={'key R0'} type={'button'} value={'Q'} onClick={this.input} />
+                    <input className={'key R0'} type={'button'} value={'W'} onClick={this.input} />
+                    <input className={'key R0'} type={'button'} value={'E'} onClick={this.input} />
+                    <input className={'key R0'} type={'button'} value={'R'} onClick={this.input} />
+                    <input className={'key R0'} type={'button'} value={'T'} onClick={this.input} />
+                    <input className={'key R0'} type={'button'} value={'Y'} onClick={this.input} />
+                    <input className={'key R0'} type={'button'} value={'U'} onClick={this.input} />
+                    <input className={'key R0'} type={'button'} value={'I'} onClick={this.input} />
+                    <input className={'key R0'} type={'button'} value={'O'} onClick={this.input} />
+                    <input className={'key R0'} type={'button'} value={'P'} onClick={this.input} />
                 </div>
                 <div className={'keyRow'}>
-                    <span>
-                        <input className={'key R1'} type={'button'} value={'A'} onClick={this.input} />
-                        <input className={'key R1'} type={'button'} value={'S'} onClick={this.input} />
-                        <input className={'key R1'} type={'button'} value={'D'} onClick={this.input} />
-                        <input className={'key R1'} type={'button'} value={'F'} onClick={this.input} />
-                        <input className={'key R1'} type={'button'} value={'G'} onClick={this.input} />
-                        <input className={'key R1'} type={'button'} value={'H'} onClick={this.input} />
-                        <input className={'key R1'} type={'button'} value={'J'} onClick={this.input} />
-                        <input className={'key R1'} type={'button'} value={'K'} onClick={this.input} />
-                        <input className={'key R1'} type={'button'} value={'L'} onClick={this.input} />
-                    </span>
+                    <input className={'key R1'} type={'button'} value={'A'} onClick={this.input} />
+                    <input className={'key R1'} type={'button'} value={'S'} onClick={this.input} />
+                    <input className={'key R1'} type={'button'} value={'D'} onClick={this.input} />
+                    <input className={'key R1'} type={'button'} value={'F'} onClick={this.input} />
+                    <input className={'key R1'} type={'button'} value={'G'} onClick={this.input} />
+                    <input className={'key R1'} type={'button'} value={'H'} onClick={this.input} />
+                    <input className={'key R1'} type={'button'} value={'J'} onClick={this.input} />
+                    <input className={'key R1'} type={'button'} value={'K'} onClick={this.input} />
+                    <input className={'key R1'} type={'button'} value={'L'} onClick={this.input} />
                 </div>
                 <div className={'keyRow'}>
-                    <span>
-                        <input className={'key EN'} type={'button'} value={'✓'} onClick={() => Keys.inputKey('Enter')} />
-                        <input className={'key R2'} type={'button'} value={'Z'} onClick={this.input} />
-                        <input className={'key R2'} type={'button'} value={'X'} onClick={this.input} />
-                        <input className={'key R2'} type={'button'} value={'C'} onClick={this.input} />
-                        <input className={'key R2'} type={'button'} value={'V'} onClick={this.input} />
-                        <input className={'key R2'} type={'button'} value={'B'} onClick={this.input} />
-                        <input className={'key R2'} type={'button'} value={'N'} onClick={this.input} />
-                        <input className={'key R2'} type={'button'} value={'M'} onClick={this.input} />
-                        <input className={'key DL'} type={'button'} value={'Backspace'} onClick={this.input} />
-                    </span>
+                    <input className={'key EN'} type={'button'} value={'✓'} onClick={() => Keys.inputKey('Enter')} />
+                    <input className={'key R2'} type={'button'} value={'Z'} onClick={this.input} />
+                    <input className={'key R2'} type={'button'} value={'X'} onClick={this.input} />
+                    <input className={'key R2'} type={'button'} value={'C'} onClick={this.input} />
+                    <input className={'key R2'} type={'button'} value={'V'} onClick={this.input} />
+                    <input className={'key R2'} type={'button'} value={'B'} onClick={this.input} />
+                    <input className={'key R2'} type={'button'} value={'N'} onClick={this.input} />
+                    <input className={'key R2'} type={'button'} value={'M'} onClick={this.input} />
+                    <input className={'key DL'} type={'button'} value={'Backspace'} onClick={this.input} />
                 </div>
             </div>
         );

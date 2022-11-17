@@ -20,11 +20,11 @@ class GameBox extends Component<GameBoxProps>
     {
         return (
             <div className={'gameBox'}>
-                <div className={'wordBoxContainer'}>
+                <div className={'wordBox'}>
                     <SingleGame box={this.props.rowSt[0]} colors={this.props.colorState[0]} wordBox={this.props.wordBox[0]} hintState={this.props.hintState} />
                     <SingleGame box={this.props.rowSt[1]} colors={this.props.colorState[1]} wordBox={this.props.wordBox[1]} hintState={this.props.hintState} />
                 </div>
-                <div className={'wordBoxContainer'}>
+                <div className={'wordBox'}>
                     <SingleGame box={this.props.rowSt[2]} colors={this.props.colorState[2]} wordBox={this.props.wordBox[2]} hintState={this.props.hintState} />
                     <SingleGame box={this.props.rowSt[3]} colors={this.props.colorState[3]} wordBox={this.props.wordBox[3]} hintState={this.props.hintState} />
                 </div>

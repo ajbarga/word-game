@@ -8,11 +8,16 @@ div.keyRow {
     border-color: inherit
 }
 
-div.container.keyContainer {
+div.container.keyContainer
+{
+    position: fixed;
+    bottom: 0px;
     width: 100%;
-    min-width: 500px;
+    min-width: 250px;
     max-width: 800px;
-    height: 130px
+    height: 130px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 input {
@@ -64,11 +69,12 @@ input {
         }
 
         input.key.EN {
-            width: 15%
+            width: 15%;
+            font-size:92%;
+            font-weight: bolder;
         }
 
     input.headerButton {
-        border-radius: unset;
         margin: unset;
         background-color: unset;
         display: inline-block;
@@ -76,13 +82,11 @@ input {
         text-transform: unset;
         border-radius: 2px;
         border-width: 2px;
-        box-sizing: border-box;
         font-size: 130%;
         font-family: "Times New Roman", serif;
-        width: 33.33%;
-        min-height: 38px;
+        width:33.3%;
+        height: 38px;
         min-width: 132px;
-        display: inline-block;
         border-color: #000000;
         background-color: rgb(225, 225, 225)
     }
