@@ -28,22 +28,23 @@ class Keyboard extends Component<KeyProps>
     {
         let text: string[] = Keys.props.inputText;
         let len: number = text.indexOf('1');
-        if (e === 'Backspace') 
+        switch (e)
         {
-            if (len !== 0)
-            {
-                text[(len < 0 ? 4 : len - 1)] = '1';
-            }
-
-        }
-        else if (e === 'Enter') 
-        {
-            this.props.getGuess(text.join(''));
-            text = ['1', '1', '1', '1', '1'];
-        }
-        else if (len !== -1) 
-        {
-            text[len] = e;
+            case 'Backspace':
+                if (len !== 0)
+                {
+                    text[(len < 0 ? 4 : len - 1)] = '1';
+                }
+                break;
+            case 'Enter':
+                this.props.getGuess(text.join(''));
+                text = ['1', '1', '1', '1', '1'];
+                break;
+            default:
+                if (len > -1) 
+                {
+                    text[len] = e;
+                }
         }
         this.props.setText(text);
     }
@@ -52,13 +53,13 @@ class Keyboard extends Component<KeyProps>
 
     //#region Event-Handlers
 
-    input (keyPress: SyntheticEvent) 
+    input (keyPress: SyntheticEvent)
     {
         Keys.inputKey((keyPress.target as HTMLInputElement).value);
         Keys.disable(keyPress);
     }
 
-    listener (e: any) 
+    listener (e: any)
     {
         let char: number = e.keyCode;
         if (char === 8 || char === 13 || (char > 64 && char < 91) || (char > 96 && char < 123))
@@ -67,7 +68,7 @@ class Keyboard extends Component<KeyProps>
         }
     };
 
-    private async disable (e: SyntheticEvent) 
+    private async disable (e: SyntheticEvent)
     {
         (e.target as HTMLInputElement).disabled = true;
         await new Promise(r => setTimeout(r, 5));
@@ -78,7 +79,7 @@ class Keyboard extends Component<KeyProps>
 
     //region Html Element
 
-    render () 
+    render ()
     {
         return (
             <div className={'container keyContainer'}>
