@@ -64,7 +64,6 @@ div
             width: 100%;
             position: fixed;
             background-color: rgb(255, 148, 71);
-
         }
 
             div.container.headerBox.dm
@@ -72,7 +71,7 @@ div
                 background-color: #712b06
             }
             div.container.buttons.headerBox{
-                top: 50px
+                top: 49px
             }
 
         div.container.wordContainer
