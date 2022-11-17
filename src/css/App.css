@@ -85,17 +85,6 @@ p {
     display: inline-block
 }
 
-    p.letter.word {
-        border: 1px dashed rgb(255, 151, 169);
-        height: 100%;
-        color: pink;
-        text-transform: uppercase
-    }
-
-        p.letter.word.l1 {
-            color: transparent
-        }
-
     p.titleBox {
         font-family: "Times New Roman", serif;
         font-size: 230%;
@@ -127,6 +116,17 @@ p {
         min-height: 36.8px;
         text-align: center
     }
+
+        p.letter.word {
+            border: 1px dashed rgb(255, 151, 169);
+            height: 100%;
+            color: pink;
+            text-transform: uppercase
+        }
+
+            p.letter.word.l1 {
+                color: transparent
+            }
 
     p#boxColor-2.letter {
         background-color: rgb(225, 225, 225);
