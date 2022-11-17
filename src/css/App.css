@@ -86,9 +86,9 @@ p {
 }
 
 p.letter.word {
-    border: 2px solid transparent;
+    border: 1px dashed rgb(255, 151, 169);
     height: 100%;
-    color: #D8BFD8;
+    color: pink;
     text-transform: uppercase
 }
 
@@ -165,7 +165,7 @@ p#boxColor1.letter.dm {
     color: #FFFFFF
 }
 
-input#ans-box.key {
+input#answerBox.key {
     width: 100%;
     font-size: 70%;
     background-color: #262626;

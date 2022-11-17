@@ -141,7 +141,7 @@ class WordleApp extends Component<{}, Wordle>
     {
         let isDarkMode: boolean = App.state.darkMode;
 
-        let divs: NodeListOf<HTMLElement> = document.querySelectorAll('input,p,div.container,div.key-box,button');
+        let divs: NodeListOf<HTMLElement> = document.querySelectorAll('input,p,div,button');
         divs.forEach(i => isDarkMode ? i.classList.remove('dm') : i.classList.add('dm'));
         document.body.style.backgroundColor = (isDarkMode ? 'thistle' : '#262626');
 
