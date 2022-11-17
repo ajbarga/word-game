@@ -82,7 +82,7 @@ class Keyboard extends Component<KeyProps>
     {
         return (
             <div className={'container keyContainer'}>
-                <div className={'key-row'}>
+                <div className={'keyRow'}>
                     <span>
                         <input className={'key R0'} type={'button'} value={'Q'} onClick={this.input} />
                         <input className={'key R0'} type={'button'} value={'W'} onClick={this.input} />
@@ -96,7 +96,7 @@ class Keyboard extends Component<KeyProps>
                         <input className={'key R0'} type={'button'} value={'P'} onClick={this.input} />
                     </span>
                 </div>
-                <div className={'key-row'}>
+                <div className={'keyRow'}>
                     <span>
                         <input className={'key R1'} type={'button'} value={'A'} onClick={this.input} />
                         <input className={'key R1'} type={'button'} value={'S'} onClick={this.input} />
@@ -109,7 +109,7 @@ class Keyboard extends Component<KeyProps>
                         <input className={'key R1'} type={'button'} value={'L'} onClick={this.input} />
                     </span>
                 </div>
-                <div className={'key-row'} id={'row3'}>
+                <div className={'keyRow'}>
                     <span>
                         <input className={'key EN'} type={'button'} value={'✓'} onClick={() => Keys.inputKey('Enter')} />
                         <input className={'key R2'} type={'button'} value={'Z'} onClick={this.input} />

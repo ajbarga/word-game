@@ -1,8 +1,6 @@
 /* © 2022 Alex Barga. All rights reserved.
 /* Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 /* mechanical or otherwise, is prohibited without the prior  written consent of the owner. */
-
-/*#region INPUTS**/
 input {
     background-color: #313131;
     display: inline-block;
@@ -14,76 +12,61 @@ input {
     outline: none;
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
-}
-
-input::selection {
-    background-color: transparent
+    height: 100%
 }
 
 input.dm {
     border-color: #1f1f1f
 }
 
-/*#endregion*/
-
-/*#region KEYS*/
-.key {
-    border-radius: 2px;
+input::selection {
+    background-color: transparent
 }
 
-.key.R0 {
+input.key {
+    border-radius: 2px
+}
+
+input.key.R0 {
     width: 10%;
     color: #FFC0CB;
-    background-color: #313131;
+    background-color: #313131
 }
 
-.key.R1 {
-    width: 11.11%;
+input.key.R1 {
+    width: 11.11%
 }
 
-.key.R2 {
-    width: 10%;
+input.key.R2 {
+    width: 10%
 }
 
-.key.DL {
+input.key.DL {
     width: 15%;
     background-image: url("../images/backspace-icon.png");
     background-repeat: no-repeat;
     background-position: center;
-    color: transparent;
+    color: transparent
 }
 
-.key.EN {
-    width: 15%;
+input.key.EN {
+    width: 15%
 }
 
-/*#endregion*/
-
-/*#region KEYBOARD BOX*/
-.key-row {
+div.keyRow {
     box-sizing: border-box;
     height: 33.33%;
     margin: 0 auto;
-    border-color: inherit;
+    border-color: inherit
 }
 
-.key-box {
-    height: 100%;
-    width: 100%;
-    border-color: #D8BFD8
-}
-
-.keyContainer {
+div.container.keyContainer {
     width: 100%;
     min-width: 500px;
     max-width: 800px;
-    height: 130px;
+    height: 130px
 }
 
-/*#endregion*/
-
-/*#region BUTTONS*/
 input.headerButton {
     border-radius: unset;
     margin: unset;
@@ -120,5 +103,3 @@ input.headerButton:hover.dm {
     color: #ff6982;
     transform: scale3d(0.96, 0.96, 1)
 }
-
-/*#endregion*/

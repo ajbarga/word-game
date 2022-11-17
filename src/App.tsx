@@ -172,7 +172,7 @@ class WordleApp extends Component<{}, Wordle>
                         onClick={(e) => { App.swapHintState(); App.disable(e); }} value={'HINTS: ' + (App.state.hints ? 'ON' : 'OFF')} />
                 </div>
                 <div className={'container headerBox'}>
-                    <p className={'title-box'} id={App.state.responseColor}>Wordle</p>
+                    <p className={'titleBox'} id={App.state.responseColor}>Wordle</p>
                 </div>
                 <GameBox rowSt={App.state.rows} colorState={App.state.colors}
                     wordBox={App.state.wordList} hintState={App.state.hints ? '#FFC0CB' : 'transparent'} />
