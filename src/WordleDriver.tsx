@@ -7,37 +7,37 @@ const CHARS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 
 class WordleDriver
 {
-    //region Non-Public Properties
+    //#region Non-Public Properties
 
     private _answerC: number[] = [];
     private _answer: string = '';
     private _charInv: number[] = [...CHARS];
 
-    //endregion
+    //#endregion
 
-    //region Non-Public Methods
+    //#region Non-Public Methods
 
-    private pickWord(): string
+    private pickWord (): string
     {
         let rand = Math.floor(Math.random() * realText.length);
         return realText[rand];
     }
 
-    private isGuessable(word: string): boolean
+    private isGuessable (word: string): boolean
     {
         return text.includes(word);
     }
 
-    //endregion
+    //#endregion
 
-    //region Public Interface
+    //#region Public Interface
 
     constructor()
     {
         this.reset();
     }
 
-    makeGuess(word: string): number[]
+    makeGuess (word: string): number[]
     {
         let response: number[] = [0, 0, 0, 0, 0];
         let charAt: number[] = [...this._charInv];
@@ -73,7 +73,7 @@ class WordleDriver
         return [];
     }
 
-    reset()
+    reset ()
     {
         this._answer = this.pickWord();
         this._answerC = [];
@@ -86,7 +86,7 @@ class WordleDriver
         }
     }
 
-    //endregion
+    //#endregion
 }
 
 export default WordleDriver;

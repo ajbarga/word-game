@@ -9,11 +9,11 @@ interface SingleGuessProps
     colorState: number[];
 }
 
-class SingleGuess extends Component<SingleGuessProps> 
+class SingleGuess extends Component<SingleGuessProps>
 {
-    //region Html Element
+    //#region Html Element
 
-    render()
+    render ()
     {
         return (
             <div className={'container wordContainer'}>
@@ -26,7 +26,7 @@ class SingleGuess extends Component<SingleGuessProps>
         );
     }
 
-    //endregion
+    //#endregion
 }
 
 export default SingleGuess;

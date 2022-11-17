@@ -6,8 +6,8 @@ import React, { Component, SyntheticEvent } from 'react';
 
 interface KeyProps 
 {
-    getGuess(gs: string): void;
-    setText(text: string[]): void;
+    getGuess (gs: string): void;
+    setText (text: string[]): void;
     inputText: string[];
 }
 
@@ -15,7 +15,7 @@ let Keys: Keyboard;
 
 class Keyboard extends Component<KeyProps>
 {
-    //region Non-Public Interface
+    //#region Non-Public Interface
 
     private constructor(props: any) 
     {
@@ -24,7 +24,7 @@ class Keyboard extends Component<KeyProps>
         window.addEventListener('keydown', e => this.listener(e));
     }
 
-    inputKey(e: string) 
+    inputKey (e: string) 
     {
         let text: string[] = Keys.props.inputText;
         let len: number = text.indexOf('1');
@@ -32,7 +32,7 @@ class Keyboard extends Component<KeyProps>
         {
             if (len !== 0)
             {
-                text[(len < 0 ? 4 : len-1)] = '1';
+                text[(len < 0 ? 4 : len - 1)] = '1';
             }
 
         }
@@ -48,25 +48,26 @@ class Keyboard extends Component<KeyProps>
         this.props.setText(text);
     }
 
-    //endregion
+    //#endregion
 
-    //region Event-Handlers
+    //#region Event-Handlers
 
-    input(keyPress: SyntheticEvent) 
+    input (keyPress: SyntheticEvent) 
     {
         Keys.inputKey((keyPress.target as HTMLInputElement).value);
         Keys.disable(keyPress);
     }
 
-    listener(e: any) 
+    listener (e: any) 
     {
         let char: number = e.keyCode;
-        if (char === 8 || char === 13 || (char > 64 && char < 91) || (char > 96 && char < 123)) {
+        if (char === 8 || char === 13 || (char > 64 && char < 91) || (char > 96 && char < 123))
+        {
             Keys.inputKey(e.key);
         }
     };
 
-    private async disable(e: SyntheticEvent) 
+    private async disable (e: SyntheticEvent) 
     {
         (e.target as HTMLInputElement).disabled = true;
         await new Promise(r => setTimeout(r, 5));
@@ -77,7 +78,7 @@ class Keyboard extends Component<KeyProps>
 
     //region Html Element
 
-    render() 
+    render () 
     {
         return (
             <div className={'container keyContainer'}>
@@ -125,7 +126,7 @@ class Keyboard extends Component<KeyProps>
         );
     }
 
-    //endregion
+    //#endregion
 }
 
 export default Keyboard;

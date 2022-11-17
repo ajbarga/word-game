@@ -9,30 +9,30 @@ interface GameBoxProps
     rowSt: string[][],
     colorState: number[][][],
     wordBox: string[],
-    hintState: string
+    hintState: string;
 }
 
-class GameBox extends Component<GameBoxProps> 
+class GameBox extends Component<GameBoxProps>
 {
-    //region Html Element
+    //#region Html Element
 
-    render()
+    render ()
     {
         return (
             <div className={'gameBox'}>
                 <div className={'wordBoxContainer'}>
-                    <SingleGame box={this.props.rowSt[0]} colors={this.props.colorState[0]} wordBox={this.props.wordBox[0]} hintState={this.props.hintState}/>
-                    <SingleGame box={this.props.rowSt[1]} colors={this.props.colorState[1]} wordBox={this.props.wordBox[1]} hintState={this.props.hintState}/>
+                    <SingleGame box={this.props.rowSt[0]} colors={this.props.colorState[0]} wordBox={this.props.wordBox[0]} hintState={this.props.hintState} />
+                    <SingleGame box={this.props.rowSt[1]} colors={this.props.colorState[1]} wordBox={this.props.wordBox[1]} hintState={this.props.hintState} />
                 </div>
-                <div className={'wordBoxContainer'}>    
-                    <SingleGame box={this.props.rowSt[2]} colors={this.props.colorState[2]} wordBox={this.props.wordBox[2]} hintState={this.props.hintState}/>
-                    <SingleGame box={this.props.rowSt[3]} colors={this.props.colorState[3]} wordBox={this.props.wordBox[3]} hintState={this.props.hintState}/>
+                <div className={'wordBoxContainer'}>
+                    <SingleGame box={this.props.rowSt[2]} colors={this.props.colorState[2]} wordBox={this.props.wordBox[2]} hintState={this.props.hintState} />
+                    <SingleGame box={this.props.rowSt[3]} colors={this.props.colorState[3]} wordBox={this.props.wordBox[3]} hintState={this.props.hintState} />
                 </div>
             </div>
         );
     }
-    
-    //endregion
+
+    //#endregion
 }
 
 export default GameBox;

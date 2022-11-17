@@ -5,28 +5,28 @@ import realText from './resources/realWords';
 
 class SuggestionBox
 {
-    //region Non-Public Properties
+    //#region Non-Public Properties
 
     private _possibleWords: string[] = [];
 
-    //endregion
+    //#endregion
 
-    //region Non-Public Methods
+    //#region Non-Public Methods
 
-    private analyzeGuess(guess: string, colors: number[]): void
+    private analyzeGuess (guess: string, colors: number[]): void
     {
-        for(let k = this._possibleWords.length - 1; k > -1; k--)
+        for (let k = this._possibleWords.length - 1; k > -1; k--)
         {
             let word: string = this._possibleWords[k];
-            if(word !== undefined)
+            if (word !== undefined)
             {
                 let containedChars: string = '';
                 let isDeleted: boolean = false;
 
                 for (let i = 0; i < 5; i++) 
                 {
-                    let char: number = guess.charCodeAt(i)
-                    let wChar: number = word.charCodeAt(i)
+                    let char: number = guess.charCodeAt(i);
+                    let wChar: number = word.charCodeAt(i);
 
                     if (colors[i] === 0)
                     {
@@ -37,21 +37,21 @@ class SuggestionBox
                             break;
                         }
                     }
-                    else if(colors[i] === 1)
+                    else if (colors[i] === 1)
                     {
-                        containedChars += guess[i]
+                        containedChars += guess[i];
                         if (wChar !== char) 
                         {
                             isDeleted = true;
                             break;
                         }
-                    } 
+                    }
                 }
                 if (!isDeleted)
                 {
-                    for(let i = 0; i < 5; i++)
+                    for (let i = 0; i < 5; i++)
                     {
-                        if(word.indexOf(guess[i]) !== -1 && containedChars.indexOf(guess[i]) === -1)
+                        if (word.indexOf(guess[i]) !== -1 && containedChars.indexOf(guess[i]) === -1)
                         {
                             isDeleted = true;
                             break;
@@ -66,16 +66,16 @@ class SuggestionBox
         }
     }
 
-    //endregion
+    //#endregion
 
-    //region Public Interface
+    //#region Public Interface
 
     constructor()
     {
         this.reset();
     }
 
-    makeGuess(guess: string, colors: number[]): string[]
+    makeGuess (guess: string, colors: number[]): string[]
     {
         let suggestedWords: string[] = [];
         this.analyzeGuess(guess, colors);
@@ -93,13 +93,13 @@ class SuggestionBox
         return suggestedWords;
     }
 
-    reset(): void
+    reset (): void
     {
         this._possibleWords = [...realText];
-        this._possibleWords = this._possibleWords.sort(() => Math.random() - 0.5)
+        this._possibleWords = this._possibleWords.sort(() => Math.random() - 0.5);
     }
 
-    //endregion
+    //#endregion
 }
 
 export default SuggestionBox;

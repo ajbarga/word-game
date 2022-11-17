@@ -11,11 +11,11 @@ interface OneBoxProps
     wordBox: string,
 }
 
-class OneBox extends Component<OneBoxProps> 
+class OneBox extends Component<OneBoxProps>
 {
-    //region Html Element
+    //#region Html Element
 
-    render()
+    render ()
     {
         return (
             <div className={'row'}>
@@ -36,7 +36,7 @@ class OneBox extends Component<OneBoxProps>
         );
     }
 
-    //endregion
+    //#endregion
 }
 
 export default OneBox;
