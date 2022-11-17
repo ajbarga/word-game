@@ -11,20 +11,20 @@ import './css/App.css';
 interface Wordle
 {
     rows: string[][];
-    colors: number[][][];
-    wordList: string[];
-    colorMode: string;
-    responseColor: string;
-    hints: boolean;
     inputValue: string[];
+    wordList: string[];
+    responseColor: string;
+    colors: number[][][];
+    darkMode: boolean;
+    hints: boolean;
 }
 
 let App: WordleApp;
 let Game: GameDriver;
 let Rows: string[][];
+let WordList: string[];
 let BoxColors: number[][][];
 let GuessCount: number[];
-let WordList: string[];
 
 //empty row string
 const eR: string = 'AAAAA';
@@ -53,13 +53,14 @@ class WordleApp extends Component<{}, Wordle>
         super(props);
         App = this;
         Game = this._gameDriver;
+
         Rows = this._rows;
         BoxColors = this._colors;
         GuessCount = this._guesses;
         WordList = this._wordList;
 
         this.setupInterface();
-        this.state = ({ rows: Rows, colors: BoxColors, wordList: WordList, colorMode: 'DAY', responseColor: 'plain', hints: false, inputValue: ['1', '1', '1', '1', '1'] });
+        this.state = ({ rows: Rows, colors: BoxColors, wordList: WordList, darkMode: false, responseColor: 'plain', hints: false, inputValue: ['1', '1', '1', '1', '1'] });
     }
 
     private makeGuess (guessVal: string): void
@@ -138,13 +139,13 @@ class WordleApp extends Component<{}, Wordle>
 
     private swapColorMode (): void
     {
-        let isDarkMode: boolean = App.state.colorMode == 'NIGHT';
+        let isDarkMode: boolean = App.state.darkMode;
 
         let divs: NodeListOf<HTMLElement> = document.querySelectorAll('input,p,div.container,div.key-box,button');
         divs.forEach(i => isDarkMode ? i.classList.remove('dm') : i.classList.add('dm'));
         document.body.style.backgroundColor = (isDarkMode ? 'thistle' : '#262626');
 
-        App.setState({ colorMode: (isDarkMode ? 'DAY' : 'NIGHT') });
+        App.setState({ darkMode: !isDarkMode });
     };
 
     private async disable (e: SyntheticEvent)
@@ -161,26 +162,26 @@ class WordleApp extends Component<{}, Wordle>
     render ()
     {
         return (
-            <div className={'big-box'}>
-                <div className={'container'} id={'headerBox'}>
+            <div className={'appBox'}>
+                <div className={'container buttons headerBox'}>
                     <input type='button' className='headerButton'
                         onClick={(e) => { App.reset(); App.disable(e); }} value={'RESET'} />
                     <input type='button' className='headerButton'
-                        onClick={(e) => { App.swapColorMode(); App.disable(e); }} value={'MODE: ' + App.state.colorMode} />
+                        onClick={(e) => { App.swapColorMode(); App.disable(e); }} value={'MODE: ' + (App.state.darkMode ? 'NIGHT' : 'DAY')} />
                     <input type='button' className='headerButton'
                         onClick={(e) => { App.swapHintState(); App.disable(e); }} value={'HINTS: ' + (App.state.hints ? 'ON' : 'OFF')} />
                 </div>
-                <div className={'container'} id={'headerBox'}>
+                <div className={'container headerBox'}>
                     <p className={'title-box'} id={App.state.responseColor}>Wordle</p>
                 </div>
                 <GameBox rowSt={App.state.rows} colorState={App.state.colors}
                     wordBox={App.state.wordList} hintState={App.state.hints ? '#FFC0CB' : 'transparent'} />
-                <div className={'container wordContainer input'}>
-                    <p className={'letter l' + App.state.inputValue[0]} id={'wI'}>{App.state.inputValue[0]}</p>
-                    <p className={'letter l' + App.state.inputValue[1]} id={'wI'}>{App.state.inputValue[1]}</p>
-                    <p className={'letter l' + App.state.inputValue[2]} id={'wI'}>{App.state.inputValue[2]}</p>
-                    <p className={'letter l' + App.state.inputValue[3]} id={'wI'}>{App.state.inputValue[3]}</p>
-                    <p className={'letter l' + App.state.inputValue[4]} id={'wI'}>{App.state.inputValue[4]}</p>
+                <div className={'container wordContainer'} id={'input'}>
+                    <p className={'word letter l' + App.state.inputValue[0]}>{App.state.inputValue[0]}</p>
+                    <p className={'word letter l' + App.state.inputValue[1]}>{App.state.inputValue[1]}</p>
+                    <p className={'word letter l' + App.state.inputValue[2]}>{App.state.inputValue[2]}</p>
+                    <p className={'word letter l' + App.state.inputValue[3]}>{App.state.inputValue[3]}</p>
+                    <p className={'word letter l' + App.state.inputValue[4]}>{App.state.inputValue[4]}</p>
                 </div>
                 <Keyboard getGuess={App.makeGuess} inputText={App.state.inputValue} setText={(e) => App.setState({ inputValue: e })} />
             </div>

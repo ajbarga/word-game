@@ -17,11 +17,6 @@ input {
     height: 100%;
 }
 
-.word.dm {
-    border-color: #000000;
-    background-color: #1e1e1e
-}
-
 input::selection {
     background-color: transparent
 }
@@ -29,6 +24,7 @@ input::selection {
 input.dm {
     border-color: #1f1f1f
 }
+
 /*#endregion*/
 
 /*#region KEYS*/
@@ -36,33 +32,32 @@ input.dm {
     border-radius: 2px;
 }
 
-    .key.R0 {
-        width: 10%;
-        color: #FFC0CB;
-        background-color: #313131;
-    }
+.key.R0 {
+    width: 10%;
+    color: #FFC0CB;
+    background-color: #313131;
+}
 
-    .key.R1 {
-        width: 11.11%;
-    }
+.key.R1 {
+    width: 11.11%;
+}
 
-    .key.R2 {
-        width: 10%;
-    }
+.key.R2 {
+    width: 10%;
+}
 
-    .key.DL {
-        width: 15%;
-        background-image: url("../images/backspace-icon.png");
-        background-repeat: no-repeat;
-        background-position: center;
-        color: transparent;
-        float: right;
-    }
+.key.DL {
+    width: 15%;
+    background-image: url("../images/backspace-icon.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    color: transparent;
+}
 
-    .key.EN {
-        float: left;
-        width: 15%;
-    }
+.key.EN {
+    width: 15%;
+}
+
 /*#endregion*/
 
 /*#region KEYBOARD BOX*/
@@ -71,7 +66,6 @@ input.dm {
     height: 33.33%;
     margin: 0 auto;
     border-color: inherit;
-    float: inline-start
 }
 
 .key-box {
@@ -79,12 +73,14 @@ input.dm {
     width: 100%;
     border-color: #D8BFD8
 }
-.keyContainer{
+
+.keyContainer {
     width: 100%;
     min-width: 500px;
     max-width: 800px;
     height: 130px;
 }
+
 /*#endregion*/
 
 /*#region BUTTONS*/
@@ -108,20 +104,21 @@ input.headerButton {
     background-color: rgb(225, 225, 225)
 }
 
-    input.headerButton:hover {
-        background-color: rgb(203, 168, 202);
-        transform: scale3d(0.98, 0.96, 1)
-    }
+input.headerButton:hover {
+    background-color: rgb(203, 168, 202);
+    transform: scale3d(0.98, 0.96, 1)
+}
 
-    input.headerButton.dm {
-        background-color: #313131;
-        color: #ffcfcf;
-        border-color: #000000
-    }
+input.headerButton.dm {
+    background-color: #313131;
+    color: #ffcfcf;
+    border-color: #000000
+}
 
-    input.headerButton:hover.dm {
-        background-color: #761919;
-        color: #ff6982;
-        transform: scale3d(0.96, 0.96, 1)
-    }
+input.headerButton:hover.dm {
+    background-color: #761919;
+    color: #ff6982;
+    transform: scale3d(0.96, 0.96, 1)
+}
+
 /*#endregion*/
