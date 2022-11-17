@@ -15,66 +15,66 @@ div {
     padding-top: unset
 }
 
-div.appBox {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none
-}
+    div.appBox {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none
+    }
 
-div.row {
-    box-sizing: border-box;
-    display: inline-block
-}
+    div.row {
+        box-sizing: border-box;
+        display: inline-block
+    }
 
-div.wordBoxContainer {
-    margin: 0 auto;
-    width: 500px
-}
+    div.wordBoxContainer {
+        margin: 0 auto;
+        width: 500px
+    }
 
-div.container {
-    border: 3px solid rgb(255, 148, 71);
-    min-width: -moz-fit-content;
-    min-width: fit-content
-}
+    div.container {
+        border: 3px solid rgb(255, 148, 71);
+        min-width: -moz-fit-content;
+        min-width: fit-content
+    }
 
-div.container.dm {
-    border: 3px solid #712b06
-}
+        div.container.dm {
+            border: 3px solid #712b06
+        }
 
-div.container.headerBox {
-    min-width: 500px;
-    width: 50%
-}
+        div.container.headerBox {
+            min-width: 500px;
+            width: 50%
+        }
 
-div.container.headerBox.dm {
-    background-color: #712b06
-}
+            div.container.headerBox.dm {
+                background-color: #712b06
+            }
 
-div.container.wordContainer {
-    height: 100%;
-    width: 250px;
-    box-sizing: border-box;
-    height: fit-content
-}
+        div.container.wordContainer {
+            height: 100%;
+            width: 250px;
+            box-sizing: border-box;
+            height: fit-content
+        }
 
-div#input.container.wordContainer {
-    background-color: #313131;
-    color: #FFC0CB;
-    height: fit-content
-}
+    div#input.container.wordContainer {
+        background-color: #313131;
+        color: #FFC0CB;
+        height: fit-content
+    }
 
-div#input.container.wordContainer.dm {
-    background-color: transparent;
-    color: #FFC0CB
-}
+        div#input.container.wordContainer.dm {
+            background-color: transparent;
+            color: #FFC0CB
+        }
 
-div.gameBox {
-    display: inline-flex;
-    max-width: 1000px;
-    min-width: 500px;
-    flex-wrap: wrap
-}
+    div.gameBox {
+        display: inline-flex;
+        max-width: 1000px;
+        min-width: 500px;
+        flex-wrap: wrap
+    }
 
 p {
     border: 2px solid black;
@@ -85,85 +85,85 @@ p {
     display: inline-block
 }
 
-p.letter.word {
-    border: 1px dashed rgb(255, 151, 169);
-    height: 100%;
-    color: pink;
-    text-transform: uppercase
-}
+    p.letter.word {
+        border: 1px dashed rgb(255, 151, 169);
+        height: 100%;
+        color: pink;
+        text-transform: uppercase
+    }
 
-p.letter.word.l1 {
-    color: transparent
-}
+        p.letter.word.l1 {
+            color: transparent
+        }
 
-p.titleBox {
-    font-family: "Times New Roman", serif;
-    font-size: 230%;
-    display: block;
-    width: 100%
-}
+    p.titleBox {
+        font-family: "Times New Roman", serif;
+        font-size: 230%;
+        display: block;
+        width: 100%
+    }
 
-p#plain.titleBox {
-    background-color: rgb(225, 225, 225)
-}
+    p#plain.titleBox {
+        background-color: rgb(225, 225, 225)
+    }
 
-p#error.titleBox {
-    background-color: rgb(168, 14, 14)
-}
+    p#error.titleBox {
+        background-color: rgb(168, 14, 14)
+    }
 
-p#plain.titleBox.dm {
-    background-color: #262626;
-    color: #FFC0CB
-}
+    p#plain.titleBox.dm {
+        background-color: #262626;
+        color: #FFC0CB
+    }
 
-p#error.titleBox.dm {
-    background-color: #570909;
-    color: #000000
-}
+    p#error.titleBox.dm {
+        background-color: #570909;
+        color: #000000
+    }
 
-p.letter {
-    width: 20%;
-    height: 100%;
-    min-height: 36.8px;
-    text-align: center
-}
+    p.letter {
+        width: 20%;
+        height: 100%;
+        min-height: 36.8px;
+        text-align: center
+    }
 
-p#boxColor-2.letter {
-    background-color: rgb(225, 225, 225);
-    color: transparent
-}
+    p#boxColor-2.letter {
+        background-color: rgb(225, 225, 225);
+        color: transparent
+    }
 
-p#boxColor-2.letter.dm {
-    background-color: #262626;
-    color: transparent
-}
+        p#boxColor-2.letter.dm {
+            background-color: #262626;
+            color: transparent
+        }
 
-p#boxColor-1.letter {
-    background-color: rgb(225, 225, 225)
-}
+    p#boxColor-1.letter {
+        background-color: rgb(225, 225, 225)
+    }
 
-p#boxColor-1.letter.dm {
-    background-color: #262626;
-    color: #FFC0CB
-}
+        p#boxColor-1.letter.dm {
+            background-color: #262626;
+            color: #FFC0CB
+        }
 
-p#boxColor0.letter {
-    background-color: rgb(255, 199, 30)
-}
+    p#boxColor0.letter {
+        background-color: rgb(255, 199, 30)
+    }
 
-p#boxColor0.letter.dm {
-    background-color: #FFA500;
-    color: #892d2d
-}
+        p#boxColor0.letter.dm {
+            background-color: #FFA500;
+            color: #892d2d
+        }
 
-p#boxColor1.letter {
-    background-color: rgb(99, 190, 93)
-}
+    p#boxColor1.letter {
+        background-color: rgb(99, 190, 93)
+    }
 
-p#boxColor1.letter.dm {
-    background-color: #004500;
-    color: #FFFFFF
-}
+        p#boxColor1.letter.dm {
+            background-color: #004500;
+            color: #FFFFFF
+        }
 
 input#answerBox.key {
     width: 100%;
