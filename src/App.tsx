@@ -18,6 +18,7 @@ interface Wordle
     colors: number[][][];
     darkMode: boolean;
     hints: boolean;
+    windowSmall: boolean;
 }
 
 let App: WordleApp;
@@ -34,6 +35,8 @@ const oneRow: string[] = [eR, eR, eR, eR, eR, eR, eR, eR, eR];
 //default row color array
 const nC: number[] = [-2, -2, -2, -2, -2];
 const emptyColors: number[][] = [nC, nC, nC, nC, nC, nC, nC, nC, nC];
+
+const SMALL: number = 500;
 
 class WordleApp extends Component<{}, Wordle>
 {
@@ -61,7 +64,8 @@ class WordleApp extends Component<{}, Wordle>
         WordList = this._wordList;
 
         this.setupInterface();
-        this.state = ({ rows: Rows, colors: BoxColors, wordList: WordList, darkMode: false, responseColor: 'plain', hints: false, inputValue: ['1', '1', '1', '1', '1'] });
+        window.addEventListener('resize', ()=>{App.setState({windowSmall: window.innerWidth < SMALL})});
+        this.state = ({ rows: Rows, colors: BoxColors, wordList: WordList, darkMode: false, responseColor: 'plain', hints: false, inputValue: ['1', '1', '1', '1', '1'], windowSmall: window.innerWidth < SMALL });    
     }
 
     private makeGuess (guessVal: string): void
@@ -172,7 +176,7 @@ class WordleApp extends Component<{}, Wordle>
                     <input type='button' className='headerButton'
                         onClick={(e) => { App.reset(); App.disable(e); }} value={'RESET'} />
                     <input type='button' className='headerButton'
-                        onClick={(e) => { App.swapColorMode(); App.disable(e); }} value={'MODE: ' + (App.state.darkMode ? 'NIGHT' : 'DAY')} />
+                        onClick={(e) => { App.swapColorMode(); App.disable(e); }} value={(App.state.windowSmall ? '' : 'MODE: ') + (App.state.darkMode ? 'NIGHT' : 'DAY')} />
                     <input type='button' className='headerButton'
                         onClick={(e) => { App.swapHintState(); App.disable(e); }} value={'HINTS: ' + (App.state.hints ? 'ON' : 'OFF')} />
                 </div>

@@ -60,8 +60,11 @@ div
 
         div.container.headerBox
         {
+            left: 50%;
+            transform: translateX(-50%);
             min-width: 250px;
             width: 100%;
+            max-width: 1000px;
             position: fixed;
             background-color: rgb(255, 148, 71);
         }
@@ -82,8 +85,8 @@ div
 
     div#input.container.wordContainer
     {
-        background-color: #313131;
-        color: #FFC0CB;
+        background-color: #262626;;
+        
         position: fixed;
         bottom: 129px;
         height: 54px;
@@ -94,12 +97,6 @@ div
         transform: translateX(-50%);
         font-size: 125%;
     }
-
-        div#input.container.wordContainer.dm
-        {
-            background-color: transparent;
-            color: #FFC0CB
-        }
 
 p
 {
