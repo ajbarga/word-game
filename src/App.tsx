@@ -65,7 +65,12 @@ class WordleApp extends Component<{}, Wordle>
 
         this.setupInterface();
         window.addEventListener('resize', ()=>{App.setState({windowSmall: window.innerWidth < SMALL})});
-        this.state = ({ rows: Rows, colors: BoxColors, wordList: WordList, darkMode: false, responseColor: 'plain', hints: false, inputValue: ['1', '1', '1', '1', '1'], windowSmall: window.innerWidth < SMALL });    
+        this.state = ({ 
+            rows: Rows, colors: BoxColors, wordList: WordList, 
+            darkMode: false, responseColor: 'plain', hints: false, 
+            inputValue: ['1', '1', '1', '1', '1'], 
+            windowSmall: window.innerWidth < SMALL 
+        });    
     }
 
     private makeGuess (guessVal: string): void
