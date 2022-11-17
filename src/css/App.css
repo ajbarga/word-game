@@ -167,7 +167,7 @@ p#boxColor1.letter.dm {
 
 input#answerBox.key {
     width: 100%;
-    font-size: 70%;
+    font-size: 66%;
     background-color: #262626;
     border-color: #000000;
     font-stretch: condensed;

@@ -2,16 +2,16 @@
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
 import React, { Component } from 'react';
-import OneRow from './word-guess';
+import SingleGuess from './single-guess';
 
-interface OneBoxProps
+interface GameBoxProps
 {
     box: string[],
     colors: number[][];
     wordBox: string,
 }
 
-class OneBox extends Component<OneBoxProps>
+class GameBox extends Component<GameBoxProps>
 {
     //#region Html Element
 
@@ -19,17 +19,17 @@ class OneBox extends Component<OneBoxProps>
     {
         return (
             <div className={'row'}>
-                <OneRow guess={this.props.box[0]} colorState={this.props.colors[0]} />
-                <OneRow guess={this.props.box[1]} colorState={this.props.colors[1]} />
-                <OneRow guess={this.props.box[2]} colorState={this.props.colors[2]} />
-                <OneRow guess={this.props.box[3]} colorState={this.props.colors[3]} />
-                <OneRow guess={this.props.box[4]} colorState={this.props.colors[4]} />
-                <OneRow guess={this.props.box[5]} colorState={this.props.colors[5]} />
-                <OneRow guess={this.props.box[6]} colorState={this.props.colors[6]} />
-                <OneRow guess={this.props.box[7]} colorState={this.props.colors[7]} />
-                <OneRow guess={this.props.box[8]} colorState={this.props.colors[8]} />
+                <SingleGuess guess={this.props.box[0]} colorState={this.props.colors[0]} />
+                <SingleGuess guess={this.props.box[1]} colorState={this.props.colors[1]} />
+                <SingleGuess guess={this.props.box[2]} colorState={this.props.colors[2]} />
+                <SingleGuess guess={this.props.box[3]} colorState={this.props.colors[3]} />
+                <SingleGuess guess={this.props.box[4]} colorState={this.props.colors[4]} />
+                <SingleGuess guess={this.props.box[5]} colorState={this.props.colors[5]} />
+                <SingleGuess guess={this.props.box[6]} colorState={this.props.colors[6]} />
+                <SingleGuess guess={this.props.box[7]} colorState={this.props.colors[7]} />
+                <SingleGuess guess={this.props.box[8]} colorState={this.props.colors[8]} />
                 <div className={'container wordContainer'}>
-                    <input type={'button'} className={'key'} id={'ans-box'} value={this.props.wordBox} disabled />
+                    <input type={'button'} className={'key'} id={'answerBox'} value={this.props.wordBox} disabled />
                 </div>
             </div>
 
@@ -39,4 +39,4 @@ class OneBox extends Component<OneBoxProps>
     //#endregion
 }
 
-export default OneBox;
+export default GameBox;

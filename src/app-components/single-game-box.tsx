@@ -2,7 +2,7 @@
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
 import React, { Component } from 'react';
-import SingleGuess from './word-guess';
+import SingleGuess from './single-guess';
 
 interface SingleGameProps
 {

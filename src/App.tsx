@@ -2,8 +2,9 @@
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
 import React, { Component, SyntheticEvent } from 'react';
-import GameBox from './app-components/games-module';
+import GameBox from './app-components/game-module';
 import Keyboard from './app-components/keyboard';
+import InputBox from './app-components/input-box';
 import GameDriver from './GameDriver';
 
 import './css/App.css';
@@ -108,7 +109,8 @@ class WordleApp extends Component<{}, Wordle>
     private setupInterface (): void
     {
         GuessCount = [0, 0, 0, 0];
-        WordList = ['A', 'A', 'A', 'A'];
+        const hintText: string = 'ENTER FIRST WORD';
+        WordList = [hintText, hintText, hintText, hintText];
         for (let i = 0; i < 4; i++)
         {
             for (let j = 0; j < 9; j++)
@@ -127,6 +129,8 @@ class WordleApp extends Component<{}, Wordle>
     {
         Game.reset();
         App.setupInterface();
+        const hintText: string = 'ENTER FIRST WORD';
+        App.setState({ wordList: [hintText, hintText, hintText, hintText] });
         App.forceUpdate();
     };
 
@@ -176,13 +180,7 @@ class WordleApp extends Component<{}, Wordle>
                 </div>
                 <GameBox rowSt={App.state.rows} colorState={App.state.colors}
                     wordBox={App.state.wordList} hintState={App.state.hints ? '#FFC0CB' : 'transparent'} />
-                <div className={'container wordContainer'} id={'input'}>
-                    <p className={'word letter l' + App.state.inputValue[0]}>{App.state.inputValue[0]}</p>
-                    <p className={'word letter l' + App.state.inputValue[1]}>{App.state.inputValue[1]}</p>
-                    <p className={'word letter l' + App.state.inputValue[2]}>{App.state.inputValue[2]}</p>
-                    <p className={'word letter l' + App.state.inputValue[3]}>{App.state.inputValue[3]}</p>
-                    <p className={'word letter l' + App.state.inputValue[4]}>{App.state.inputValue[4]}</p>
-                </div>
+                <InputBox text={App.state.inputValue} />
                 <Keyboard getGuess={App.makeGuess} text={App.state.inputValue} setText={(e) => App.setState({ inputValue: e })} />
             </div>
         );
