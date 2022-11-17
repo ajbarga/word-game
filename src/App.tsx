@@ -183,7 +183,7 @@ class WordleApp extends Component<{}, Wordle>
                     <p className={'word letter l' + App.state.inputValue[3]}>{App.state.inputValue[3]}</p>
                     <p className={'word letter l' + App.state.inputValue[4]}>{App.state.inputValue[4]}</p>
                 </div>
-                <Keyboard getGuess={App.makeGuess} inputText={App.state.inputValue} setText={(e) => App.setState({ inputValue: e })} />
+                <Keyboard getGuess={App.makeGuess} text={App.state.inputValue} setText={(e) => App.setState({ inputValue: e })} />
             </div>
         );
     };

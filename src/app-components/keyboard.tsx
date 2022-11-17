@@ -8,7 +8,7 @@ interface KeyProps
 {
     getGuess (guess: string): void;
     setText (text: string[]): void;
-    inputText: string[];
+    text: string[];
 }
 
 let Keys: Keyboard;
@@ -24,9 +24,9 @@ class Keyboard extends Component<KeyProps>
         window.addEventListener('keydown', e => this.listener(e));
     }
 
-    inputKey (e: string) 
+    private inputKey (e: string) 
     {
-        let text: string[] = Keys.props.inputText;
+        let text: string[] = Keys.props.text;
         let len: number = text.indexOf('1');
         switch (e)
         {
@@ -53,13 +53,13 @@ class Keyboard extends Component<KeyProps>
 
     //#region Event-Handlers
 
-    input (keyPress: SyntheticEvent)
+    private input (keyPress: SyntheticEvent)
     {
         Keys.inputKey((keyPress.target as HTMLInputElement).value);
         Keys.disable(keyPress);
     }
 
-    listener (e: any)
+    private listener (e: any)
     {
         let char: number = e.keyCode;
         if (char === 8 || char === 13 || (char > 64 && char < 91) || (char > 96 && char < 123))

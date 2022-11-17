@@ -107,7 +107,7 @@ p#plain.titleBox {
     background-color: rgb(225, 225, 225)
 }
 
-p#error.titleBox.dm {
+p#error.titleBox {
     background-color: rgb(168, 14, 14)
 }
 
