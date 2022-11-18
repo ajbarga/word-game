@@ -63,7 +63,7 @@ class HeaderButtons extends Component<HeaderButtonProps, HeaderButton>
                     value={(this.state.isWindowSmall ? '' : 'MODE: ') + (this.state.darkMode ? 'NIGHT' : 'DAY')} />
                 <input type='button' className='headerButton'
                     onClick={(e) => { this.props.swapHintState(); this.disable(e); }}
-                    value={'HINTS: ' + (this.props.hints ? 'ON' : 'OFF')} />
+                    value={(this.state.isWindowSmall ? '' : 'HINTS: ') + (this.props.hints ? 'ON' : 'OFF')} />
             </div>
         );
     }

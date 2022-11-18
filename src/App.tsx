@@ -28,7 +28,7 @@ let BoxColors: number[][][];
 let GuessCount: number[];
 
 //empty row string
-const eR: string = 'AAAAA';
+const eR: string = 'MMMMM';
 const emptyRow: string[] = [eR, eR, eR, eR, eR, eR, eR, eR, eR];
 
 //default row color array

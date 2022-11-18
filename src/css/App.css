@@ -11,7 +11,7 @@ body
     margin: 0 auto;
     align-content: center;
     text-align: center;
-    background-color: #D8BFD8
+    background-color: #D8BFD8;
 }
 
 div
@@ -80,13 +80,34 @@ div
         div.container.wordContainer
         {
             height: 100%;
-            width: 250px;
+            min-width: 230px
         }
-
+        @media screen and (max-width: 936px) 
+        {
+            div.container.wordContainer
+            {
+                width: 250px;
+            }
+            @media (max-width: 578px)
+            {
+                div.container.wordContainer
+                {
+                    width: unset;
+                    min-width: 230px
+                }
+                @media (max-width: 443px)
+                {
+                    div.container.wordContainer
+                    {
+                        width: 250px;
+                    }
+                }
+            }
+        }
+    
     div#input.container.wordContainer
     {
         background-color: #262626;;
-        
         position: fixed;
         bottom: 129px;
         height: 54px;
