@@ -2,7 +2,6 @@
 /* Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 /* mechanical or otherwise, is prohibited without the prior  written consent of the owner. */
 div.keyRow {
-    box-sizing: border-box;
     height: 33.33%;
     margin: 0 auto;
     border-color: inherit
@@ -29,7 +28,6 @@ input {
     text-align: center;
     text-transform: uppercase;
     outline: none;
-    box-sizing: border-box;
     width: 100%;
     height: 100%
 }
