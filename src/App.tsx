@@ -1,8 +1,8 @@
 // © 2022 Alex Barga. All rights reserved.
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
-import React, { Component, SyntheticEvent } from 'react';
-import GameBox from './app-components/game-module';
+import React, { Component } from 'react';
+import GameBox from './app-components/multi-game-module';
 import Keyboard from './app-components/keyboard';
 import InputBox from './app-components/input-box';
 import HeaderButtons from './app-components/header-buttons';

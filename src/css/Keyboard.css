@@ -82,8 +82,9 @@ input {
         border-width: 2px;
         font-size: 130%;
         font-family: "Times New Roman", serif;
-        width:33.3%;
+        width: 33.33%;
         height: 38px;
+        min-width: fit-content;
         
         border-color: #000000;
         background-color: rgb(225, 225, 225)

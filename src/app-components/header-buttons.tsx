@@ -16,7 +16,7 @@ interface HeaderButton{
 }
 
 let Buttons: HeaderButtons;
-const SMALL: number = 501;
+const SMALL: number = 451;
 
 class HeaderButtons extends Component<HeaderButtonProps, HeaderButton>
 {
