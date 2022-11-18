@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "d53f2703c8d52e05f3c5",
-    "url": "/better-wordle/static/css/main.5ef84739.chunk.css"
+    "revision": "6d3e2ef32a7bf111cbd6",
+    "url": "/better-wordle/static/css/main.7423f3ec.chunk.css"
   },
   {
-    "revision": "d53f2703c8d52e05f3c5",
-    "url": "/better-wordle/static/js/main.d53f2703.chunk.js"
+    "revision": "6d3e2ef32a7bf111cbd6",
+    "url": "/better-wordle/static/js/main.6d3e2ef3.chunk.js"
   },
   {
     "revision": "b9ce4f611cc607ef6945",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/better-wordle/static/media/backspace-icon.2d22e2c0.png"
   },
   {
-    "revision": "a1b2c636096ee3f81ad221d8699dcc77",
+    "revision": "a1ebb5e5e905ca26f653b5049a3f382d",
     "url": "/better-wordle/index.html"
   }
 ];
