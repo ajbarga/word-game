@@ -5,7 +5,7 @@ import React, { Component, SyntheticEvent } from 'react';
 
 interface HeaderButtonProps {
     reset(): void;
-    swapHintState(): void;
+    updateHintState(): void;
     hints: boolean;
 }
 
@@ -15,19 +15,21 @@ interface HeaderButton{
     isWindowSmall: boolean;
 }
 
-let Buttons: HeaderButtons;
-const SMALL: number = 451;
-
 class HeaderButtons extends Component<HeaderButtonProps, HeaderButton>
 {
+    //#region Private Properties / Data-Members
+
+    private readonly SmallWindowSize = 451;
+
+    //#endregion
+
     //#region Private Interface
 
     private constructor(props: any){
         super(props)
-        Buttons = this;
-        window.addEventListener('resize', ()=>{this.setState({isWindowSmall: window.innerWidth < SMALL})});
+        window.addEventListener('resize', ()=>{this.setState({isWindowSmall: window.innerWidth < this.SmallWindowSize})});
 
-        this.state=({darkMode: false, hints: false, isWindowSmall: window.innerWidth < SMALL});
+        this.state=({darkMode: false, hints: false, isWindowSmall: window.innerWidth < this.SmallWindowSize});
     }
 
     private async disable (e: SyntheticEvent)
@@ -39,13 +41,13 @@ class HeaderButtons extends Component<HeaderButtonProps, HeaderButton>
 
     private swapColorMode (): void
     {
-        let isDarkMode: boolean = Buttons.state.darkMode;
+        let isDarkMode: boolean = this.state.darkMode;
 
         let divs: NodeListOf<HTMLElement> = document.querySelectorAll('input,p,div,button');
         divs.forEach(i => isDarkMode ? i.classList.remove('dm') : i.classList.add('dm'));
         document.body.style.backgroundColor = (isDarkMode ? 'thistle' : '#262626');
 
-        Buttons.setState({ darkMode: !isDarkMode });
+        this.setState({ darkMode: !isDarkMode });
     };
 
     //#endregion
@@ -62,7 +64,7 @@ class HeaderButtons extends Component<HeaderButtonProps, HeaderButton>
                     onClick={(e) => { this.swapColorMode(); this.disable(e); }}
                     value={(this.state.isWindowSmall ? '' : 'MODE: ') + (this.state.darkMode ? 'NIGHT' : 'DAY')} />
                 <input type='button' className='headerButton'
-                    onClick={(e) => { this.props.swapHintState(); this.disable(e); }}
+                    onClick={(e) => { this.props.updateHintState(); this.disable(e); }}
                     value={(this.state.isWindowSmall ? '' : 'HINTS: ') + (this.props.hints ? 'ON' : 'OFF')} />
             </div>
         );
