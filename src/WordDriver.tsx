@@ -37,7 +37,7 @@ class WordDriver
         this._charInv = [];
         this._answerC = [];
         this._answer = '';
-    
+
         this.reset();
     }
 
@@ -46,7 +46,7 @@ class WordDriver
         let response: number[] = [0, 0, 0, 0, 0];
         let charAt: number[] = [...this._charInv];
 
-        if (word == this._answer)
+        if (word === this._answer)
         {
             return [0];
         }
@@ -56,13 +56,13 @@ class WordDriver
             {
                 let ch = word.charCodeAt(i);
 
-                if (this._answerC[i] == ch) 
+                if (this._answerC[i] === ch) 
                 {
                     response[i] = 1;
                     charAt[ch - 65]--;
                 }
-                else if (charAt[ch - 65] > 0 && (charAt[ch - 65] > 1 || 
-                    word[this._answer.indexOf(word[i])] != word[i]))
+                else if (charAt[ch - 65] > 0 && (charAt[ch - 65] > 1 ||
+                    word[this._answer.indexOf(word[i])] !== word[i]))
                 {
                     response[i] = 0;
                     charAt[ch - 65]--;
