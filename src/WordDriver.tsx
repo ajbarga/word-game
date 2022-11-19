@@ -4,7 +4,7 @@
 import text from './resources/dictionary';
 import realText from './resources/realWords';
 
-class WordleDriver
+class WordDriver
 {
     //#region Non-Public Properties / Data-Members
 
@@ -93,4 +93,4 @@ class WordleDriver
     //#endregion
 }
 
-export default WordleDriver;
+export default WordDriver;
