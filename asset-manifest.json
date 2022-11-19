@@ -1,14 +1,14 @@
 {
-  "main.css": "/better-wordle/static/css/main.a5120ebd.chunk.css",
-  "main.js": "/better-wordle/static/js/main.cb8c582f.chunk.js",
-  "main.js.map": "/better-wordle/static/js/main.cb8c582f.chunk.js.map",
-  "static/js/1.b05d86f4.chunk.js": "/better-wordle/static/js/1.b05d86f4.chunk.js",
-  "static/js/1.b05d86f4.chunk.js.map": "/better-wordle/static/js/1.b05d86f4.chunk.js.map",
-  "runtime~main.js": "/better-wordle/static/js/runtime~main.0549a949.js",
-  "runtime~main.js.map": "/better-wordle/static/js/runtime~main.0549a949.js.map",
-  "static/media/Keyboard.css": "/better-wordle/static/media/backspace-icon.2d22e2c0.png",
-  "static/css/main.a5120ebd.chunk.css.map": "/better-wordle/static/css/main.a5120ebd.chunk.css.map",
-  "index.html": "/better-wordle/index.html",
-  "precache-manifest.0f337787970ed540134e970e16a8f2d6.js": "/better-wordle/precache-manifest.0f337787970ed540134e970e16a8f2d6.js",
-  "service-worker.js": "/better-wordle/service-worker.js"
+  "main.css": "/word-game/static/css/main.98b1eae6.chunk.css",
+  "main.js": "/word-game/static/js/main.49ad243a.chunk.js",
+  "main.js.map": "/word-game/static/js/main.49ad243a.chunk.js.map",
+  "static/js/1.b05d86f4.chunk.js": "/word-game/static/js/1.b05d86f4.chunk.js",
+  "static/js/1.b05d86f4.chunk.js.map": "/word-game/static/js/1.b05d86f4.chunk.js.map",
+  "runtime~main.js": "/word-game/static/js/runtime~main.cb913047.js",
+  "runtime~main.js.map": "/word-game/static/js/runtime~main.cb913047.js.map",
+  "static/media/Keyboard.css": "/word-game/static/media/backspace-icon.2d22e2c0.png",
+  "static/css/main.98b1eae6.chunk.css.map": "/word-game/static/css/main.98b1eae6.chunk.css.map",
+  "index.html": "/word-game/index.html",
+  "precache-manifest.e9166096b5e5f95b2ba93068bf873c85.js": "/word-game/precache-manifest.e9166096b5e5f95b2ba93068bf873c85.js",
+  "service-worker.js": "/word-game/service-worker.js"
 }
