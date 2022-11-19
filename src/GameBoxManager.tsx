@@ -1,4 +1,7 @@
-import GameDriver from './GameDriver'
+// © 2022 Alex Barga. All rights reserved.
+// Reproduction or transmission in whole or in part, in any form or by any means, electronic,
+// mechanical or otherwise, is prohibited without the prior  written consent of the owner.
+import GameDriver from './GameDriver';
 
 class GameBoxManager
 {
@@ -29,7 +32,7 @@ class GameBoxManager
         this._guessCount = [];
     }
 
-    public makeGuess(guess: string): boolean
+    public makeGuess (guess: string): boolean
     {
         const response: number[][] = this._game.guess(guess);
         if (response[0].length > 0)
@@ -74,7 +77,7 @@ class GameBoxManager
         return [this._rows, this._suggestedWords, this._boxColors];
     };
 
-    public reset(): string[]
+    public reset (): string[]
     {
         this._game.reset();
         return this.setupInterface()[1];

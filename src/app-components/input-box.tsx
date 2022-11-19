@@ -15,7 +15,7 @@ class InputBox extends Component<InputProps>
     render ()
     {
         return (
-            <div className={'container wordContainer'} id={'input'}>
+            <div className={'container'} id={'input'}>
                 <p className={'word letter l' + this.props.text[0]}>{this.props.text[0]}</p>
                 <p className={'word letter l' + this.props.text[1]}>{this.props.text[1]}</p>
                 <p className={'word letter l' + this.props.text[2]}>{this.props.text[2]}</p>
@@ -24,7 +24,7 @@ class InputBox extends Component<InputProps>
             </div>
         );
     }
-    
+
     //#endregion
 }
 export default InputBox;
