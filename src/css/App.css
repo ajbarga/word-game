@@ -24,7 +24,7 @@ div.appBox {
 }
 
 div.gameBox {
-    padding-bottom: 182px;
+    padding-bottom: calc(25vh + 54px);
     padding-top: 92px;
     display: inline-flex;
     flex-wrap: wrap;
@@ -67,11 +67,27 @@ div.container.buttons.headerBox {
     top: 49px
 }
 
+div#input.container {
+    background-color: #262626;
+    position: fixed;
+    bottom: 25vh;
+    height: 54px;
+    max-width: 300px;
+    min-width: 250px;
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 125%;
+}
+
 p {
     border: 2px solid black;
     margin: 0;
     font-family: "American Typewriter", serif;
-    font-size: 200%;
+    height: 5.5vh;
+    min-height: 44px;
+    max-height: 52px;
+    font-size: 230%;
     display: inline-block
 }
 
@@ -102,8 +118,9 @@ p#error.titleBox.dm {
 
 p.letter {
     width: 20%;
-    height: 100%;
-    min-height: 36.8px;
+
+    /* height: 100%;
+    min-height: 36.8px; */
     text-align: center
 }
 
@@ -163,4 +180,18 @@ input#answerBox.key {
     font-stretch: condensed;
     height: 40.5px;
     text-indent: 0px
+}
+
+@media screen and (min-height: 700px) {
+    div.container.keyContainer {
+        height: 175px
+    }
+
+    div#input.container {
+        bottom: 173px;
+    }
+
+    div.gameBox {
+        padding-bottom: 226px;
+    }
 }

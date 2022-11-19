@@ -22,18 +22,6 @@ div.container.wordContainer {
 @media screen and (min-width: 740px) {
     div.container.wordContainer {
         width: 25vw;
+        max-width: 300px;
     }
-}
-
-div#input.container {
-    background-color: #262626;
-    position: fixed;
-    bottom: 129px;
-    height: 54px;
-    max-width: 300px;
-    min-width: 250px;
-    width: 50%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 125%;
 }
