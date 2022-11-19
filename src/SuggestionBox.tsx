@@ -81,7 +81,7 @@ class SuggestionBox
         let suggestedWords: string[] = [];
         this.analyzeGuess(guess, colors);
         let count: number = 0;
-        while (count < this._possibleWords.length && suggestedWords.length < 5)
+        while (count < this._possibleWords.length && suggestedWords.length < 3)
         {
 
             let word: string = this._possibleWords[count];
