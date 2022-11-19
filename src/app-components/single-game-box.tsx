@@ -4,8 +4,6 @@
 import React, { Component } from 'react';
 import SingleGuess from './single-guess';
 
-import '../css/WordContainers.css';
-
 interface SingleGameProps
 {
     box: string[],

@@ -11,6 +11,15 @@
 
 <body>
 	<div id="root"></div>
+	<script>
+		if (navigator.serviceWorker)
+		{
+			navigator.serviceWorker.register(
+				'/word-game/sw.js',
+				{ scope: '/word-game/' }
+			);
+		}
+	</script>
 </body>
 
 </html>

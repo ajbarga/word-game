@@ -1,9 +1,9 @@
 /* © 2022 Alex Barga. All rights reserved.
  * Reproduction or transmission in whole or in part, in any form or by any means, electronic,
  * mechanical or otherwise, is prohibited without the prior  written consent of the owner.*/
-@media screen and (min-width: 620px) {
+@media screen and (max-width: 620px) {
 
-    /*#region Legacy App.css*/
+    /*#region App*/
 
     * {
         box-sizing: border-box
@@ -122,9 +122,6 @@
 
     p.letter {
         width: 20%;
-
-        /* height: 100%;
-    min-height: 36.8px; */
         text-align: center
     }
 
@@ -202,7 +199,7 @@
 
     /*#endregion*/
 
-    /*#region Legacy Keyboard.css*/
+    /*#region Keyboard*/
 
     div.keyRow {
         height: 33.33%;
@@ -320,20 +317,25 @@
         transform: scale3d(0.96, 0.96, 1)
     }
 
-    /*#endregion*/
-
-    /*#region Legacy WordContainers.css*/
-
     div.container.wordContainer {
         height: 100%;
         min-width: 180px;
         width: 250px;
     }
 
-    @media screen and (min-width: 740px) {
+    /*#endregion*/
+
+    /*#region Media Queries*/
+
+    @media screen and (orientation: portrait) and (max-width: 400px) {
         div.container.wordContainer {
-            width: 25vw;
-            max-width: 300px;
+            width: 100vw;
+        }
+    }
+
+    @media screen and (orientation: portrait) and (min-width: 360px) and (max-width: 620px) {
+        div.container.wordContainer {
+            width: 50vw;
         }
     }
 

@@ -9,6 +9,7 @@ import HeaderButtons from './app-components/header-buttons';
 import GameBoxManager from './GameBoxManager';
 
 import './css/App.css';
+import './css/MobileBrowser.css';
 
 interface WordGameProps
 {
@@ -17,8 +18,12 @@ interface WordGameProps
     suggestedWords: string[],
     responseColor: string,
     colors: number[][][],
-    hints: boolean
+    hints: boolean;
 }
+// Where 0: Desktop, 1: Mobile
+const deviceType: number = window.innerWidth > 620 ? 0 : 1;
+const title: string = deviceType === 0 ? 'Wordle Desktop' : 'Wordle App';
+
 
 class WordGameApp extends Component<{}, WordGameProps>
 {
@@ -39,12 +44,12 @@ class WordGameApp extends Component<{}, WordGameProps>
         this._gameManager = new GameBoxManager();
         let state = this._gameManager.setupInterface();
 
-        this.state = ({ 
-            rows: state[0],  
+        this.state = ({
+            rows: state[0],
             suggestedWords: state[1],
             colors: state[2],
-            responseColor: 'plain',  
-            inputValue: this.EmptyInput, 
+            responseColor: 'plain',
+            inputValue: this.EmptyInput,
             hints: false
         });
     }
@@ -74,9 +79,9 @@ class WordGameApp extends Component<{}, WordGameProps>
         this.setState({ suggestedWords: this._gameManager.reset() });
     };
 
-    private swapHintState()
+    private swapHintState ()
     {
-        this.setState({hints: !this.state.hints});
+        this.setState({ hints: !this.state.hints });
     };
 
     //#endregion
@@ -88,14 +93,14 @@ class WordGameApp extends Component<{}, WordGameProps>
         return (
             <div className={'appBox'}>
                 <div className={'container headerBox'}>
-                    <p className={'titleBox'} id={this.state.responseColor}>Wordle</p>
+                    <p className={'titleBox'} id={this.state.responseColor} >{title}</p>
                 </div>
-                <HeaderButtons reset={() => this.reset()} updateHintState={() => this.swapHintState()} hints={this.state.hints}/>
+                <HeaderButtons reset={() => this.reset()} updateHintState={() => this.swapHintState()} hints={this.state.hints} />
                 <GameBox rows={this.state.rows} colors={this.state.colors}
                     suggestedWords={this.state.suggestedWords} hints={this.state.hints ? '#FFC0CB' : 'transparent'} />
                 <InputBox text={this.state.inputValue} />
-                <Keyboard getGuess={(g) => this.makeGuess(g)} 
-                        setText={(e) => this.setState({ inputValue: e })} text={this.state.inputValue}/>
+                <Keyboard getGuess={(g) => this.makeGuess(g)}
+                    setText={(e) => this.setState({ inputValue: e })} text={this.state.inputValue} />
             </div>
         );
     };
