@@ -11,5 +11,5 @@
 	],
 	"name": "Word Game",
 	"short_name": "Wordle",
-	"start_url": "/index.html"
+	"start_url": "/public/index.html"
 }
