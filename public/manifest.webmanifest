@@ -4,12 +4,14 @@
 	"display": "fullscreen",
 	"icons": [
 		{
-			"src": "wordle-icon.png",
+			"src": "/word-game/wordle-icon.png",
 			"sizes": "192x192",
 			"type": "image/png"
 		}
 	],
 	"name": "Word Game",
 	"short_name": "Wordle",
-	"start_url": "/word-game/public/index.html"
+	"start_url": "/word-game/",
+	"scope": "/word-game/",
+	"theme_color": "#313131"
 }
