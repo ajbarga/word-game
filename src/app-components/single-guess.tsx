@@ -1,32 +1,21 @@
 // © 2022 Alex Barga. All rights reserved.
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
-import React, { Component } from 'react';
+import React from 'react';
 
-interface SingleGuessProps
+function getColorMode (e: boolean): string { return (e ? 'dm ' : '') + 'letter boxColor'; };
+
+export default function SingleGuess (props: { guess: string, colorState: number[], colorMode: boolean; })
 {
-    guess: string,
-    colorState: number[];
+    let c = getColorMode(props.colorMode);
+
+    return (
+        <div className={'container wordContainer'}>
+            <div className={c + props.colorState[0]}>{props.guess[0]}</div>
+            <div className={c + props.colorState[1]}>{props.guess[1]}</div>
+            <div className={c + props.colorState[2]}>{props.guess[2]}</div>
+            <div className={c + props.colorState[3]}>{props.guess[3]}</div>
+            <div className={c + props.colorState[4]}>{props.guess[4]}</div>
+        </div>
+    );
 }
-
-class SingleGuess extends Component<SingleGuessProps>
-{
-    //#region Html Element
-
-    render ()
-    {
-        return (
-            <div className={'container wordContainer'}>
-                <p className={'letter'} id={'boxColor' + this.props.colorState[0]}>{this.props.guess.charAt(0)}</p>
-                <p className={'letter'} id={'boxColor' + this.props.colorState[1]}>{this.props.guess.charAt(1)}</p>
-                <p className={'letter'} id={'boxColor' + this.props.colorState[2]}>{this.props.guess.charAt(2)}</p>
-                <p className={'letter'} id={'boxColor' + this.props.colorState[3]}>{this.props.guess.charAt(3)}</p>
-                <p className={'letter'} id={'boxColor' + this.props.colorState[4]}>{this.props.guess.charAt(4)}</p>
-            </div>
-        );
-    }
-
-    //#endregion
-}
-
-export default SingleGuess;

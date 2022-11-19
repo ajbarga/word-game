@@ -13,7 +13,7 @@ class GameBoxManager
     private _boxColors: number[][][];
     private _guessCount: number[];
 
-    private readonly ER: string = '&&&&&';
+    private readonly ER: string = '';
     private readonly EC: number[] = [-2, -2, -2, -2, -2];
     private readonly EmptyRow: string[] = [this.ER, this.ER, this.ER, this.ER, this.ER, this.ER, this.ER, this.ER, this.ER];
     private readonly EmptyColors: number[][] = [this.EC, this.EC, this.EC, this.EC, this.EC, this.EC, this.EC, this.EC, this.EC];
@@ -60,6 +60,30 @@ class GameBoxManager
             return true;
         }
         return false;
+    }
+
+    public updateRowsTyping (e: string[])
+    {
+        const num = this._guessCount;
+        for (let i = 0; i < 4; i++)
+        {
+            let n = num[i];
+            if (n < 9)
+            {
+                this._rows[i][n] = e.join('').toUpperCase();
+                for (let j = 0; j < 5; j++)
+                {
+                    if (this._rows[i][n][j] !== '1')
+                    {
+                        this._boxColors[i][n][j] = -1;
+                    }
+                    else
+                    {
+                        this._boxColors[i][n][j] = -2;
+                    }
+                }
+            }
+        }
     }
 
     public setupInterface (): [string[][], string[], number[][][]]

@@ -18,7 +18,8 @@ interface WordGameProps
     suggestedWords: string[],
     responseColor: string,
     colors: number[][][],
-    hints: boolean;
+    hints: boolean,
+    isDarkMode: boolean,
 }
 // Where 0: Desktop, 1: Mobile
 const deviceType: number = window.innerWidth > 620 ? 0 : 1;
@@ -30,8 +31,6 @@ class WordGameApp extends Component<{}, WordGameProps>
     //#region Non-Public Properties / Data-Members
 
     private _gameManager: GameBoxManager;
-
-    private readonly EmptyInput: string[] = ['1', '1', '1', '1', '1'];
 
     //#endregion
 
@@ -49,8 +48,9 @@ class WordGameApp extends Component<{}, WordGameProps>
             suggestedWords: state[1],
             colors: state[2],
             responseColor: 'plain',
-            inputValue: this.EmptyInput,
-            hints: false
+            inputValue: ['1', '1', '1', '1', '1'],
+            hints: false,
+            isDarkMode: false
         });
     }
 
@@ -79,6 +79,16 @@ class WordGameApp extends Component<{}, WordGameProps>
         this.setState({ suggestedWords: this._gameManager.reset() });
     };
 
+    private swapColorMode (): void
+    {
+        let isDarkMode: boolean = this.state.isDarkMode;
+
+        let divs: NodeListOf<HTMLElement> = document.querySelectorAll('input,p,div,button');
+        divs.forEach(i => isDarkMode ? i.classList.remove('dm') : i.classList.add('dm'));
+        document.body.style.backgroundColor = (isDarkMode ? 'thistle' : '#262626');
+        this.setState({ isDarkMode: !this.state.isDarkMode });
+    }
+
     private swapHintState ()
     {
         this.setState({ hints: !this.state.hints });
@@ -95,12 +105,13 @@ class WordGameApp extends Component<{}, WordGameProps>
                 <div className={'container headerBox'}>
                     <p className={'titleBox'} id={this.state.responseColor} >{title}</p>
                 </div>
-                <HeaderButtons reset={() => this.reset()} updateHintState={() => this.swapHintState()} hints={this.state.hints} />
-                <GameBox rows={this.state.rows} colors={this.state.colors}
+                <HeaderButtons reset={() => this.reset()} updateHintState={() => this.swapHintState()}
+                    hints={this.state.hints} isDarkMode={this.state.isDarkMode} swapColorMode={() => this.swapColorMode()} />
+                <GameBox rows={this.state.rows} colors={this.state.colors} colorMode={this.state.isDarkMode}
                     suggestedWords={this.state.suggestedWords} hints={this.state.hints ? '#FFC0CB' : 'transparent'} />
-                <InputBox text={this.state.inputValue} />
+                {/* <InputBox text={this.state.inputValue} /> */}
                 <Keyboard getGuess={(g) => this.makeGuess(g)}
-                    setText={(e) => this.setState({ inputValue: e })} text={this.state.inputValue} />
+                    setText={(e) => { this.setState({ inputValue: e }); this._gameManager.updateRowsTyping(e); }} text={this.state.inputValue} />
             </div>
         );
     };

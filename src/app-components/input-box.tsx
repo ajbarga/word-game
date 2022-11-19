@@ -16,11 +16,11 @@ class InputBox extends Component<InputProps>
     {
         return (
             <div className={'container'} id={'input'}>
-                <p className={'word letter l' + this.props.text[0]}>{this.props.text[0]}</p>
-                <p className={'word letter l' + this.props.text[1]}>{this.props.text[1]}</p>
-                <p className={'word letter l' + this.props.text[2]}>{this.props.text[2]}</p>
-                <p className={'word letter l' + this.props.text[3]}>{this.props.text[3]}</p>
-                <p className={'word letter l' + this.props.text[4]}>{this.props.text[4]}</p>
+                <div className={'word letter l' + this.props.text[0]}>{this.props.text[0]}</div>
+                <div className={'word letter l' + this.props.text[1]}>{this.props.text[1]}</div>
+                <div className={'word letter l' + this.props.text[2]}>{this.props.text[2]}</div>
+                <div className={'word letter l' + this.props.text[3]}>{this.props.text[3]}</div>
+                <div className={'word letter l' + this.props.text[4]}>{this.props.text[4]}</div>
             </div>
         );
     }
