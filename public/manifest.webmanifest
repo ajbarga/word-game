@@ -4,12 +4,12 @@
 	"display": "fullscreen",
 	"icons": [
 		{
-			"src": "wordle_icon.png",
+			"src": "/public/wordle_icon.png",
 			"sizes": "192x192",
 			"type": "image/png"
 		}
 	],
 	"name": "Word Game",
 	"short_name": "Wordle",
-	"start_url": "index.html"
+	"start_url": "/public/index.html"
 }
