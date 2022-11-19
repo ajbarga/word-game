@@ -17,7 +17,12 @@ div.container.keyContainer
     height: 130px;
     left: 50%;
     transform: translateX(-50%);
+    background-color: rgb(255, 148, 71)
 }
+    div.container.keyContainer
+    {
+        background-color: #761919
+    }
 
 input {
     background-color: #313131;
@@ -69,7 +74,7 @@ input {
         input.key.EN {
             width: 15%;
             font-size:92%;
-            font-weight: bolder;
+            font-weight: bolder
         }
 
     input.headerButton {
@@ -82,9 +87,9 @@ input {
         border-width: 2px;
         font-size: 130%;
         font-family: "Times New Roman", serif;
-        width:33.3%;
+        width: 33.33%;
         height: 38px;
-        
+        min-width: fit-content;
         border-color: #000000;
         background-color: rgb(225, 225, 225)
     }

@@ -1,142 +1,83 @@
 // © 2022 Alex Barga. All rights reserved.
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
-import React, { Component, SyntheticEvent } from 'react';
-import GameBox from './app-components/game-module';
+import React, { Component } from 'react';
+import GameBox from './app-components/multi-game-module';
 import Keyboard from './app-components/keyboard';
 import InputBox from './app-components/input-box';
 import HeaderButtons from './app-components/header-buttons';
-import GameDriver from './GameDriver';
+import GameBoxManager from './GameBoxManager';
 
 import './css/App.css';
 
 interface Wordle
 {
-    rows: string[][];
-    inputValue: string[];
-    wordList: string[];
-    responseColor: string;
-    colors: number[][][];
-    hints: boolean;
+    rows: string[][],
+    inputValue: string[],
+    suggestedWords: string[],
+    responseColor: string,
+    colors: number[][][],
+    hints: boolean
 }
-
-let App: WordleApp;
-let Game: GameDriver;
-let Rows: string[][];
-let WordList: string[];
-let BoxColors: number[][][];
-let GuessCount: number[];
-
-//empty row string
-const eR: string = 'AAAAA';
-const emptyRow: string[] = [eR, eR, eR, eR, eR, eR, eR, eR, eR];
-
-//default row color array
-const eC: number[] = [-2, -2, -2, -2, -2];
-const emptyColors: number[][] = [eC, eC, eC, eC, eC, eC, eC, eC, eC];
-
-//default input box
-const emptyInput: string[] = ['1', '1', '1', '1', '1'];
 
 class WordleApp extends Component<{}, Wordle>
 {
+    //#region Non-Public Properties / Data-Members
+
+    private _gameManager: GameBoxManager;
+
+    private readonly EmptyInput: string[] = ['1', '1', '1', '1', '1'];
+
+    //#endregion
+
     //#region Non-Public Interface
 
     private constructor(props: Wordle)
     {
         super(props);
-        App = this;
-        Game = new GameDriver();
-        Rows = [];
-        BoxColors = [];
-        GuessCount = [];
-        WordList = [];
 
-        this.setupInterface();
+        this._gameManager = new GameBoxManager();
+        let state = this._gameManager.setupInterface();
 
         this.state = ({ 
-            rows: Rows, 
-            colors: BoxColors, 
-            wordList: WordList,
+            rows: state[0],  
+            suggestedWords: state[1],
+            colors: state[2],
             responseColor: 'plain',  
-            inputValue: emptyInput, 
+            inputValue: this.EmptyInput, 
             hints: false
         });
     }
 
-    private makeGuess (guessVal: string): void
+    private makeGuess (guessVal: string)
     {
-        const guess: string = guessVal.toUpperCase();
-        const response: number[][] = Game.guess(guess);
-
-        if (response[0].length > 0)
+        if (!this._gameManager.makeGuess(guessVal.toUpperCase()))
         {
-            for (let i = 0; i < 4; i++)
-            {
-                const j: number = GuessCount[i];
-                if (j < 9)
-                {
-                    Rows[i][j] = guess;
-                    if (response[i].length === 1)
-                    {
-                        BoxColors[i][j] = [1, 1, 1, 1, 1];
-                        WordList[i] = ':)\tNice Job\t<3';
-                        GuessCount[i] = 9;
-                    }
-                    else
-                    {
-                        BoxColors[i][j] = response[i];
-                        WordList[i] = Game.analyze(i, guess, response[i]);
-                        GuessCount[i]++;
-                    }
-                }
-            }
-            App.setState({ rows: Rows, colors: BoxColors, wordList: WordList });
+            this.invalidGuessSequence();
         }
-        else
-        {
-            App.invalidGuessSequence();
-        }
+        this.forceUpdate();
     };
 
     private async invalidGuessSequence (): Promise<void>
     {
-        App.setState({ responseColor: 'error' });
+        this.setState({ responseColor: 'error' });
         await new Promise(r => setTimeout(r, 1500));
-        App.setState({ responseColor: 'plain' });
-    }
-
-    private setupInterface (): void
-    {
-        GuessCount = [0, 0, 0, 0];
-        const hintText: string = 'ENTER FIRST GUESS';
-        WordList = [hintText, hintText, hintText, hintText];
-        for (let i = 0; i < 4; i++)
-        {
-            for (let j = 0; j < 9; j++)
-            {
-                Rows[i] = [...emptyRow];
-                BoxColors[i] = [...emptyColors];
-            }
-        }
+        this.setState({ responseColor: 'plain' });
     };
 
     //#endregion
 
     //#region Event-Handler Buttons
 
-    private reset (): void
+    private reset ()
     {
-        Game.reset();
-        App.setupInterface();
-        App.setState({ rows: Rows, colors: BoxColors, wordList: WordList });
+        this.setState({ suggestedWords: this._gameManager.reset() });
     };
 
     private swapHintState()
     {
-        let isHintsOn: boolean = App.state.hints;
-        App.setState({hints: !isHintsOn});
-    }
+        this.setState({hints: !this.state.hints});
+    };
 
     //#endregion
 
@@ -147,13 +88,14 @@ class WordleApp extends Component<{}, Wordle>
         return (
             <div className={'appBox'}>
                 <div className={'container headerBox'}>
-                    <p className={'titleBox'} id={App.state.responseColor}>Wordle</p>
+                    <p className={'titleBox'} id={this.state.responseColor}>Wordle</p>
                 </div>
-                <HeaderButtons reset={App.reset} swapHintState={App.swapHintState} hints={App.state.hints}/>
-                <GameBox rowSt={App.state.rows} colorState={App.state.colors}
-                    wordBox={App.state.wordList} hintState={App.state.hints ? '#FFC0CB' : 'transparent'} />
-                <InputBox text={App.state.inputValue} />
-                <Keyboard getGuess={App.makeGuess} text={App.state.inputValue} setText={(e) => App.setState({ inputValue: e })} />
+                <HeaderButtons reset={() => this.reset()} updateHintState={() => this.swapHintState()} hints={this.state.hints}/>
+                <GameBox rows={this.state.rows} colors={this.state.colors}
+                    suggestedWords={this.state.suggestedWords} hints={this.state.hints ? '#FFC0CB' : 'transparent'} />
+                <InputBox text={this.state.inputValue} />
+                <Keyboard getGuess={(g) => this.makeGuess(g)} 
+                        setText={(e) => this.setState({ inputValue: e })} text={this.state.inputValue}/>
             </div>
         );
     };

@@ -7,7 +7,7 @@ class SuggestionBox
 {
     //#region Non-Public Properties
 
-    private _possibleWords: string[] = [];
+    private _possibleWords: string[];
 
     //#endregion
 
@@ -70,12 +70,13 @@ class SuggestionBox
 
     //#region Public Interface
 
-    constructor()
+    public constructor()
     {
+        this._possibleWords = [];
         this.reset();
     }
 
-    makeGuess (guess: string, colors: number[]): string[]
+    public makeGuess (guess: string, colors: number[]): string[]
     {
         let suggestedWords: string[] = [];
         this.analyzeGuess(guess, colors);
@@ -93,7 +94,7 @@ class SuggestionBox
         return suggestedWords;
     }
 
-    reset (): void
+    public reset (): void
     {
         this._possibleWords = [...realText];
         this._possibleWords = this._possibleWords.sort(() => Math.random() - 0.5);

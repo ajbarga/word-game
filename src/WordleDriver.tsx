@@ -3,24 +3,24 @@
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
 import text from './resources/dictionary';
 import realText from './resources/realWords';
-const CHARS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 class WordleDriver
 {
-    //#region Non-Public Properties
+    //#region Non-Public Properties / Data-Members
 
-    private _answerC: number[] = [];
-    private _answer: string = '';
-    private _charInv: number[] = [...CHARS];
+    private _answerC: number[];
+    private _answer: string;
+    private _charInv: number[];
+
+    private readonly Chars = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
     //#endregion
 
-    //#region Non-Public Methods
+    //#region Non-Public Interface
 
     private pickWord (): string
     {
-        let rand = Math.floor(Math.random() * realText.length);
-        return realText[rand];
+        return realText[Math.floor(Math.random() * realText.length)];
     }
 
     private isGuessable (word: string): boolean
@@ -32,12 +32,16 @@ class WordleDriver
 
     //#region Public Interface
 
-    constructor()
+    public constructor()
     {
+        this._charInv = [];
+        this._answerC = [];
+        this._answer = '';
+    
         this.reset();
     }
 
-    makeGuess (word: string): number[]
+    public makeGuess (word: string): number[]
     {
         let response: number[] = [0, 0, 0, 0, 0];
         let charAt: number[] = [...this._charInv];
@@ -57,7 +61,8 @@ class WordleDriver
                     response[i] = 1;
                     charAt[ch - 65]--;
                 }
-                else if (charAt[ch - 65] > 0 && (charAt[ch - 65] > 1 || word[this._answer.indexOf(word[i])] != word[i]))
+                else if (charAt[ch - 65] > 0 && (charAt[ch - 65] > 1 || 
+                    word[this._answer.indexOf(word[i])] != word[i]))
                 {
                     response[i] = 0;
                     charAt[ch - 65]--;
@@ -66,18 +71,17 @@ class WordleDriver
                 {
                     response[i] = -1;
                 }
-
             }
             return response;
         }
         return [];
     }
 
-    reset ()
+    public reset ()
     {
         this._answer = this.pickWord();
         this._answerC = [];
-        this._charInv = [...CHARS];
+        this._charInv = [...this.Chars];
         for (let i = 0; i < 5; i++) 
         {
             let n = this._answer.charCodeAt(i);

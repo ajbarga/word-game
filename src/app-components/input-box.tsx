@@ -11,6 +11,7 @@ interface InputProps
 class InputBox extends Component<InputProps>
 {
     //#region HTML Element
+
     render ()
     {
         return (
@@ -23,6 +24,7 @@ class InputBox extends Component<InputProps>
             </div>
         );
     }
+    
     //#endregion
 }
 export default InputBox;
