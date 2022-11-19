@@ -88,7 +88,7 @@ class WordGameApp extends Component<{}, WordGameProps>
         return (
             <div className={'appBox'}>
                 <div className={'container headerBox'}>
-                    <p className={'titleBox'} id={this.state.responseColor}>Word Game</p>
+                    <p className={'titleBox'} id={this.state.responseColor}>Wordle</p>
                 </div>
                 <HeaderButtons reset={() => this.reset()} updateHintState={() => this.swapHintState()} hints={this.state.hints}/>
                 <GameBox rows={this.state.rows} colors={this.state.colors}
