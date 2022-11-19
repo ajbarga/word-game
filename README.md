@@ -1,4 +1,4 @@
-# [Play Better Wordle!](https://ajbarga.github.io/better-wordle)
+# [Play My Word Game!](https://ajbarga.github.io/word-game)
 
 ## Gameplay
 ![](gameplay_images/LightModeComputer.png?raw=true "Light_Mode_Computer")

@@ -10,7 +10,7 @@ import GameBoxManager from './GameBoxManager';
 
 import './css/App.css';
 
-interface Wordle
+interface WordGameProps
 {
     rows: string[][],
     inputValue: string[],
@@ -20,7 +20,7 @@ interface Wordle
     hints: boolean
 }
 
-class WordleApp extends Component<{}, Wordle>
+class WordGameApp extends Component<{}, WordGameProps>
 {
     //#region Non-Public Properties / Data-Members
 
@@ -32,7 +32,7 @@ class WordleApp extends Component<{}, Wordle>
 
     //#region Non-Public Interface
 
-    private constructor(props: Wordle)
+    private constructor(props: WordGameProps)
     {
         super(props);
 
@@ -88,7 +88,7 @@ class WordleApp extends Component<{}, Wordle>
         return (
             <div className={'appBox'}>
                 <div className={'container headerBox'}>
-                    <p className={'titleBox'} id={this.state.responseColor}>Wordle</p>
+                    <p className={'titleBox'} id={this.state.responseColor}>Word Game</p>
                 </div>
                 <HeaderButtons reset={() => this.reset()} updateHintState={() => this.swapHintState()} hints={this.state.hints}/>
                 <GameBox rows={this.state.rows} colors={this.state.colors}
@@ -103,4 +103,4 @@ class WordleApp extends Component<{}, Wordle>
     //#endregion
 }
 
-export default WordleApp;
+export default WordGameApp;

@@ -2,13 +2,13 @@
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
 import SuggestionBox from './SuggestionBox';
-import WordleDriver from './WordleDriver';
+import WordDriver from './WordDriver';
 
 class GameDriver
 {
     //#region Non-Public Properties / Data-Members
 
-    private _wordleDrivers: WordleDriver[] = [new WordleDriver(), new WordleDriver(), new WordleDriver(), new WordleDriver()];
+    private _wordDrivers: WordDriver[] = [new WordDriver(), new WordDriver(), new WordDriver(), new WordDriver()];
     private _suggestionBoxes: SuggestionBox[] = [new SuggestionBox(), new SuggestionBox(), new SuggestionBox(), new SuggestionBox()];
 
     //#endregion
@@ -20,7 +20,7 @@ class GameDriver
         let responses: number[][] = [[], [], [], []];
         for (let i = 0; i < 4; i++) 
         {
-            responses[i] = this._wordleDrivers[i].makeGuess(word);
+            responses[i] = this._wordDrivers[i].makeGuess(word);
         }
         return responses;
     }
@@ -35,7 +35,7 @@ class GameDriver
     {
         for (let i = 0; i < 4; i++) 
         {
-            this._wordleDrivers[i].reset();
+            this._wordDrivers[i].reset();
             this._suggestionBoxes[i].reset();
         }
     }
