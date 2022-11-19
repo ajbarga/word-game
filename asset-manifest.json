@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/word-game/static/css/main.f7bbcfb0.css",
-    "main.js": "/word-game/static/js/main.7dcf2ab0.js",
+    "main.css": "/word-game/static/css/main.3b4e93ba.css",
+    "main.js": "/word-game/static/js/main.bc54a36d.js",
     "static/media/backspace-icon.png": "/word-game/static/media/backspace-icon.d436813b97cb760754b4.png",
     "index.html": "/word-game/index.html",
-    "main.f7bbcfb0.css.map": "/word-game/static/css/main.f7bbcfb0.css.map",
-    "main.7dcf2ab0.js.map": "/word-game/static/js/main.7dcf2ab0.js.map"
+    "main.3b4e93ba.css.map": "/word-game/static/css/main.3b4e93ba.css.map",
+    "main.bc54a36d.js.map": "/word-game/static/js/main.bc54a36d.js.map"
   },
   "entrypoints": [
-    "static/css/main.f7bbcfb0.css",
-    "static/js/main.7dcf2ab0.js"
+    "static/css/main.3b4e93ba.css",
+    "static/js/main.bc54a36d.js"
   ]
 }
