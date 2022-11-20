@@ -5,55 +5,6 @@
 
     /*#region App*/
 
-    * {
-        box-sizing: border-box
-    }
-
-    body {
-        margin: 0 auto;
-        align-content: center;
-        text-align: center;
-        background-color: #D8BFD8;
-    }
-
-    div {
-        margin: 0 auto;
-    }
-
-    div.appBox {
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none
-    }
-
-    div.gameBox {
-        padding-bottom: calc(25vh + 54px);
-        padding-top: 92px;
-        display: inline-flex;
-        flex-wrap: wrap;
-    }
-
-    div.wordBox {
-        margin: 0 auto;
-    }
-
-    div.row {
-        display: inline-block;
-        flex-wrap: wrap;
-    }
-
-    div.container {
-        border: 3px solid rgb(255, 148, 71);
-        min-width: -moz-fit-content;
-        min-width: fit-content;
-        min-width: -webkit-fit-content;
-    }
-
-    div.container.dm {
-        border: 3px solid #712b06
-    }
-
     div.container.headerBox {
         left: 50%;
         transform: translateX(-50%);
@@ -61,11 +12,6 @@
         width: 100%;
         max-width: 1000px;
         position: fixed;
-        background-color: rgb(255, 148, 71);
-    }
-
-    div.container.headerBox.dm {
-        background-color: #712b06
     }
 
     div.container.buttons.headerBox {
@@ -104,47 +50,13 @@
         width: 100%
     }
 
-    p#plain.titleBox {
-        background-color: rgb(225, 225, 225)
-    }
-
-    p#error.titleBox {
-        background-color: rgb(168, 14, 14)
-    }
-
-    p#plain.titleBox.dm {
-        background-color: #262626;
-        color: #FFC0CB
-    }
-
-    p#error.titleBox.dm {
-        background-color: #570909;
-        color: #000000
-    }
-
-    div.letter {
-        width: 20%;
-        text-align: center
-    }
-
     div.letter.word {
         border: 1px dashed rgb(255, 151, 169);
         height: 100%;
         color: pink;
-        text-transform: uppercase
     }
 
     div.letter.word.l1 {
-        color: transparent
-    }
-
-    div.boxColor-2.letter {
-        background-color: rgb(225, 225, 225);
-        color: transparent
-    }
-
-    div.boxColor-2.letter.dm {
-        background-color: #262626;
         color: transparent
     }
 
@@ -322,6 +234,7 @@
     }
 
     div.container.wordContainer {
+        /* vertical-align: top; */
         height: calc(5.5vh + 6px);
         min-height: 50px;
         max-height: 58px;

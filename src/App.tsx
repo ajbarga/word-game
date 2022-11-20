@@ -8,13 +8,14 @@ import InputBox from './app-components/input-box';
 import HeaderButtons from './app-components/header-buttons';
 import GameBoxManager from './GameBoxManager';
 
-import './css/App.css';
-import './css/MobileBrowser.css';
+import './css/Base.css'; //Universal
+import './css/App.css'; //Desktop
+import './css/MobileBrowser.css'; //Phone
 
 interface WordGameProps
 {
     rows: string[][],
-    inputValue: string[],
+    inputValue: string,
     suggestedWords: string[],
     responseColor: string,
     colors: number[][][],
@@ -24,7 +25,6 @@ interface WordGameProps
 // Where 0: Desktop, 1: Mobile
 const deviceType: number = window.innerWidth > 620 ? 0 : 1;
 const title: string = deviceType === 0 ? 'Wordle Desktop' : 'Wordle App';
-
 
 class WordGameApp extends Component<{}, WordGameProps>
 {
@@ -48,7 +48,7 @@ class WordGameApp extends Component<{}, WordGameProps>
             suggestedWords: state[1],
             colors: state[2],
             responseColor: 'plain',
-            inputValue: ['1', '1', '1', '1', '1'],
+            inputValue: '',
             hints: false,
             isDarkMode: false
         });

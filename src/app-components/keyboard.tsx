@@ -6,8 +6,8 @@ import React, { Component, SyntheticEvent } from 'react';
 interface KeyProps
 {
     getGuess (guess: string): void;
-    setText (text: string[]): void;
-    text: string[];
+    setText (text: string): void;
+    text: string;
 }
 
 class Keyboard extends Component<KeyProps>
@@ -22,28 +22,27 @@ class Keyboard extends Component<KeyProps>
 
     private inputKey (e: string)
     {
-        let text: string[] = this.props.text;
-        let len: number = text.indexOf('1');
+        let text: string = this.props.text;
+        let len: number = text.length;
         switch (e)
         {
             case 'Backspace':
             case '-':
-                if (len !== 0)
+                if (len > 0)
                 {
-                    text[(len < 0 ? 4 : len - 1)] = '1';
+                    this.props.setText(text.substring(0, len - 1));
                 }
                 break;
             case 'Enter':
-                this.props.getGuess(text.join(''));
-                text = ['1', '1', '1', '1', '1'];
+                this.props.getGuess(text);
+                this.props.setText('');
                 break;
             default:
-                if (len > -1)
+                if (len < 5)
                 {
-                    text[len] = e;
+                    this.props.setText(text + e);
                 }
         }
-        this.props.setText(text);
     }
 
     //#endregion
