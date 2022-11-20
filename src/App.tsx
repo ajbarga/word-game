@@ -101,7 +101,7 @@ class WordGameApp extends Component<{}, WordGameProps>
     render ()
     {
         return (
-            <div className={'appBox'}>
+            <div id={'appBox'}>
                 <div className={'container headerBox'}>
                     <p className={'titleBox'} id={this.state.responseColor} >{title}</p>
                 </div>

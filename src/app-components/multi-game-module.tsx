@@ -20,7 +20,7 @@ class GameBox extends Component<GameBoxProps>
     render ()
     {
         return (
-            <div className={'gameBox'}>
+            <div id={'gameBox'}>
                 <div className={'wordBox'}>
                     <SingleGame box={this.props.rows[0]} colors={this.props.colors[0]} wordBox={this.props.suggestedWords[0]} hintState={this.props.hints} colorMode={this.props.colorMode} />
                     <SingleGame box={this.props.rows[1]} colors={this.props.colors[1]} wordBox={this.props.suggestedWords[1]} hintState={this.props.hints} colorMode={this.props.colorMode} />

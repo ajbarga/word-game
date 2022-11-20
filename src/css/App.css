@@ -5,6 +5,10 @@
 
     /*#region App*/
 
+    div#gameBox {
+        padding-bottom: 25vh;
+    }
+
     div.container.headerBox {
         left: 50%;
         transform: translateX(-50%);
@@ -54,37 +58,6 @@
         border: 1px dashed rgb(255, 151, 169);
         height: 100%;
         color: pink;
-    }
-
-    div.letter.word.l1 {
-        color: transparent
-    }
-
-    div.boxColor-1.letter {
-        background-color: rgb(225, 225, 225)
-    }
-
-    div.boxColor-1.letter.dm {
-        background-color: #262626;
-        color: #FFC0CB
-    }
-
-    div.boxColor0.letter {
-        background-color: rgb(255, 199, 30)
-    }
-
-    div.boxColor0.letter.dm {
-        background-color: #FFA500;
-        color: #892d2d
-    }
-
-    div.boxColor1.letter {
-        background-color: rgb(99, 190, 93)
-    }
-
-    div.boxColor1.letter.dm {
-        background-color: #004500;
-        color: #FFFFFF
     }
 
     input#answerBox.key {

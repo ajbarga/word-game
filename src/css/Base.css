@@ -23,15 +23,14 @@ div.letter {
     text-transform: uppercase;
 }
 
-div.appBox {
+div#appBox {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none
 }
 
-div.gameBox {
-    padding-bottom: calc(25vh + 54px);
+div#gameBox {
     padding-top: 92px;
     display: inline-flex;
     flex-wrap: wrap;
@@ -86,4 +85,31 @@ p#error.titleBox.dm {
 div.letter {
     width: 20%;
     text-align: center
+}
+
+div.boxColor-1.letter {
+    background-color: rgb(225, 225, 225)
+}
+
+div.boxColor-1.letter.dm {
+    background-color: #262626;
+    color: #FFC0CB
+}
+
+div.boxColor0.letter {
+    background-color: rgb(255, 199, 30)
+}
+
+div.boxColor0.letter.dm {
+    background-color: #FFA500;
+    color: #892d2d
+}
+
+div.boxColor1.letter {
+    background-color: rgb(99, 190, 93)
+}
+
+div.boxColor1.letter.dm {
+    background-color: #004500;
+    color: #FFFFFF
 }
