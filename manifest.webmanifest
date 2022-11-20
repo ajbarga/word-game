@@ -4,8 +4,8 @@
 	"display": "fullscreen",
 	"icons": [
 		{
-			"src": "/word-game/wordle-icon.png",
-			"sizes": "192x192",
+			"src": "/word-game/game_icon.png",
+			"sizes": "256x256",
 			"type": "image/png"
 		}
 	],
