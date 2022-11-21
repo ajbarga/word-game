@@ -10,7 +10,7 @@
 		}
 	],
 	"name": "Word Game",
-	"short_name": "Wordle",
+	"short_name": "WordGM",
 	"start_url": "/word-game/",
 	"scope": "/word-game/",
 	"theme_color": "#313131"
