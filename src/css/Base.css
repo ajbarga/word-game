@@ -47,13 +47,15 @@ div.row {
 
 div.container {
     border: 3px solid rgb(255, 148, 71);
+    background-color: rgb(255, 148, 71);
     min-width: -moz-fit-content;
     min-width: fit-content;
     min-width: -webkit-fit-content;
 }
 
 div.container.dm {
-    border: 3px solid #712b06
+    border: 3px solid #712b06;
+    background-color: #712b06;
 }
 
 div.container.headerBox {
@@ -112,4 +114,34 @@ div.boxColor1.letter {
 div.boxColor1.letter.dm {
     background-color: #004500;
     color: #FFFFFF
+}
+
+input{
+    overflow: hidden;
+}
+
+input::selection {
+    background-color: transparent
+}
+
+
+input.dm {
+    border-color: #1f1f1f
+}
+
+input.headerButton:hover {
+    background-color: rgb(203, 168, 202);
+    transform: scale3d(0.98, 0.96, 1)
+}
+
+input.headerButton.dm {
+    background-color: #313131;
+    color: #ffcfcf;
+    border-color: #000000
+}
+
+input.headerButton:hover.dm {
+    background-color: #761919;
+    color: #ff6982;
+    transform: scale3d(0.96, 0.96, 1)
 }

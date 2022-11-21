@@ -101,11 +101,6 @@
         height: 28vh;
         left: 50%;
         transform: translateX(-50%);
-        background-color: rgb(255, 148, 71)
-    }
-
-    div.container.keyContainer.dm {
-        background-color: #761919
     }
 
     input {
@@ -123,16 +118,8 @@
         -moz-border-radius: 0.33em;
     }
 
-    input.dm {
-        border-color: #1f1f1f
-    }
-
-    input::selection {
-        background-color: transparent
-    }
-
     input.key {
-        font-size: 95%;
+        font-size: 150%;
     }
 
     input.key.R0 {
@@ -159,7 +146,7 @@
 
     input.key.EN {
         width: 15%;
-        font-size: 92%;
+        font-size: 115%;
         font-weight: bolder
     }
 
@@ -178,23 +165,6 @@
         min-width: fit-content;
         border-color: #000000;
         background-color: rgb(225, 225, 225)
-    }
-
-    input.headerButton:hover {
-        background-color: rgb(203, 168, 202);
-        transform: scale3d(0.98, 0.96, 1)
-    }
-
-    input.headerButton.dm {
-        background-color: #313131;
-        color: #ffcfcf;
-        border-color: #000000
-    }
-
-    input.headerButton:hover.dm {
-        background-color: #761919;
-        color: #ff6982;
-        transform: scale3d(0.96, 0.96, 1)
     }
 
     div.container.wordContainer {
