@@ -4,7 +4,7 @@
 	"display": "fullscreen",
 	"icons": [
 		{
-			"src": "/word-game/game_icon.png",
+			"src": "/game_icon.png",
 			"sizes": "256x256",
 			"type": "image/png"
 		}
