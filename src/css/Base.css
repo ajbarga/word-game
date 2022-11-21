@@ -118,6 +118,8 @@ div.boxColor1.letter.dm {
 
 input{
     overflow: hidden;
+    text-overflow: clip;
+    -ms-text-overflow: clip;
 }
 
 input::selection {

@@ -128,7 +128,8 @@
     }
 
     input.key {
-        font-size: 150%;
+        font-size: 130%;
+        vertical-align: top;
     }
 
     input.key.R0 {
@@ -155,7 +156,7 @@
 
     input.key.EN {
         width: 15%;
-        font-size: 115%;
+        font-size: 125%;
         font-weight: bolder;
     }
 
@@ -177,7 +178,6 @@
     }
 
     div.container.wordContainer {
-        /* vertical-align: top; */
         height: calc(5.5vh + 6px);
         min-height: 50px;
         max-height: 58px;
