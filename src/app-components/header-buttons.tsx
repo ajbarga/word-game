@@ -20,13 +20,13 @@ interface HeaderButton
 
 class HeaderButtons extends Component<HeaderButtonProps, HeaderButton>
 {
-    //#region Private Properties / Data-Members
+    //#region Non-Public Properties / Data-Members
 
     private readonly SmallWindowSize = 471;
 
     //#endregion
 
-    //#region Private Interface
+    //#region Non-Public Interface
 
     private constructor(props: any)
     {
