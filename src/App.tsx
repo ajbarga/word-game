@@ -4,7 +4,6 @@
 import React, { Component } from 'react';
 import GameBox from './app-components/multi-game-module';
 import Keyboard from './app-components/keyboard';
-import InputBox from './app-components/input-box';
 import HeaderButtons from './app-components/header-buttons';
 import GameBoxManager from './GameBoxManager';
 
