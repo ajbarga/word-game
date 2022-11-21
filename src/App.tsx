@@ -22,7 +22,8 @@ interface WordGameProps
     isDarkMode: boolean,
 }
 // Where 0: Desktop, 1: Mobile
-const deviceType: number = window.innerWidth > 620 ? 0 : 1;
+const ratio = window.innerHeight / window.innerWidth;
+const deviceType: number = ratio > 2 || ratio < 1/2  ? 0 : 1;
 const title: string = deviceType === 0 ? 'Worde Desktop' : 'Wordle App';
 
 class WordGameApp extends Component<{}, WordGameProps>

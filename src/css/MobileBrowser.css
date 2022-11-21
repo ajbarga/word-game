@@ -70,7 +70,10 @@
         height: 5.5vh;
         min-height: 44px;
         max-height: 52px;
-        text-indent: 0px
+        text-indent: 0px;
+        border-radius: 2px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
     }
 
     @media screen and (min-height: 700px) {
@@ -158,6 +161,8 @@
         color: #000000;
         text-transform: unset;
         border-radius: 2px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
         border-width: 2px;
         font-size: 130%;
         font-family: "Times New Roman", serif;
@@ -180,13 +185,13 @@
 
     /*#region Media Queries*/
 
-    @media screen and (orientation: portrait) and (max-width: 359px) {
+    @media screen and (max-width: 359px) {
         div.container.wordContainer {
             width: 100vw;
         }
     }
 
-    @media screen and (orientation: portrait) and (min-width: 360px) and (max-width: 620px) {
+    @media screen and (min-width: 360px) and (max-width: 620px) {
         div.container.wordContainer {
             width: 50vw;
         }

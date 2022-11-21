@@ -167,6 +167,8 @@
         color: #000000;
         text-transform: unset;
         border-radius: 2px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
         border-width: 2px;
         font-size: 130%;
         font-family: "Times New Roman", serif;

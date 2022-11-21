@@ -32,7 +32,7 @@ class HeaderButtons extends Component<HeaderButtonProps, HeaderButton>
     {
         super(props);
         window.addEventListener('resize', () => { this.setState({ isWindowSmall: window.innerWidth < this.SmallWindowSize }); });
-        window.addEventListener('deviceorientation', () => { this.setState({ isWindowSmall: window.innerWidth < this.SmallWindowSize }); });
+        window.addEventListener('orientationchange', () => { this.setState({ isWindowSmall: window.innerWidth < this.SmallWindowSize }); });
 
 
         this.state = ({ hints: false, isWindowSmall: window.innerWidth < this.SmallWindowSize });
