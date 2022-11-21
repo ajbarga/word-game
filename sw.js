@@ -3,8 +3,8 @@ var APP_PREFIX = 'wordle_';
 var VERSION = 'version_001';
 var URLS = [
     `${GHPATH}/`,
-    `${GHPATH}/public/index.html`,
-    `${GHPATH}/public/wordle-icon.png`,
+    `${GHPATH}/index.html`,
+    `${GHPATH}/game_icon.png`,
     `${GHPATH}/src/*.*`,
     `${GHPATH}/src/*/*.*`,
 ];
