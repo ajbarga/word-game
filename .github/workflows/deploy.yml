@@ -9,30 +9,36 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          token: ${{secrets.GITHUB_TOKEN}}
           
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm i 
-
-      - name: Build project
-        run: npm run build
+      - name: Setup Build repo
+        run: |
+          cd ..
+          mkdir deploy
+          cd deploy
+          git clone https://ajbarga:${{ secrets.MY_PAT }}@github.com/ajbarga/word-game
+          cd word-game
+           
+      - name: Create Build
+        run: |
+          npm i 
+          npm run build
 
       - name: Setup clone repo
         run: |
-          cd ..
-          mkdir dist
-          cd word-game
-          echo "made dir"
-          mv -f ./dist/*.* ../dist
+          cd ../../word-game
           git branch
-          git checkout --force gh-pages
-          ls
           git checkout -b deploy-branch
-          mv -f ../gh-pages/*.* .
+          mv -f ../deploy/word-game/dist/*.* .
+          git branch
+          ls
           git add -f .
           git commit -m "Deploy Build"
           git push -f -u origin deploy-branch
