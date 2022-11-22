@@ -22,12 +22,11 @@ jobs:
           mkdir deploy
           mv -f ./dist/** ./deploy
           cd deploy
-          git clone https://ajbarga:${{ secrets.MY_PAT }}@github.com/ajbarga/word-game.git
+          git clone https://${{secrets.MY_PAT}}@github.com/ajbarga/word-game.git
           cd word-game
           git checkout --force gh-pages
           git checkout -b deploy-branch
           mv -f ../../dist .
-          ls -R
           git add -f .
           git commit -m "Deploy Build"
           git push -f -u origin deploy-branch
