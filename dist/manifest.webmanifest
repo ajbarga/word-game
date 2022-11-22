@@ -1,0 +1,17 @@
+{
+	"background_color": "thistle",
+	"description": "Word Game designed and coded by ajbarga",
+	"display": "fullscreen",
+	"icons": [
+		{
+			"src": "./game_icon.png",
+			"sizes": "248x248",
+			"type": "image/png"
+		}
+	],
+	"name": "Word Game",
+	"short_name": "Word-App",
+	"start_url": "/word-game/",
+	"scope": "/word-game/",
+	"theme_color": "#313131"
+}
