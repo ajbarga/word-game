@@ -24,6 +24,7 @@ jobs:
 
       - name: Initialize Repo for GH Pages PR
         run: |
+          rm -f ./dist/.nojekyll
           git clone https://${{ secrets.MY_PAT }}@github.com/ajbarga/word-game.git
           cd word-game
           git config --global user.email actions@no-reply.github.com
@@ -38,6 +39,7 @@ jobs:
 
       - name: Create PR for Build
         run: |
+          gh repo clone ajbarga/word-game
           gh pr create --base gh-pages --title "Deploy Build by \#${{ github.actor }}" --body "Created automatically by merge to main"
       # - name: Create pull request
       #   uses: devops-infra/action-pull-request@master
