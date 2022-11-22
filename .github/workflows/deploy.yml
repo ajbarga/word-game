@@ -20,9 +20,13 @@ jobs:
 
       - name: Setup Build repo
         run: |
+          ls 
+          ls -R
           cd ..
+          ls
           mkdir deploy
           cd ./deploy
+          ls
           git clone https://ajbarga:${{ secrets.MY_PAT }}@github.com/ajbarga/word-game.git
           cd ./word-game
           git checkout --force main
