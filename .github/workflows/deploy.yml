@@ -39,7 +39,6 @@ jobs:
 
       - name: Create PR for Build
         run: |
-          gh repo clone ajbarga/word-game
           gh pr create --base gh-pages --title "Deploy Build by \#${{ github.actor }}" --body "Created automatically by merge to main"
       # - name: Create pull request
       #   uses: devops-infra/action-pull-request@master
