@@ -4,7 +4,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  deploy:
     name: Build
     if: ${{ contains(github.event.head_commit.message, '#D') }}
     runs-on: ubuntu-latest
@@ -58,3 +58,31 @@ jobs:
             --head ${{ env.BRANCH }} \
             --title "${{ github.event.head_commit.message }}" \
             --body "Created automatically by merge to main for ${{ github.actor }}."
+
+  merge:
+    needs: deploy
+    if: ${{ contains(github.event.head_commit.message, '#M') }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pygithub
+
+    - name: Check and Merge PR
+      run: |
+        from github import Github
+
+        g = Github('${{ secrets.MY_PAT }}')
+        r = g.get_repo('ajbarga/word-game')
+        prs = [pr.number for pr in r.get_pulls()]
+        prs.sort(reverse=True)
+        pr = prs[0]
+        pr.create_review(event="APPROVE")
+        r.merge(pr.head.ref, pr.base.ref, f"Merge branch {pr.base.ref} into {pr.head.ref}")
+      shell: python
