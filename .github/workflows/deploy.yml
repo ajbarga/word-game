@@ -1,4 +1,4 @@
-name: Build Site for Deployment
+name: Build Site to Deploy
 on:
   push:
     branches: [ main ]
