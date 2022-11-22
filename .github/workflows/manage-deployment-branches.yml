@@ -24,9 +24,7 @@ jobs:
           g = GH(f'${{ secrets.MY_PAT }}')
           r = g.get_repo('ajbarga/word-game')
           for pr in r.get_pulls():
-
-            print(f'{pr.title}: {pr.base.ref}, head = {pr.head.ref}')
-            if pr.base == 'gh-pages' and 'deploy' in pr.head.ref:
-              pr.edit(status="closed")
-              print(r.get_branch(f'{pr.head}').name)
+            if pr.base.ref == 'gh-pages' and 'deploy' in pr.head.ref:
+              pr.edit(status='closed')
+              r.get_git_ref(f'heads/{pr.head.ref}').delete()
         shell: python
