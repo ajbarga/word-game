@@ -23,17 +23,15 @@ jobs:
         with:
           node-version: 18
 
-      - name: Setup NPM
-        run: |
-          npm i
-          set -e
+      - name: Install dependencies
+        run: npm i 
 
-      - name: Build
+      - name: Build project
         run: npm run build
 
       - name: Commit build
         run: |
-          git checkout -B deploy
-          git add -f ./dist
-          git commit -m 'Deploy Build'
+          git checkout -b Deploy
+          git add ./dist
+          git commit -m "Deploy Build"
           git push -f -u origin deploy-branch

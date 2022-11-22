@@ -1,4 +1,4 @@
-# [Play My Word Game!](https://ajbarga.github.io/word-game)
+# [Play My (very original) Word Game!](https://ajbarga.github.io/word-game)
 
 ## Gameplay
 ![](gameplay_images/LightModeComputer.png?raw=true "Light_Mode_Computer")
