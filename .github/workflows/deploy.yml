@@ -35,6 +35,8 @@ jobs:
 
       - name: Initialize Repo for GH Pages PR
         run: |
+          mkdir deploy
+          cd deploy
           git clone https://${{ secrets.MY_PAT }}@github.com/${{ env.REPO }}.git
           cd word-game
 
@@ -43,7 +45,7 @@ jobs:
           git checkout --force ${{ env.BASE }}
           git checkout -b ${{ env.BRANCH }}
           rm -rf ./assets
-          mv -f ../dist/* .
+          mv -f ../../dist/* .
 
       - name: Push Build to GitHub
         run: |
