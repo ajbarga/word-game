@@ -1,7 +1,7 @@
 name: Build Site for Deployment
 on:
   push:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   build:
