@@ -24,7 +24,7 @@ jobs:
       - name: Configure Git
         run: |
           git config --global user.email actions@no-reply.github.com
-          git config --global user.name ${{ github.actor }}
+          git config --global user.name github-actions
 
       - name: Build Site
         run: |
@@ -45,7 +45,7 @@ jobs:
 
       - name: Create PR for Build
         run: |
-          gh pr create --repo ${{ env.REPO }} --base ${{ env.BASE }} --head ${{ env.BRANCH }} --title "Deploy Build by \#${{ github.actor }}" --body "Created automatically by merge to main"
+          gh pr create --repo ${{ env.REPO }} --base ${{ env.BASE }} --head ${{ env.BRANCH }} --title "Deploy Build #${{ github.run_id }}" --body "Created automatically by merge to main"
       # - name: Create pull request
       #   uses: devops-infra/action-pull-request@master
       #   id: pr
