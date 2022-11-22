@@ -21,9 +21,9 @@ jobs:
         with:
           node-version: 18
 
-      - name: Configure Git
-        run: |
-          git config --global user.name ${{ github.actor }}
+      # - name: Configure Git
+      #   run: |
+      #     git config --global user.name ${{ github.actor }}
 
       - name: Build Site
         run: |
@@ -32,7 +32,6 @@ jobs:
 
       - name: Initialize Repo for GH Pages PR
         run: |
-          gh auth login
           gh repo clone ${{ env.REPO }}
           cd word-game
           git checkout --force ${{ env.BASE }}
