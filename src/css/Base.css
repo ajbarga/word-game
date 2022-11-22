@@ -147,3 +147,15 @@ input.headerButton:hover.dm {
     color: #ff6982;
     transform: scale3d(0.96, 0.96, 1)
 }
+
+input.key.R0 {
+    width: 10%;
+}
+
+input.key.R1 {
+    width: 11.11%
+}
+
+input.key.R2 {
+    width: 10%
+}

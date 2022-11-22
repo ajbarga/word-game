@@ -126,20 +126,6 @@
         vertical-align: top;
     }
 
-    input.key.R0 {
-        width: 10%;
-        color: #FFC0CB;
-        background-color: #313131
-    }
-
-    input.key.R1 {
-        width: 11.11%
-    }
-
-    input.key.R2 {
-        width: 10%
-    }
-
     input.key.DL {
         width: 15%;
         background-image: url("../assets/backspace-icon.png");
