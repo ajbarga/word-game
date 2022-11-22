@@ -31,7 +31,7 @@ jobs:
 
       - name: Commit build
         run: |
-          git checkout -b Deploy
+          git checkout -b deploy-branch
           git add -f ./dist
           git commit -m "Deploy Build"
           git push -f -u origin deploy-branch
