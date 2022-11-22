@@ -41,6 +41,7 @@ jobs:
           cd word-game
           git checkout --force ${{ env.BASE }}
           git checkout -b ${{ env.BRANCH }}
+          rm -rf ./assets
           mv -f ../../dist/* .
           git add -f .
           git commit -m "Deploy Build to GH Pages"
@@ -49,4 +50,4 @@ jobs:
 
       - name: Create PR for Build
         run: |
-          gh pr create --repo ${{ env.REPO }} --reviewer ajbarga --base ${{ env.BASE }} --head ${{ env.BRANCH }} --title "Deploy Build: ${{ github.event.head_commit.message }}" --body "Created automatically by merge to main"
+          gh pr create --repo ${{ env.REPO }} --reviewer ajbarga --base ${{ env.BASE }} --head ${{ env.BRANCH }} --title "Build: ${{ github.event.head_commit.message }}" --body "Created automatically by merge to main"
