@@ -24,6 +24,8 @@ jobs:
           cd deploy
           git clone https://${{secrets.MY_PAT}}@github.com/ajbarga/word-game.git
           cd word-game
+          git config --global user.email ajbarga@no-reply.github.com
+          git config --global user.name ajbarga
           git checkout --force gh-pages
           git checkout -b deploy-branch
           mv -f ../../dist .
