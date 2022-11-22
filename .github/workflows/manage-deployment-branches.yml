@@ -1,5 +1,12 @@
 name: Manage Deploy PRs
 on:
+  workflow_dispatch:
+    inputs:
+      PR_STR:
+        description: Glob pattern to use for detecting PRs to close
+        type: string
+        required: true
+        default: deploy
   schedule:
   - cron:  '0 20 * * *'
 
@@ -14,15 +21,25 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pygithub
+          
+      - name: Configure Workflow
+        id: variables
+        run: |
+          if [[ "${{ github.actor }}" == "ajbarga" || "${{ github.event_name }}" == "schedule" ]];
+          then
+            echo "token=${{ secrets.MY_PAT }}" >> $GITHUB_OUTPUT
+          fi
+          GLOB=${{ github.event.inputs.PR_STR }}
+          echo "glob=${GLOB:-"deploy"}" >> $GITHUB_OUTPUT
 
       - name: Manage Deploy PRs
         run: |
           from github import Github as GH
 
-          g = GH(f'${{ secrets.MY_PAT }}')
+          g = GH('${{ steps.variables.outputs.token }}')
           r = g.get_repo('ajbarga/word-game')
           for pr in r.get_pulls():
-            if pr.base.ref == 'gh-pages' and 'deploy' in pr.head.ref:
+            if pr.base.ref == 'gh-pages' and '${{ steps.variables.outputs.glob }}' in pr.head.ref:
               pr.edit(state='closed')
               r.get_git_ref(f'heads/{pr.head.ref}').delete()
         shell: python
