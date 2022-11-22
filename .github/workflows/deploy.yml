@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      REPO: ajbarga/word-game
+      HEAD: gh-pages
+      BRANCH: deploy-${{ github.run_id }}
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -17,29 +21,31 @@ jobs:
         with:
           node-version: 18
 
-      - name: Build
+      - name: Configure Git
+        run: |
+          git config --global user.email actions@no-reply.github.com
+          git config --global user.name actions-bot
+
+      - name: Build Site
         run: |
           npm i
           npm run build
 
       - name: Initialize Repo for GH Pages PR
         run: |
-          rm -f ./dist/.nojekyll
-          git clone https://${{ secrets.MY_PAT }}@github.com/ajbarga/word-game.git
+          gh repo clone ${{ env.REPO }}
           cd word-game
-          git config --global user.email actions@no-reply.github.com
-          git config --global user.name actions-bot
-          git checkout --force gh-pages
-          git checkout -b deploy-${{ github.run_id }}
+          git checkout --force ${{ env.BASE }}
+          git checkout -b ${{ env.BRANCH }}
           mv -f ../dist/*.* .
           git add -f .
           git commit -m "Deploy Build to GH Pages"
-          git push -f -u origin deploy-${{ github.run_id }}
+          git push -f -u origin ${{ env.BRANCH }}
           
 
       - name: Create PR for Build
         run: |
-          gh pr create --base gh-pages --title "Deploy Build by \#${{ github.actor }}" --body "Created automatically by merge to main"
+          gh pr create --repo ${{ env.REPO }} --base ${{ env.BASE }} --head ${{ env.BRANCH }} --title "Deploy Build by \#${{ github.actor }}" --body "Created automatically by merge to main"
       # - name: Create pull request
       #   uses: devops-infra/action-pull-request@master
       #   id: pr
