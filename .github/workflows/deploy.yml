@@ -24,7 +24,7 @@ jobs:
       - name: Configure Git
         run: |
           git config --global user.email actions@no-reply.github.com
-          git config --global user.name "${{ github.actor }}""
+          git config --global user.name "${{ github.actor }}"
 
       - name: Build Site
         run: |
