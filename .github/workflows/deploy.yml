@@ -7,7 +7,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout Repo
         uses: actions/checkout@v3
           
       - name: Setup Node
@@ -15,31 +15,37 @@ jobs:
         with:
           node-version: 18
 
-      - name: Setup Build repo
+      - name: Build
         run: |
           npm i
           npm run build
-          mkdir deploy
-          cd deploy
-          git clone https://${{secrets.MY_PAT}}@github.com/ajbarga/word-game.git
+
+      - name: Initialize Repo for GH Pages PR
+        run: |
+          git clone https://${{ secrets.MY_PAT }}@github.com/ajbarga/word-game.git
           cd word-game
-          git config --global user.email ajbarga@no-reply.github.com
-          git config --global user.name ajbarga
+          git config --global user.email actions@no-reply.github.com
+          git config --global user.name actions-bot
           git checkout --force gh-pages
-          git checkout -b deploy-branch
-          mv -f ../../dist/*.* .
+          git checkout -b deploy-${{ GITHUB_RUN_ID }}
+          mv -f ../dist/*.* .
           git add -f .
-          git commit -m "Deploy Build"
-          git push -f -u origin deploy-branch
+          git commit -m "Deploy Build to GH Pages"
+          git push -f -u origin deploy-${{ GITHUB_RUN_ID }}
           
-      - name: Create pull request
-        uses: devops-infra/action-pull-request@master
-        id: pr
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          source_branch: deploy-branch
-          target_branch: gh-pages
-          allow_no_diff: true
-          label: deploy-pr
-          title: "Deploy Site"
-          reviewer: ajbarga
+
+      - name: Create PR for Build
+        run: |
+          gh auth login --with-token < ${{ secrets.GITHUB_TOKEN }}
+          gh pr create --base gh-pages --label deploy-build --title "Deploy Build by \#${{ GITHUB_ACTOR }}" --body "Created automatically on merge to main"
+      # - name: Create pull request
+      #   uses: devops-infra/action-pull-request@master
+      #   id: pr
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     source_branch: deploy-branch
+      #     target_branch: gh-pages
+      #     allow_no_diff: true
+      #     label: deploy-pr
+      #     title: "Deploy Site"
+      #     reviewer: ajbarga
