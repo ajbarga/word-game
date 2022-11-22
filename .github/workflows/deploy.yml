@@ -39,9 +39,6 @@ jobs:
           cd deploy
           git clone https://${{ secrets.MY_PAT }}@github.com/${{ env.REPO }}.git
           cd word-game
-
-      - name: Setup Deploy Branch
-        run: |
           git checkout --force ${{ env.BASE }}
           git checkout -b ${{ env.BRANCH }}
           rm -rf ./assets
