@@ -33,7 +33,7 @@ jobs:
           npm i
           npm run build
 
-      - name: Initialize Repo for GH Pages PR
+      - name: Initialize Repo for PR
         run: |
           mkdir deploy
           cd deploy
