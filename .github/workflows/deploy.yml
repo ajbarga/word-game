@@ -23,12 +23,10 @@ jobs:
           cd ..
           mkdir deploy
           cd deploy
-          git clone https://ajbarga:${{ secrets.MY_PAT }}@github.com/ajbarga/word-game
+          git clone https://ajbarga:${{ secrets.MY_PAT }}@github.com/ajbarga/word-game.git
           cd word-game
-           
-      - name: Create Build
-        run: |
-          npm i 
+          git checkout --force main
+          npm i
           npm run build
 
       - name: Setup clone repo
