@@ -27,7 +27,7 @@ jobs:
           git config --global user.name ajbarga
           git checkout --force gh-pages
           git checkout -b deploy-branch
-          mv -f ../../dist/*.* /
+          mv -f ../../dist/*.* .
           git add -f .
           git commit -m "Deploy Build"
           git push -f -u origin deploy-branch
