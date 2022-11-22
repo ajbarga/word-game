@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: gh-pages
           token: ${{secrets.GITHUB_TOKEN}}
@@ -28,11 +28,16 @@ jobs:
           git checkout --force main
           npm i
           npm run build
+          ls
 
       - name: Setup clone repo
         run: |
-          cd ../../word-game
-          git branch
+          cd ../..
+          ls
+          cd word-game
+          ls
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git checkout -b deploy-branch
           mv -f ../deploy/word-game/dist/*.* .
           git branch
