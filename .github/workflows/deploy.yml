@@ -83,6 +83,7 @@ jobs:
         prs = [pr.number for pr in r.get_pulls()]
         prs.sort(reverse=True)
         pr = prs[0]
+        
         pr.create_review(event="APPROVE")
         r.merge(pr.head.ref, pr.base.ref, f"Merge branch {pr.base.ref} into {pr.head.ref}")
       shell: python
