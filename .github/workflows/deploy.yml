@@ -20,32 +20,26 @@ jobs:
 
       - name: Setup Build repo
         run: |
-          ls 
-          ls -R
           cd ../..
-          ls
           mkdir deploy
-          cd ./deploy
           ls
+          cd deploy
           git clone https://ajbarga:${{ secrets.MY_PAT }}@github.com/ajbarga/word-game.git
           cd ./word-game
-          git checkout --force main
           npm i
           npm run build
-          ls
 
       - name: Setup clone repo
         run: |
           cd ../..
-          ls -R
+          echo "HERE"
+          ls
           cd ./word-game
-          ls -R
           git config user.name github-actions
           git config user.email github-actions@github.com
           git checkout -b deploy-branch
           mv -f ../deploy/word-game/dist/*.* .
           git branch
-          ls
           git add -f .
           git commit -m "Deploy Build"
           git push -f -u origin deploy-branch
