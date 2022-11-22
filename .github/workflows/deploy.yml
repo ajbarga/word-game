@@ -43,7 +43,7 @@ jobs:
           git checkout -b ${{ env.BRANCH }}
           rm -rf ./assets
           rm -rf index.html
-          mv -f ../../dist/ .
+          mv -f ../../dist/* .
           git add -f .
           git commit -m "Deploy Build to GH Pages"
           git push -f -u origin ${{ env.BRANCH }}
