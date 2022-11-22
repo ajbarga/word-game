@@ -1,7 +1,7 @@
 name: Manage Deploy PRs
 on:
   schedule:
-  - cron:  '0 2 * * *'
+  - cron:  '0 20 * * *'
 
 jobs:
   build:
