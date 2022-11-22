@@ -35,12 +35,14 @@ jobs:
 
       - name: Initialize Repo for GH Pages PR
         run: |
+          mkdir deploy
+          cd deploy
           git clone https://${{ secrets.MY_PAT }}@github.com/${{ env.REPO }}.git
           cd word-game
           git checkout --force ${{ env.BASE }}
           git checkout -b ${{ env.BRANCH }}
-          rm -rf ./assets/ 
-          mv -f ../dist/*.* .
+          rm -v !(".nojekyll")
+          mv -f ../../dist/*.* .
           git add -f .
           git commit -m "Deploy Build to GH Pages"
           git push -f -u origin ${{ env.BRANCH }}
