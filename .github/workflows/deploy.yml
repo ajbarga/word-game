@@ -6,6 +6,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -36,7 +38,6 @@ jobs:
 
       - name: Create PR for Build
         run: |
-          gh auth login --with-token ${{ secrets.GITHUB_TOKEN }}
           gh pr create --base gh-pages --label deploy-build --title "Deploy Build by \#${{ env.GITHUB_ACTOR }}" --body "Created automatically by merge to main"
       # - name: Create pull request
       #   uses: devops-infra/action-pull-request@master
