@@ -39,7 +39,7 @@ jobs:
           g = GH('${{ steps.variables.outputs.token }}')
           r = g.get_repo('ajbarga/word-game')
           for pr in r.get_pulls():
-            if pr.base.ref == 'gh-pages' and '${{ steps.variables.outputs.glob }}' in pr.head.ref:
+            if pr.base.ref == 'gh-pages' and '${{ steps.variables.outputs.glob }}' in pr.title:
               pr.edit(state='closed')
               r.get_git_ref(f'heads/{pr.head.ref}').delete()
         shell: python
