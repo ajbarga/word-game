@@ -23,7 +23,10 @@ jobs:
 
       - name: Setup clone repo
         run: |
-          mkdir ../gh-pages
+          cd ..
+          mkdir gh-pages
+          cd word-game
+          echo "made dir"
           mv -f ./dist ../gh-pages
           git checkout gh-pages
           ls
