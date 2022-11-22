@@ -9,7 +9,6 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - name: Set up Python
         uses: actions/setup-python@v4
 
@@ -22,7 +21,7 @@ jobs:
         run: |
           from github import Github as GH
 
-          g = GH(${{ secrets.MY_PAT }})
+          g = GH(f'${{ secrets.MY_PAT }}')
           r = g.get_repo('ajbarga/word-game')
           for pr in r.get_pulls():
 
