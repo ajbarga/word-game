@@ -26,7 +26,7 @@ jobs:
           cd word-game
           git checkout --force gh-pages
           git checkout -b deploy-branch
-          mv -f ../../dist/*.* .
+          mv -f ../../dist .
           ls -R
           git add -f .
           git commit -m "Deploy Build"
