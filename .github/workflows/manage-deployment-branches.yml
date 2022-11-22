@@ -2,7 +2,7 @@ name: Manage Deploy PRs
 on:
   workflow_dispatch:
   schedule:
-  - cron:  '0 20 * * *'
+  - cron:  '0 2 * * *'
 
 jobs:
   build:
@@ -21,7 +21,7 @@ jobs:
         run: |
           from github import Github as GH
 
-          g = GH('${{ ssecrets.MY_PAT }}')
+          g = GH('${{ secrets.MY_PAT }}')
           r = g.get_repo('ajbarga/word-game')
           for pr in r.get_pulls():
             if pr.base.ref == 'gh-pages' and '#D' in pr.title:
