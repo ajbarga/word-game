@@ -20,7 +20,6 @@ jobs:
           npm i
           npm run build
           mkdir deploy
-          mv -f ./dist/** ./deploy
           cd deploy
           git clone https://${{secrets.MY_PAT}}@github.com/ajbarga/word-game.git
           cd word-game
@@ -28,7 +27,7 @@ jobs:
           git config --global user.name ajbarga
           git checkout --force gh-pages
           git checkout -b deploy-branch
-          mv -f ../../dist .
+          mv -f ../../dist/*.* /
           git add -f .
           git commit -m "Deploy Build"
           git push -f -u origin deploy-branch
