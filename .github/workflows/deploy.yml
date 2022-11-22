@@ -39,6 +39,7 @@ jobs:
           cd word-game
           git checkout --force ${{ env.BASE }}
           git checkout -b ${{ env.BRANCH }}
+          rm -rf ./assets/ 
           mv -f ../dist/*.* .
           git add -f .
           git commit -m "Deploy Build to GH Pages"
