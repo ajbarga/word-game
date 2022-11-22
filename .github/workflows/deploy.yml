@@ -15,8 +15,8 @@ jobs:
 
       - name: Configure GitHub
         run: |
-          git config --local user.email "ajbarga@users.noreply.github.com" 
-          git config --local user.name "ajbarga"
+          git config --local user.email "action@github.com" 
+          git config --local user.name "GitHub Action"
           
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -31,7 +31,18 @@ jobs:
 
       - name: Commit build
         run: |
-          git checkout -b deploy-branch
+          git checkout -b deploy-branch gh-pages
           git add -f ./dist
           git commit -m "Deploy Build"
           git push -f -u origin deploy-branch
+            
+      - name: Create pull request
+        uses: devops-infra/action-pull-request@master
+        id: pr
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: deploy-branch
+          target_branch: gh-pages
+          label: deploy-pr
+          title: "Deploy Site"
+          reviewer: ajbarga
