@@ -33,7 +33,7 @@ jobs:
           npm i
           npm run build
 
-      - name: Initialize Repo for PR
+      - name: Create and Push Build to Branch
         run: |
           mkdir deploy
           cd deploy
@@ -42,10 +42,8 @@ jobs:
           git checkout --force ${{ env.BASE }}
           git checkout -b ${{ env.BRANCH }}
           rm -rf ./assets
+          rm -rf index.html
           mv -f ../../dist/* .
-
-      - name: Push Build to GitHub
-        run: |
           git add -f .
           git commit -m "Deploy Build to GH Pages"
           git push -f -u origin ${{ env.BRANCH }}
