@@ -1,12 +1,10 @@
 name: Manage Deploy PRs
 on:
-  push:
   schedule:
   - cron:  '0 2 * * *'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     steps:
       - name: Set up Python
