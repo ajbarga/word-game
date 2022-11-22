@@ -43,7 +43,7 @@ jobs:
           git checkout -b ${{ env.BRANCH }}
           rm -rf ./assets
           mv -f ../../dist/* .
-          ${{ github.event.head_commit.message }} >> commit-message.txt
+          "${{ github.event.head_commit.message }}" >> commit-message.txt
           git add -f .
           git commit -m "Deploy Build to GH Pages"
           git push -f -u origin ${{ env.BRANCH }}
