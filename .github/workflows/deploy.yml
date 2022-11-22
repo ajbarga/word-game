@@ -28,7 +28,8 @@ jobs:
           cd word-game
           echo "made dir"
           mv -f ./dist/*.* ../dist
-          git checkout gh-pages
+          git branch
+          git checkout --force gh-pages
           ls
           git checkout -b deploy-branch
           mv -f ../gh-pages/*.* .
