@@ -9,9 +9,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        with:
-          ref: gh-pages
-          token: ${{secrets.GITHUB_TOKEN}}
           
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -20,26 +17,17 @@ jobs:
 
       - name: Setup Build repo
         run: |
-          cd ../..
-          mkdir deploy
-          ls
-          cd deploy
-          git clone https://ajbarga:${{ secrets.MY_PAT }}@github.com/ajbarga/word-game.git
-          cd ./word-game
           npm i
           npm run build
-
-      - name: Setup clone repo
-        run: |
-          cd ../..
-          echo "HERE"
-          ls
-          cd ./word-game
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          mkdir deploy
+          mv -f ./dist/** ./deploy
+          cd deploy
+          git clone https://ajbarga:${{ secrets.MY_PAT }}@github.com/ajbarga/word-game.git
+          cd word-game
+          git checkout --force gh-pages
           git checkout -b deploy-branch
-          mv -f ../deploy/word-game/dist/*.* .
-          git branch
+          mv -f ../../dist/*.* .
+          ls -R
           git add -f .
           git commit -m "Deploy Build"
           git push -f -u origin deploy-branch
