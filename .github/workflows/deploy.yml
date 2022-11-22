@@ -41,7 +41,7 @@ jobs:
           cd word-game
           git checkout --force ${{ env.BASE }}
           git checkout -b ${{ env.BRANCH }}
-          rmdir -rf ./assets
+          rmdir -f ./assets
           rm -rf index.html
           mv -f ../../dist/*.* ./
           git add -f .
