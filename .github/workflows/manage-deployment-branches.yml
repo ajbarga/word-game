@@ -1,10 +1,12 @@
 name: Manage Deploy PRs
 on:
+  workflow_dispatch:
   schedule:
-  - cron:  '0 2 * * *'
+  - cron:  '0 20 * * *'
 
 jobs:
   build:
+    if: ${{ github.actor == 'ajbarga' || github.event_name == 'schedule' }}
     runs-on: ubuntu-latest
     steps:
       - name: Set up Python
@@ -19,10 +21,10 @@ jobs:
         run: |
           from github import Github as GH
 
-          g = GH(f'${{ secrets.MY_PAT }}')
+          g = GH('${{ ssecrets.MY_PAT }}')
           r = g.get_repo('ajbarga/word-game')
           for pr in r.get_pulls():
-            if pr.base.ref == 'gh-pages' and 'deploy' in pr.head.ref:
+            if pr.base.ref == 'gh-pages' and '#D' in pr.title:
               pr.edit(state='closed')
               r.get_git_ref(f'heads/{pr.head.ref}').delete()
         shell: python
