@@ -21,48 +21,28 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v2
-        with:
-          name: production-files
-          path: ./dist
-
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-    - name: Checkout repo
-      uses: actions/checkout@v2
-      with:
-        ref: gh-pages
-        token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Update files
-      run: rm -rf ./dist
-      
-    - name: Download artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: production-files
-        path: ./dist
-
-    - name: Commit build
-      run: |
-        git checkout -b deploy-branch
-        git add -f ./dist
-        git commit -m "Deploy Build"
-        git push -f -u origin deploy-branch
+      - name: Setup clone repo
+        run: |
+          cd ..
+          mkdir gh-pages
+          cd gh-pages
+          git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/ajbarga/word-game.git
+          cd word-game
+          git checkout gh-pages
+          git checkout -b deploy-branch
+          mv -f ../../word-game/dist/*.* .
+          git add -f .
+          git commit -m "Deploy Build"
+          git push -f -u origin deploy-branch
           
-    - name: Create pull request
-      uses: devops-infra/action-pull-request@master
-      id: pr
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        source_branch: deploy-branch
-        target_branch: gh-pages
-        allow_no_diff: true
-        label: deploy-pr
-        title: "Deploy Site"
-        reviewer: ajbarga
+      - name: Create pull request
+        uses: devops-infra/action-pull-request@master
+        id: pr
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: deploy-branch
+          target_branch: gh-pages
+          allow_no_diff: true
+          label: deploy-pr
+          title: "Deploy Site"
+          reviewer: ajbarga
