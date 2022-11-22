@@ -6,7 +6,7 @@ on:
 jobs:
   build:
     name: Build
-    if: ${{ contains(github.event.head_commit.message, 'deploy') }}
+    if: ${{ contains(github.event.head_commit.message, '#D') }}
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -49,4 +49,4 @@ jobs:
 
       - name: Create PR for Build
         run: |
-          gh pr create --repo ${{ env.REPO }} --reviewer ajbarga --base ${{ env.BASE }} --head ${{ env.BRANCH }} --title "Deploy Build #${{ github.run_id }}" --body "Created automatically by merge to main"
+          gh pr create --repo ${{ env.REPO }} --reviewer ajbarga --base ${{ env.BASE }} --head ${{ env.BRANCH }} --title "${{ github.event.head_commit.message }}" --body "Created automatically by merge to main for ${{ $github.actor }}"
