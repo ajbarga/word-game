@@ -50,4 +50,4 @@ jobs:
 
       - name: Create PR for Build
         run: |
-          gh pr create --repo ${{ env.REPO }} --reviewer ajbarga --base ${{ env.BASE }} --head ${{ env.BRANCH }} --title "${{ github.event.head_commit.message }}" --body "Created automatically by merge to main for ${{ $github.actor }}."
+          gh pr create --repo ${{ env.REPO }} --reviewer ajbarga --base ${{ env.BASE }} --head ${{ env.BRANCH }} --title "${{ github.event.head_commit.message }}" --body "Created automatically by merge to main for ${{ github.actor }}."
