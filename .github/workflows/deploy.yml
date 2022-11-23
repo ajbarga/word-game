@@ -85,5 +85,5 @@ jobs:
         pr = [p for p in r.get_pulls() if p.number == prs[0]][0]
 
         pr.create_review(event="APPROVE")
-        r.merge(base=pr.base.ref, head=pr.head.ref commit_message=f"Merge branch {pr.head.ref} into {pr.base.ref}")
+        r.merge(base=pr.base.ref, head=pr.head.ref, commit_message=f"Merge branch {pr.head.ref} into {pr.base.ref}")
       shell: python
