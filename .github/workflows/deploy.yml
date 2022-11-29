@@ -81,7 +81,7 @@ jobs:
         g = Github('${{ secrets.MY_PAT }}')
         r = g.get_repo('ajbarga/word-game')
 
-        pr_list = r.get_pulls()
+        pr_list = [p for p in r.get_pulls()]
         pr_list.sort(key=lambda p: p.number, reverse=True)
         
         pr_current = pr_list[0]
