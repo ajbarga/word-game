@@ -80,20 +80,22 @@ jobs:
 
         g = Github('${{ secrets.MY_PAT }}')
         r = g.get_repo('ajbarga/word-game')
-
         pr_list = [p for p in r.get_pulls(state='open')] + [p for p in r.get_pulls(state='closed') if p.merged == True]
         pr_list.sort(key=lambda p: p.number, reverse=True)
-        
-        pr_current = pr_list[0]
-        merged_pr = [p for p in pr_list if p.state == 'closed][0]
-        commits = r.compare(base=merged_pr.head.ref, head=pr_current.head.ref).commits
+
+        pr = pr_list[0]
+        merged_pr = [p for p in pr_list if p.state == 'closed'][0]
+        dt = [c for c in r.get_commits(since=r.get_commit(merged_pr.merge_commit_sha).commit.author.date)]
+        dt.sort(key=lambda c: c.commit.author.date)
+
+        commits = r.compare(base=dt[0].sha, head=dt[-1].sha).commits
         commit_list = []
         count = 0
         newline = '\n'
         for c in commits:
-          message = '\n - '.join([f'{file.filename}: + {file.additions}, - {file.deletions}' for file in c.files])
-          commit_list.push(f'{count}: {c.commit.message}\n - {message}')
-          count += 1
+            message = '\n - '.join([f'{file.filename}: + {file.additions}, - {file.deletions}' for file in c.files])
+            commit_list.append(f'{count}: {c.commit.message} by {c.commit.author.name} @ {c.html_url}\n - {message}')
+            count += 1
 
         pr.edit(body=f"{pr.body}\n\n{newline.join(commit_list)}")
         pr.create_review(event="APPROVE")
