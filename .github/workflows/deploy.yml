@@ -81,12 +81,11 @@ jobs:
         g = Github('${{ secrets.MY_PAT }}')
         r = g.get_repo('ajbarga/word-game')
 
-        pr_list = [p for p in r.get_pulls(state='open') if p.number == ${{ github.event.pull_request.number }}] + \
-          [p for p in r.get_pulls(state='closed') if p.merged == True]
+        pr_list = [p for p in r.get_pulls(state='open')] + [p for p in r.get_pulls(state='closed') if p.merged == True]
         pr_list.sort(key=lambda p: p.number, reverse=True)
         
         pr_current = pr_list[0]
-        merged_pr = pr_list[1]
+        merged_pr = [p for p in pr_list if p.state == 'closed][0]
         commits = r.compare(base=merged_pr.head.ref, head=pr_current.head.ref).commits
         commit_list = []
         count = 0
