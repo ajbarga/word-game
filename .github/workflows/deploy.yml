@@ -91,7 +91,7 @@ jobs:
         commits = r.compare(base=dt[0].sha, head=dt[-1].sha).commits
         commit_list = []
         count = 0
-        newline = '\n'
+        newline = '\n\n'
         for c in commits:
             message = '\n - '.join([f'{file.filename}: + {file.additions}, - {file.deletions}' for file in c.files])
             commit_list.append(f'{count}: {c.commit.message} by {c.commit.author.name} @ {c.html_url}\n - {message}')
