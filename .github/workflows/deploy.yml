@@ -85,7 +85,7 @@ jobs:
         pr_list.sort(key=lambda p: p.number, reverse=True)
         
         pr_current = pr_list[0]
-        merged_pr = [p for p in pr_list if p.merged == True][0]
+        merged_pr = [p for p in pr_list if p.state == 'merged'][0]
         commits = r.compare(base=merged_pr.head.ref, head=pr_current.head.ref).commits
         commit_list = []
         count = 0
