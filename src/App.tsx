@@ -1,7 +1,7 @@
 // © 2022 Alex Barga. All rights reserved.
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
-import React, { Component, StrictMode } from 'react';
+import { Component, StrictMode } from 'react';
 import GameBox from './app-components/multi-game-module';
 import Keyboard from './app-components/keyboard';
 import HeaderButtons from './app-components/header-buttons';
