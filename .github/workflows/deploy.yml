@@ -94,7 +94,7 @@ jobs:
           commit_list.push(f'{count}: {c.commit.message}\n - {message}')
           count += 1
 
-        pr.edit(body=f'{pr.body}\n\n{'\n'.join(commit_list)}')
+        pr.edit(body=f"{pr.body}\n\n{'\n'.join(commit_list)}")
         pr.create_review(event="APPROVE")
       shell: python
       # r.merge(base=pr.base.ref, head=pr.head.ref, commit_message=f"Merge branch {pr.head.ref} into {pr.base.ref}")
