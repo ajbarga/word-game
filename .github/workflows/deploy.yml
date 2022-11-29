@@ -12,7 +12,7 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       REPO: ajbarga/word-game
       BASE: gh-pages
-      BRANCH: deploy${{ github.run_id }}
+      BRANCH: deploy/${{ github.run_id }}
 
     steps:
       - name: Checkout Repo
@@ -89,12 +89,13 @@ jobs:
         commits = r.compare(base=merged_pr.head.ref, head=pr_current.head.ref).commits
         commit_list = []
         count = 0
+        NL = '\n'
         for c in commits:
           message = '\n - '.join([f'{file.filename}: + {file.additions}, - {file.deletions}' for file in c.files])
           commit_list.push(f'{count}: {c.commit.message}\n - {message}')
           count += 1
 
-        pr.edit(body=f"{pr.body}\n\n{'\n'.join(commit_list)}")
+        pr.edit(body=f"{pr.body}\n\n{NL.join(commit_list)}")
         pr.create_review(event="APPROVE")
       shell: python
       # r.merge(base=pr.base.ref, head=pr.head.ref, commit_message=f"Merge branch {pr.head.ref} into {pr.base.ref}")
