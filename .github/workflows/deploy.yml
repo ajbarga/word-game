@@ -82,10 +82,11 @@ jobs:
         r = g.get_repo('ajbarga/word-game')
         prs = [pr.number for pr in r.get_pulls()]
         prs.sort(reverse=True)
-        pr = [p for p in r.get_pulls() if p.number == prs[0]][0]
+        pr_list = [p for p in r.get_pulls() if p.number == prs[0]]
+        pr = pr_list[0]
 
         message = '\n - '.join([f'{file.filename}: + {file.additions}, - {file.deletions}' for file in pr.get_files()])
-        pr.edit(body=f'{pr.body}\n{message}')
+        pr.edit(body=f'{pr.body}\n - {message}')
 
         pr.create_review(event="APPROVE")
       shell: python
