@@ -7,7 +7,10 @@ class SuggestionBox
 {
     //#region Non-Public Properties
 
-    private _possibleWords: string[];
+    private _possibleWords: string[] = [];
+
+    private readonly CHARS: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    private readonly RESPONSE: number[] = [-1, -1, -1, -1, -1]
 
     //#endregion
 
@@ -18,52 +21,56 @@ class SuggestionBox
         for (let k = this._possibleWords.length - 1; k > -1; k--)
         {
             let word: string = this._possibleWords[k];
-            if (word !== undefined)
+            if (word !== undefined && this.IsWordWrong(word, guess, colors))
             {
-                let containedChars: string = '';
-                let isDeleted: boolean = false;
-
-                for (let i = 0; i < 5; i++) 
-                {
-                    let char: number = guess.charCodeAt(i);
-                    let wChar: number = word.charCodeAt(i);
-
-                    if (colors[i] === 0)
-                    {
-                        containedChars += guess[i];
-                        if (wChar === char || word.indexOf(guess[i]) === -1) 
-                        {
-                            isDeleted = true;
-                            break;
-                        }
-                    }
-                    else if (colors[i] === 1)
-                    {
-                        containedChars += guess[i];
-                        if (wChar !== char) 
-                        {
-                            isDeleted = true;
-                            break;
-                        }
-                    }
-                }
-                if (!isDeleted)
-                {
-                    for (let i = 0; i < 5; i++)
-                    {
-                        if (word.indexOf(guess[i]) !== -1 && containedChars.indexOf(guess[i]) === -1)
-                        {
-                            isDeleted = true;
-                            break;
-                        }
-                    }
-                }
-                if (isDeleted)
-                {
-                    delete this._possibleWords[k];
-                }
+                delete this._possibleWords[k]
             }
         }
+    }
+
+    public IsWordWrong(word: string, guess: string, colors: number[]): boolean
+    {
+        let charAt = [...this.CHARS];
+        for (let i = 0; i < 5; i++) 
+        {
+            charAt[word.charCodeAt(i) - 65]++;
+        }
+
+        let response = [...this.RESPONSE];
+        if (word === guess)
+        {
+            return true;
+        }
+        for (let i = 0; i < 5; i++) 
+        {
+            if (word[i] === guess[i]) 
+            {
+                if(colors[i] !== 1)
+                {
+                    return true;
+                }
+                response[i] = 1;
+                charAt[word.charCodeAt(i) - 65]--;
+            }
+            else if(colors[i] === 1)
+            {
+                return true;
+            }
+        }
+        for (let i = 0; i < 5; i++)
+        {
+            let ch = guess.charCodeAt(i);
+            if (charAt[ch - 65] > 0 && guess[i] !== word[i] && response[i] === -1)
+            {
+                response[i] = 0;
+                charAt[ch - 65]--;
+            }
+            if(response[i] !== colors[i])
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     //#endregion
@@ -72,32 +79,28 @@ class SuggestionBox
 
     public constructor()
     {
-        this._possibleWords = [];
         this.reset();
     }
 
     public makeGuess (guess: string, colors: number[]): string[]
     {
-        let suggestedWords: string[] = [];
         this.analyzeGuess(guess, colors);
-        let count: number = 0;
-        while (count < this._possibleWords.length && suggestedWords.length < 3)
-        {
 
-            let word: string = this._possibleWords[count];
-            if (word !== undefined)
+        let suggestedWords: string[] = [];
+        for (let i = 0; i < this._possibleWords.length && suggestedWords.length < 3; i++)
+        {
+            if (this._possibleWords[i] !== undefined)
             {
-                suggestedWords.push(this._possibleWords[count]);
+                suggestedWords.push(this._possibleWords[i]);
             }
-            count++;
         }
         return suggestedWords;
     }
 
-    public reset (): void
+    public reset ()
     {
-        this._possibleWords = [...realText];
-        this._possibleWords = this._possibleWords.sort(() => Math.random() - 0.5);
+        // Prevents suggestions from getting boring
+        this._possibleWords = [...realText].sort(() => Math.random() - 0.5);
     }
 
     //#endregion

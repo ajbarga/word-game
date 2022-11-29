@@ -134,7 +134,7 @@
 
     input.key.DL {
         width: 15%;
-        background-image: url("../assets/backspace-icon.png");
+        background-image: url("../resources/backspace-icon.png");
         background-repeat: no-repeat;
         background-position: center;
         color: transparent;

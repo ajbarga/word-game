@@ -43,7 +43,7 @@ class WordDriver
 
     public makeGuess (word: string): number[]
     {
-        let response: number[] = [0, 0, 0, 0, 0];
+        let response: number[] = [-1, -1, -1, -1, -1];
         let charAt: number[] = [...this._charInv];
 
         if (word === this._answer)
@@ -61,15 +61,14 @@ class WordDriver
                     response[i] = 1;
                     charAt[ch - 65]--;
                 }
-                else if (charAt[ch - 65] > 0 && (charAt[ch - 65] > 1 ||
-                    word[this._answer.indexOf(word[i])] !== word[i]))
+            }
+            for (let i = 0; i < 5; i++)
+            {
+                let ch = word.charCodeAt(i);
+                if (charAt[ch - 65] > 0 && this._answer[i] !== word[i] && response[i] === -1)
                 {
                     response[i] = 0;
                     charAt[ch - 65]--;
-                }
-                else
-                {
-                    response[i] = -1;
                 }
             }
             return response;
