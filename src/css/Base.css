@@ -241,7 +241,6 @@ input.key.DL {
 
 input#answerBox.key {
     width: 100%;
-    font-size: 90%;
     background-color: #262626;
     border-color: #000000;
     font-stretch: condensed;
@@ -252,6 +251,8 @@ input#answerBox.key {
     border-radius: 2px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 input.headerButton {

@@ -50,6 +50,10 @@
         font-weight: bolder
     }
 
+    input#answerBox.key {
+        font-size: 100%;
+    }
+
     /*#endregion*/
 
     /*#region Media Queries*/

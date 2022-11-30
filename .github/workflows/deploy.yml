@@ -94,11 +94,13 @@ jobs:
         count = 0
         newline = '\n\n'
         for c in commits:
-            message = '\n - '.join([f'{file.filename}: + {file.additions}, - {file.deletions}' for file in c.files])
-            commit_list.append(f'{count}: {c.commit.message} by {c.commit.author.name} @ {c.html_url}\n - {message}')
-            count += 1
+          message = '\n - '.join([f'{file.filename}: + {file.additions}, - {file.deletions}' for file in c.files])
+          commit_list.append(f'{count}: {c.commit.message} by {c.commit.author.name} @ {c.html_url}\n - {message}')
+          count += 1
 
         pr.edit(body=f"{pr.body}\n\n{newline.join(commit_list)}")
         pr.create_review(event="APPROVE")
+        if '#M' in pr.title:
+          r.merge(base=pr.base.ref, head=pr.head.ref, commit_message=f"Merge branch {pr.head.ref} into {pr.base.ref}")
       shell: python
       # r.merge(base=pr.base.ref, head=pr.head.ref, commit_message=f"Merge branch {pr.head.ref} into {pr.base.ref}")
