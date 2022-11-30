@@ -8,7 +8,7 @@ import HeaderButtons from './app-components/header-buttons';
 import GameBoxManager from './GameBoxManager';
 
 import './css/Base.css'; //Universal
-import './css/App.css'; //Desktop
+import './css/Desktop.css'; //Desktop
 import './css/MobileBrowser.css'; //Phone
 
 interface WordGameProps
