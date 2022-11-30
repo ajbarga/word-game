@@ -4,9 +4,9 @@ on:
     branches: [ main ]
 
 jobs:
-  deploy:
-    name: Build
-    if: ${{ contains(github.event.head_commit.message, '#D') }}
+  build:
+    name: Build Site
+    if: ${{ contains(github.event.head_commit.message, '#B') }}
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -59,9 +59,10 @@ jobs:
             --title "${{ github.event.head_commit.message }}" \
             --body "Created automatically by merge to main for ${{ github.actor }}."
 
-  merge:
-    needs: deploy
-    if: ${{ contains(github.event.head_commit.message, '#M') }}
+  approve-pr:
+    needs: build
+    name: Approve PR
+    if: ${{ contains(github.event.head_commit.message, '#A') }}
     runs-on: ubuntu-latest
     steps:
     - name: Set up Python
@@ -74,7 +75,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pygithub
 
-    - name: Check and Merge PR
+    - name: Approve PR
       run: |
         from github import Github
 
