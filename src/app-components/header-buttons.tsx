@@ -49,7 +49,7 @@ class HeaderButtons extends Component<HeaderButtonProps, HeaderButton>
 
     //#region HTML Element
 
-    render ()
+    public render ()
     {
         return (
             <div className={'container buttons headerBox'}>

@@ -17,7 +17,7 @@ class SingleGame extends Component<SingleGameProps>
 {
     //#region Html Element
 
-    render ()
+    public render ()
     {
         return (
             <div className={'row'}>

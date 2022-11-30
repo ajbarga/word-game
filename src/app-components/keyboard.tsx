@@ -75,7 +75,7 @@ class Keyboard extends Component<KeyProps>
 
     //region Html Element
 
-    render ()
+    public render ()
     {
         return (
             <div className={'container keyContainer'}>

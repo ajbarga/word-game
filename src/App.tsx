@@ -23,7 +23,7 @@ interface WordGameProps
 }
 // Where 0: Desktop, 1: Mobile
 const ratio = window.innerHeight / window.innerWidth;
-const deviceType: number = ratio < 1.8 && ratio > 1/1.8  ? 0 : 1;
+const deviceType: number = ratio < 1.8 && ratio > 1 / 1.8 ? 0 : 1;
 const title: string = deviceType === 0 ? 'Worde Desktop' : 'Wordle App';
 
 class WordGameApp extends Component<{}, WordGameProps>
@@ -98,7 +98,7 @@ class WordGameApp extends Component<{}, WordGameProps>
 
     //#region Html Element
 
-    render ()
+    public render ()
     {
         return (
             <StrictMode>

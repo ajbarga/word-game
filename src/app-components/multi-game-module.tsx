@@ -17,7 +17,7 @@ class GameBox extends Component<GameBoxProps>
 {
     //#region Html Element
 
-    render ()
+    public render ()
     {
         return (
             <div id={'gameBox'}>

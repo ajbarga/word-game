@@ -9,73 +9,6 @@
         padding-bottom: 28vh;
     }
 
-    div.container.headerBox {
-        left: 50%;
-        transform: translateX(-50%);
-        min-width: 250px;
-        width: 100%;
-        max-width: 1000px;
-        position: fixed;
-    }
-
-    div.container.buttons.headerBox {
-        top: 49px
-    }
-
-    div#input.container {
-        background-color: #262626;
-        position: fixed;
-        bottom: 25vh;
-        height: 54px;
-        max-width: 300px;
-        min-width: 250px;
-        width: 50%;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 125%;
-    }
-
-    p,
-    div.letter {
-        border: 2px solid black;
-        margin: 0;
-        font-family: "American Typewriter", serif;
-        height: 5.5vh;
-        min-height: 44px;
-        max-height: 52px;
-        font-size: 230%;
-        display: inline-block
-    }
-
-    p.titleBox {
-        font-family: "Times New Roman", serif;
-        font-size: 230%;
-        display: block;
-        width: 100%
-    }
-
-    div.letter.word {
-        border: 1px dashed rgb(255, 151, 169);
-        height: 100%;
-        color: pink;
-        text-transform: uppercase
-    }
-
-    input#answerBox.key {
-        width: 100%;
-        font-size: 90%;
-        background-color: #262626;
-        border-color: #000000;
-        font-stretch: condensed;
-        height: 5.5vh;
-        min-height: 44px;
-        max-height: 52px;
-        text-indent: 0px;
-        border-radius: 2px;
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-    }
-
     @media screen and (min-height: 700px) {
         div.container.keyContainer {
             height: 185px
@@ -106,65 +39,15 @@
         transform: translateX(-50%);
     }
 
-    input {
-        background-color: #313131;
-        display: inline-block;
-        color: #FFC0CB;
-        font-family: "American Typewriter", serif;
-        font-size: larger;
-        text-align: center;
-        text-transform: uppercase;
-        outline: none;
-        height: 100%;
-        border-radius: 0.33em;
-        -webkit-border-radius: 0.33em;
-        -moz-border-radius: 0.33em;
-    }
-
     input.key {
         font-size: 100%;
         vertical-align: top;
-    }
-
-    input.key.DL {
-        width: 15%;
-        background-image: url("../resources/backspace-icon.png");
-        background-repeat: no-repeat;
-        background-position: center;
-        color: transparent;
     }
 
     input.key.EN {
         width: 15%;
         font-size: 95%;
         font-weight: bolder
-    }
-
-    input.headerButton {
-        margin: unset;
-        background-color: unset;
-        display: inline-block;
-        color: #000000;
-        text-transform: unset;
-        border-radius: 2px;
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        border-width: 2px;
-        font-size: 130%;
-        font-family: "Times New Roman", serif;
-        width: 33.33%;
-        height: 38px;
-        min-width: fit-content;
-        border-color: #000000;
-        background-color: rgb(225, 225, 225)
-    }
-
-    div.container.wordContainer {
-        height: calc(5.5vh + 6px);
-        min-height: 50px;
-        max-height: 58px;
-        min-width: 180px;
-        width: 250px;
     }
 
     /*#endregion*/
