@@ -15,7 +15,7 @@ class GameDriver
 
     //#region Public Interface
 
-    guess (word: string): number[][] 
+    public guess (word: string): number[][] 
     {
         let responses: number[][] = [[], [], [], []];
         for (let i = 0; i < 4; i++) 
@@ -25,13 +25,18 @@ class GameDriver
         return responses;
     }
 
-    analyze (i: number, word: string, colors: number[]): string
+    public get_answer (i: number): string
+    {
+        return this._wordDrivers[i].getAnswer();
+    }
+
+    public analyze (i: number, word: string, colors: number[]): string
     {
         let response: string[] = this._suggestionBoxes[i].makeGuess(word, colors);
         return response.toString().replaceAll(',', ', ');
     }
 
-    reset (): void 
+    public reset (): void 
     {
         for (let i = 0; i < 4; i++) 
         {

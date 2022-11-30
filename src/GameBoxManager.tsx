@@ -46,7 +46,7 @@ class GameBoxManager
                     {
                         this._boxColors[i][j] = [1, 1, 1, 1, 1];
                         this._suggestedWords[i] = ':)\tNice Job\t<3';
-                        this._guessCount[i] = 9;
+                        this._guessCount[i] = 10;
                     }
                     else
                     {
@@ -54,6 +54,11 @@ class GameBoxManager
                         this._suggestedWords[i] = this._game.analyze(i, guess, response[i]);
                         this._guessCount[i]++;
                     }
+                }
+                else if (j === 9)
+                {
+                    this._suggestedWords[i] = "ANSWER: " + this._game.get_answer(i);
+                    this._guessCount[i]++;
                 }
             }
             return true;

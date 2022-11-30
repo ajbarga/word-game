@@ -18,30 +18,7 @@ class WordDriver
 
     //#region Non-Public Interface
 
-    private pickWord (): string
-    {
-        return realText[Math.floor(Math.random() * realText.length)];
-    }
-
-    private isGuessable (word: string): boolean
-    {
-        return text.includes(word);
-    }
-
-    //#endregion
-
-    //#region Public Interface
-
-    public constructor()
-    {
-        this._charInv = [];
-        this._answerC = [];
-        this._answer = '';
-
-        this.reset();
-    }
-
-    public makeGuess (word: string): number[]
+    private makeGuessHelper (word: string): number[]
     {
         let response: number[] = [-1, -1, -1, -1, -1];
         let charAt: number[] = [...this._charInv];
@@ -74,6 +51,39 @@ class WordDriver
             return response;
         }
         return [];
+    }
+
+    private pickWord (): string
+    {
+        return realText[Math.floor(Math.random() * realText.length)];
+    }
+
+    private isGuessable (word: string): boolean
+    {
+        return text.includes(word);
+    }
+
+    //#endregion
+
+    //#region Public Interface
+
+    public constructor()
+    {
+        this._charInv = [];
+        this._answerC = [];
+        this._answer = '';
+
+        this.reset();
+    }
+
+    public getAnswer (): string
+    {
+        return this._answer;
+    }
+
+    public makeGuess (word: string): number[]
+    {
+        return this.makeGuessHelper(word);
     }
 
     public reset ()
