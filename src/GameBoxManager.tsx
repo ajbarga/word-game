@@ -55,9 +55,9 @@ class GameBoxManager
                         this._guessCount[i]++;
                     }
                 }
-                else if (j === 9)
+                if (this._guessCount[i] === 9)
                 {
-                    this._suggestedWords[i] = "ANSWER: " + this._game.get_answer(i);
+                    this._suggestedWords[i] = "Answer: " + this._game.get_answer(i);
                     this._guessCount[i]++;
                 }
             }
