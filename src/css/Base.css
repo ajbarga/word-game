@@ -251,8 +251,7 @@ input#answerBox.key {
     border-radius: 2px;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
-    overflow-x: auto;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 input.headerButton {

@@ -30,7 +30,7 @@ jobs:
 
       - name: Build Site
         run: |
-          npm i
+          npm ci
           npm run build
 
       - name: Create and Push Build to Branch
@@ -57,7 +57,7 @@ jobs:
             --base ${{ env.BASE }} \
             --head ${{ env.BRANCH }} \
             --title "${{ github.event.head_commit.message }}" \
-            --body "Created automatically by merge to main for ${{ github.actor }}."
+            --body "Created automatically by merge to main for @${{ github.actor }}."
 
   approve-pr:
     needs: build
@@ -95,7 +95,7 @@ jobs:
         newline = '\n\n'
         for c in commits:
           message = '\n - '.join([f'{file.filename}: + {file.additions}, - {file.deletions}' for file in c.files])
-          commit_list.append(f'{count}: {c.commit.message} by {c.commit.author.name} @ {c.html_url}\n - {message}')
+          commit_list.append(f'{count}: {c.commit.message} @{c.commit.author.name} {c.html_url}\n - {message}')
           count += 1
 
         pr.edit(body=f"{pr.body}\n\n{newline.join(commit_list)}")
