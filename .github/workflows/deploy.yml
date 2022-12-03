@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      REPO: ajbarga/word-game
+      REPO: ${{ github.repository }}
       BASE: gh-pages
-      BRANCH: deploy/${{ github.run_id }}
+      BRANCH: deploy/run${{ github.run_id }}
 
     steps:
       - name: Checkout Repo
@@ -80,7 +80,7 @@ jobs:
         from github import Github
 
         g = Github('${{ secrets.MY_PAT }}')
-        r = g.get_repo('ajbarga/word-game')
+        r = g.get_repo('${{ github.repository }}')
         pr_list = [p for p in r.get_pulls(state='open')] + [p for p in r.get_pulls(state='closed') if p.merged == True]
         pr_list.sort(key=lambda p: p.number, reverse=True)
 
@@ -103,4 +103,3 @@ jobs:
         if '#M' in pr.title:
           r.merge(base=pr.base.ref, head=pr.head.ref, commit_message=f"Merge branch {pr.head.ref} into {pr.base.ref}")
       shell: python
-      # r.merge(base=pr.base.ref, head=pr.head.ref, commit_message=f"Merge branch {pr.head.ref} into {pr.base.ref}")
