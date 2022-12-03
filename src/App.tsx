@@ -1,4 +1,4 @@
-// © 2022 Alex Barga. All rights reserved.
+// © 2022 Alex Barga. All rights reserved. 
 // Reproduction or transmission in whole or in part, in any form or by any means, electronic,
 // mechanical or otherwise, is prohibited without the prior  written consent of the owner.
 import { Component, StrictMode } from 'react';
