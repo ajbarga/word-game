@@ -61,6 +61,7 @@ jobs:
 
     - name: Push changes
       run: |
+        ls
         git commit --force -m "Added AutoSync Files from ${{ env.TEMPLATE }} AB#${{ env.WORK_ITEM }}"
         # Push changes to remote repository
         git push --force origin ${{ env.BRANCH }}
