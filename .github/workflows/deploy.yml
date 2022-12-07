@@ -13,4 +13,4 @@ jobs:
       uses: ajbarga/deploy-gh-pages@main
       with:
         token: ${{ secrets.MY_PAT }}
-        title: "Deploy PR for commit [https://github.com/${{ github.repository }}/tree/${{ github.sha }}]"
+        prTitle: "Deploy PR for commit [https://github.com/${{ github.repository }}/tree/${{ github.sha }}]"
