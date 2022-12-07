@@ -23,7 +23,8 @@ jobs:
         git_base="https://${{ env.GITHUB_TOKEN }}@github.com/${{ env.ORG }}"
 
         # Clone sync-ing repository
-        git clone ${git_base}/${{ env.DEST }}.git
+        # git clone ${git_base}/${{ env.DEST }}.git
+        gh repo clone ajbarga/test-repo
         
         # Checkout branch
         cd ${{ env.DEST }}
