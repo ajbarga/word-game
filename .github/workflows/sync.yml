@@ -9,6 +9,9 @@ jobs:
     steps:
     - name: Copy files
       run: |
+        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "${{ github.actor }}@no-reply.github.com"
+        
         src_repo="https://github.com/ajbarga/release-management.git"
         dest_repo="https://github.com/ajbarga/test-repo.git"
 
