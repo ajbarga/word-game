@@ -6,11 +6,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.MY_PAT }}
     steps:
     - name: Build and Deploy Main Branch
       uses: ajbarga/deploy-gh-pages@main
       with:
-        token: ${{ secrets.MY_PAT }}
-        prTitle: "Deploy PR for commit [https://github.com/${{ github.repository }}/tree/${{ github.sha }}]"
+        token: ${{ secrets.GITHUB_TOKEN }}
+        prTitle: "Deploy PR for commit"
+        commit: "https://github.com/${{ github.repository }}/tree/${{ github.sha }}"
