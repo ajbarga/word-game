@@ -70,7 +70,7 @@ jobs:
           --head ${{ env.BRANCH }} \
           --title "${{ env.PR_TITLE }}" \
           --body "AutoSync PR created for @${{ github.actor }}." || \
-        gh pr edit
+        gh pr edit \
           --reviewer ajbarga \
           --title "${{ env.PR_TITLE }}" \
           --body "AutoSync PR created for @${{ github.actor }}."
