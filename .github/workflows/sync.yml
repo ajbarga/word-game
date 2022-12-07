@@ -5,37 +5,50 @@ jobs:
   copy_files:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.MY_PAT }}
+      TOKEN: ${{ secrets.MY_PAT }}
+      TEMPLATE: release-management
+      DEST: test-repo
+      ORG: ajbarga
+      BRANCH: autosync
     steps:
     - name: Copy files
       run: |
         git config --global user.name "${{ github.actor }}"
         git config --global user.email "${{ github.actor }}@no-reply.github.com"
         
-        src_repo="ajbarga/release-management"
-        dest_repo="ajbarga/test-repo"
+        git_base="https://${{ env.TOKEN }}@github.com/${{ env.ORG }}"
+        
+        src_repo="${git_base}/${TEMPLATE}.git"
+        dest_repo="${git_base}/${DEST}.git"
 
         # Set list of files to copy
         files_to_copy=('.github/workflows/release.yml')
 
-        # Clone repositories
-        gh repo clone $dest_repo
-        git repo clone $src_repo
+        # Clone dest repository
+        git clone $dest_repo
+        
+        # Checkout branch
+        cd ${{ env.DEST }}
+        git checkout --force -b ${{ env.BRANCH }}
+        cd ..
+        
+        # Clone src repo
+        git clone $src_repo
 
         # Enter cloned repository
-        cd release-management
+        cd ${{ env.TEMPLATE }}
 
         # Copy specified files
         for file in "${files_to_copy[@]}"
         do
-        cp $file ../test-repo/$file
+        cp $file ../${{ env.DEST }}/$file
         done
 
         # Navigate back to parent directory
         cd ..
 
         # Enter cloned repository
-        cd test-repo
+        cd ${{ env.DEST }}
 
         # Add copied files to repository
         for file in "${files_to_copy[@]}"
@@ -47,4 +60,4 @@ jobs:
         git commit -m "Added specified files from source repository"
 
         # Push changes to remote repository
-        git push --force origin master
+        git push --force origin main
