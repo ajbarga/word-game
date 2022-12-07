@@ -23,8 +23,7 @@ jobs:
         git_base="https://${{ env.GITHUB_TOKEN }}@github.com/${{ env.ORG }}"
 
         # Clone sync-ing repository
-        # git clone ${git_base}/${{ env.DEST }}.git
-        gh repo clone ajbarga/test-repo
+        git clone ${git_base}/${{ env.DEST }}.git
         
         # Checkout branch
         cd ${{ env.DEST }}
@@ -66,12 +65,14 @@ jobs:
     - name: Create / Edit PR for Build
       run: |
         gh pr create \
+          --repo ${{ env.ORG }}/${{ env.DEST }} \
           --reviewer ajbarga \
           --base main \
           --head ${{ env.BRANCH }} \
           --title "${{ env.PR_TITLE }}" \
           --body "AutoSync PR created for @${{ github.actor }}." || \
-        gh pr edit \
+        gh pr edit ${{ env.BRANCH }} \
+          --repo ${{ env.ORG }}/${{ env.DEST }} \
           --reviewer ajbarga \
           --title "${{ env.PR_TITLE }}" \
           --body "AutoSync PR created for @${{ github.actor }}."
