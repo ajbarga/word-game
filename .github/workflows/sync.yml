@@ -26,6 +26,8 @@ jobs:
         cd ${{ env.DEST }}
         git checkout --force -b ${{ env.BRANCH }}
         
+        cd ..
+        
         # Clone src repo
         git clone ${git_base}/${{ env.TEMPLATE }}.git
         
