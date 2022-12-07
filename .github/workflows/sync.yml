@@ -55,7 +55,7 @@ jobs:
         # Add copied files to repository
         for file in "${files_to_copy[@]}"
         do
-        git add $file --force
+        git add $file 
         done
 
         git commit --force -m "Added AutoSync Files from ${{ env.TEMPLATE }} AB#${{ env.WORK_ITEM }}"
