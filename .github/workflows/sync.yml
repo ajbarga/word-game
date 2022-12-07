@@ -67,9 +67,10 @@ jobs:
       run: |
         gh pr create \
           --repo ${{ env.ORG }}/${{ env.DEST }} \
-          --head ${{ env.BRANCH }}
+          --head ${{ env.BRANCH }} \
           --title "${{ env.PR_TITLE }}" \
-          --body "AutoSync PR created for @${{ github.actor }}." || \
+          --body "AutoSync PR created for @${{ github.actor }}." \
+        || \
         gh pr edit ${{ env.BRANCH }} \
           --repo ${{ env.ORG }}/${{ env.DEST }} \
           --title "${{ env.PR_TITLE }}" \
