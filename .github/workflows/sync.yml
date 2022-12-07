@@ -13,7 +13,7 @@ jobs:
       WORK_ITEM: 123abc
       COMMIT: "Docs: AutoSync Files from"
       PR_TITLE: "Patch: Complete first autosync"
-      FILES: "'.github/workflows/release.yml', 'README.md'"
+      FILES: ".github/workflows/release.yml, README.md"
     steps:
     - name: Copy files
       run: |
