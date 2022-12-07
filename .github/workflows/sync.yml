@@ -56,12 +56,11 @@ jobs:
         # Add copied files to repository
         for file in "${files_to_copy[@]}"
         do
-        git add $file
+        git add $file --force
         done
 
     - name: Push changes
       run: |
-        git commit -m "Added AutoSync Files from ${{ env.TEMPLATE }} AB#${{ env.WORK_ITEM }}"
-
+        git commit --force -m "Added AutoSync Files from ${{ env.TEMPLATE }} AB#${{ env.WORK_ITEM }}"
         # Push changes to remote repository
         git push --force origin ${{ env.BRANCH }}
