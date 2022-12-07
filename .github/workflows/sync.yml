@@ -13,7 +13,7 @@ jobs:
         dest_repo="https://github.com/ajbarga/test-repo.git"
 
         # Set list of files to copy
-        files_to_copy=('.github/workflows/release.yml")
+        files_to_copy=('.github/workflows/release.yml')
 
         # Clone repositories
         git clone $dest_repo
