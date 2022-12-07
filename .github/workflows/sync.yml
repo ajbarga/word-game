@@ -13,7 +13,7 @@ jobs:
       WORK_ITEM: 123abc
       COMMIT: "Docs: AutoSync Files from"
       PR_TITLE: "Patch: Complete first autosync"
-      FILES: ".github/workflows/release.yml, README.md"
+      
     steps:
     - name: Copy files
       run: |
@@ -37,7 +37,7 @@ jobs:
     - name: Get ${{ env.TEMPLATE }} files
       run: |
         # Set list of files to copy
-        files_to_copy=(${{ env.FILES }})
+        files_to_copy=('.github/workflows/release.yml', 'README.md')
         
         # Enter cloned repository
         cd ${{ env.TEMPLATE }}
