@@ -73,6 +73,5 @@ jobs:
           --body "AutoSync PR created for @${{ github.actor }}." || \
         gh pr edit ${{ env.BRANCH }} \
           --repo ${{ env.ORG }}/${{ env.DEST }} \
-          --reviewer ajbarga \
           --title "${{ env.PR_TITLE }}" \
           --body "AutoSync PR created for @${{ github.actor }}."
