@@ -12,15 +12,15 @@ jobs:
         git config --global user.name "${{ github.actor }}"
         git config --global user.email "${{ github.actor }}@no-reply.github.com"
         
-        src_repo="https://github.com/ajbarga/release-management.git"
-        dest_repo="https://github.com/ajbarga/test-repo.git"
+        src_repo="ajbarga/release-management"
+        dest_repo="ajbarga/test-repo"
 
         # Set list of files to copy
         files_to_copy=('.github/workflows/release.yml')
 
         # Clone repositories
-        git clone $dest_repo
-        git clone $src_repo
+        gh repo clone $dest_repo
+        git repo clone $src_repo
 
         # Enter cloned repository
         cd release-management
