@@ -13,7 +13,7 @@ jobs:
       BRANCH: automatic-sync
       WORK_ITEM: 123abc
       COMMIT: "Docs: AutoSync Files from"
-      PR_TITLE: "Patch: Complete first autosync"
+      PR_TITLE: "Patch: Update autosync"
       FILES: "'.github/workflows/release.yml' 'README.md' 'Dockerfile'"
     steps:
     - name: Copy files
