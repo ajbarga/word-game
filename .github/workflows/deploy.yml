@@ -12,4 +12,4 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         prTitle: "Deploy PR for commit"
-        commit: "https://github.com/${{ github.repository }}/tree/${{ github.sha }}"
+        commit: "https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
