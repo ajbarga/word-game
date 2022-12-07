@@ -18,12 +18,9 @@ jobs:
         git config --global user.email "${{ github.actor }}@no-reply.github.com"
         
         git_base="https://${{ env.TOKEN }}@github.com/${{ env.ORG }}"
-        
-        src_repo="${git_base}/${{ env.TEMPLATE }}.git"
-        dest_repo="${git_base}/${{ env.DEST }}.git"
 
-        # Clone dest repository
-        git clone $dest_repo
+        # Clone sync-ing repository
+        git clone ${git_base}/${{ env.DEST }}.git
         
         # Checkout branch
         cd ${{ env.DEST }}
@@ -31,7 +28,7 @@ jobs:
         cd ..
         
         # Clone src repo
-        git clone $src_repo
+        git clone ${git_base}/${{ env.TEMPLATE }}.git
         
     - name: Get ${{ env.TEMPLATE }} files
       run: |
@@ -47,11 +44,8 @@ jobs:
         cp $file ../${{ env.DEST }}/$file
         done
 
-        # Navigate back to parent directory
-        cd ..
-
-        # Enter cloned repository
-        cd ${{ env.DEST }}
+        # Navigate back to dest repo
+        cd ../${{ env.DEST }}
 
         # Add copied files to repository
         for file in "${files_to_copy[@]}"
