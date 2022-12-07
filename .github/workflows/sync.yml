@@ -9,6 +9,7 @@ jobs:
       TEMPLATE: release-management
       DEST: test-repo
       ORG: ajbarga
+      REVIEWER: ajbarga
       BRANCH: automatic-sync
       WORK_ITEM: 123abc
       COMMIT: "Docs: AutoSync Files from"
@@ -64,14 +65,11 @@ jobs:
     
     - name: Create / Edit PR for Build
       run: |
-        gh pr create \
+        gh pr create ${{ env.BRANCH }} \
           --repo ${{ env.ORG }}/${{ env.DEST }} \
-          --reviewer ajbarga \
-          --base main \
-          --head ${{ env.BRANCH }} \
           --title "${{ env.PR_TITLE }}" \
           --body "AutoSync PR created for @${{ github.actor }}." || \
         gh pr edit ${{ env.BRANCH }} \
           --repo ${{ env.ORG }}/${{ env.DEST }} \
           --title "${{ env.PR_TITLE }}" \
-          --body "AutoSync PR created for @${{ github.actor }}."
+          --body "Update (@${{ github.actor }}): ${{ env.PR_TITLE}}."
