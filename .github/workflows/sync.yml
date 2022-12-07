@@ -9,10 +9,11 @@ jobs:
       TEMPLATE: release-management
       DEST: test-repo
       ORG: ajbarga
-      BRANCH: autosync
+      BRANCH: automatic-sync
       WORK_ITEM: 123abc
       COMMIT: "Docs: AutoSync Files from"
       PR_TITLE: "Patch: Complete first autosync"
+      FILES: "'.github/workflows/release.yml', 'README.md'"
     steps:
     - name: Copy files
       run: |
@@ -36,7 +37,7 @@ jobs:
     - name: Get ${{ env.TEMPLATE }} files
       run: |
         # Set list of files to copy
-        files_to_copy=('.github/workflows/release.yml')
+        files_to_copy=(${{ env.FILES }})
         
         # Enter cloned repository
         cd ${{ env.TEMPLATE }}
@@ -61,12 +62,15 @@ jobs:
         # Push changes to remote repository
         git push -f -u origin ${{ env.BRANCH }}
     
-    - name: Create PR for Build
+    - name: Create / Edit PR for Build
       run: |
         gh pr create \
-          --repo ${{ env.ORG }}/${{ env.DEST }} \
           --reviewer ajbarga \
           --base main \
           --head ${{ env.BRANCH }} \
+          --title "${{ env.PR_TITLE }}" \
+          --body "AutoSync PR created for @${{ github.actor }}." || \
+        gh pr edit
+          --reviewer ajbarga \
           --title "${{ env.PR_TITLE }}" \
           --body "AutoSync PR created for @${{ github.actor }}."
