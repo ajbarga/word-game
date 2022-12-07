@@ -65,8 +65,9 @@ jobs:
     
     - name: Create / Edit PR for Build
       run: |
-        gh pr create ${{ env.BRANCH }} \
+        gh pr create \
           --repo ${{ env.ORG }}/${{ env.DEST }} \
+          --head ${{ env.BRANCH }}
           --title "${{ env.PR_TITLE }}" \
           --body "AutoSync PR created for @${{ github.actor }}." || \
         gh pr edit ${{ env.BRANCH }} \
