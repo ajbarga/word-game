@@ -10,6 +10,7 @@ jobs:
       DEST: test-repo
       ORG: ajbarga
       BRANCH: autosync
+      WORK_ITEM: 123abc
     steps:
     - name: Copy files
       run: |
@@ -32,6 +33,8 @@ jobs:
         git checkout --force -b ${{ env.BRANCH }}
         cd ..
         
+    - name: Get ${{ env.TEMPLATE }} files
+      run: |
         # Clone src repo
         git clone $src_repo
 
@@ -56,8 +59,9 @@ jobs:
         git add $file
         done
 
-        # Commit changes
-        git commit -m "Added specified files from source repository"
+    - name: Push changes
+      run: |
+        git commit -m "Added AutoSync Files from ${{ env.TEMPLATE }} AB#${{ env.WORK_ITEM }}"
 
         # Push changes to remote repository
-        git push --force origin main
+        git push --force origin ${{ env.BRANCH }}
