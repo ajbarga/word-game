@@ -25,7 +25,6 @@ jobs:
         # Checkout branch
         cd ${{ env.DEST }}
         git checkout --force -b ${{ env.BRANCH }}
-        cd ..
         
         # Clone src repo
         git clone ${git_base}/${{ env.TEMPLATE }}.git
@@ -37,6 +36,8 @@ jobs:
         
         # Enter cloned repository
         cd ${{ env.TEMPLATE }}
+        echo "template: "
+        ls
 
         # Copy specified files
         for file in "${files_to_copy[@]}"
@@ -46,6 +47,8 @@ jobs:
 
         # Navigate back to dest repo
         cd ../${{ env.DEST }}
+        echo "dest: "
+        ls
 
         # Add copied files to repository
         for file in "${files_to_copy[@]}"
@@ -53,9 +56,6 @@ jobs:
         git add $file --force
         done
 
-    - name: Push changes
-      run: |
-        ls
         git commit --force -m "Added AutoSync Files from ${{ env.TEMPLATE }} AB#${{ env.WORK_ITEM }}"
         # Push changes to remote repository
         git push --force origin ${{ env.BRANCH }}
