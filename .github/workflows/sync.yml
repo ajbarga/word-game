@@ -1,0 +1,47 @@
+on: 
+  push:
+
+jobs:
+  copy_files:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.MY_PAT }}
+    steps:
+    - name: Copy files
+      run: |
+        src_repo="https://github.com/ajbarga/release-management.git"
+        dest_repo="https://github.com/ajbarga/test-repo.git"
+
+        # Set list of files to copy
+        files_to_copy=('.github/workflows/release.yml")
+
+        # Clone repositories
+        git clone $dest_repo
+        git clone $src_repo
+
+        # Enter cloned repository
+        cd release-management
+
+        # Copy specified files
+        for file in "${files_to_copy[@]}"
+        do
+        cp $file ../test-repo/$file
+        done
+
+        # Navigate back to parent directory
+        cd ..
+
+        # Enter cloned repository
+        cd test-repo
+
+        # Add copied files to repository
+        for file in "${files_to_copy[@]}"
+        do
+        git add $file
+        done
+
+        # Commit changes
+        git commit -m "Added specified files from source repository"
+
+        # Push changes to remote repository
+        git push --force origin master
