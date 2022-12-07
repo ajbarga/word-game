@@ -2,7 +2,7 @@ on:
   push:
 
 jobs:
-  copy_files:
+  copy-files:
     runs-on: ubuntu-latest
     env:
       TOKEN: ${{ secrets.MY_PAT }}
@@ -19,8 +19,8 @@ jobs:
         
         git_base="https://${{ env.TOKEN }}@github.com/${{ env.ORG }}"
         
-        src_repo="${git_base}/${TEMPLATE}.git"
-        dest_repo="${git_base}/${DEST}.git"
+        src_repo="${git_base}/${{ env.TEMPLATE }}.git"
+        dest_repo="${git_base}/${{ env.DEST }}.git"
 
         # Clone dest repository
         git clone $dest_repo
