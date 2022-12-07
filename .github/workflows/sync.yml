@@ -22,9 +22,6 @@ jobs:
         src_repo="${git_base}/${TEMPLATE}.git"
         dest_repo="${git_base}/${DEST}.git"
 
-        # Set list of files to copy
-        files_to_copy=('.github/workflows/release.yml')
-
         # Clone dest repository
         git clone $dest_repo
         
@@ -33,11 +30,14 @@ jobs:
         git checkout --force -b ${{ env.BRANCH }}
         cd ..
         
-    - name: Get ${{ env.TEMPLATE }} files
-      run: |
         # Clone src repo
         git clone $src_repo
-
+        
+    - name: Get ${{ env.TEMPLATE }} files
+      run: |
+        # Set list of files to copy
+        files_to_copy=('.github/workflows/release.yml')
+        
         # Enter cloned repository
         cd ${{ env.TEMPLATE }}
 
