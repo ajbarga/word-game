@@ -1,0 +1,72 @@
+/* © 2022 Alex Barga. All rights reserved.
+ * Reproduction or transmission in whole or in part, in any form or by any means, electronic,
+ * mechanical or otherwise, is prohibited without the prior  written consent of the owner.*/
+@media screen and (max-width: 620px) {
+
+    /*#region App*/
+
+    div#gameBox {
+        padding-bottom: 28vh;
+    }
+
+    @media screen and (min-height: 700px) {
+        div.container.keyContainer {
+            height: 185px
+        }
+
+        div.gameBox {
+            padding-bottom: 185px;
+        }
+    }
+
+    /*#endregion*/
+
+    /*#region Keyboard*/
+
+    div.keyRow {
+        height: 28%;
+        vertical-align: top;
+    }
+
+    div.container.keyContainer {
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+        height: 28vh;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    input.key {
+        font-size: 100%;
+        vertical-align: top;
+    }
+
+    input.key.EN {
+        width: 15%;
+        font-size: 95%;
+        font-weight: bolder
+    }
+
+    input#answerBox.key {
+        font-size: 100%;
+    }
+
+    /*#endregion*/
+
+    /*#region Media Queries*/
+
+    @media screen and (max-width: 359px) {
+        div.container.wordContainer {
+            width: 100vw;
+        }
+    }
+
+    @media screen and (min-width: 360px) and (max-width: 620px) {
+        div.container.wordContainer {
+            width: 50vw;
+        }
+    }
+
+    /*#endregion*/
+}

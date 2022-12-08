@@ -1,0 +1,274 @@
+/* © 2022 Alex Barga. All rights reserved.
+ * Reproduction or transmission in whole or in part, in any form or by any means, electronic,
+ * mechanical or otherwise, is prohibited without the prior  written consent of the owner.*/
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0 auto;
+    align-content: center;
+    text-align: center;
+    background-color: #D8BFD8;
+}
+
+div {
+    margin: 0 auto;
+}
+
+div.letter {
+    width: 20%;
+    text-align: center;
+    vertical-align: top;
+    text-transform: uppercase;
+}
+
+div#appBox {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+div#gameBox {
+    padding-top: 92px;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+div.container.headerBox {
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 250px;
+    width: 100%;
+    max-width: 1000px;
+    position: fixed;
+}
+
+div.container.buttons.headerBox {
+    top: 49px
+}
+
+div.wordBox {
+    margin: 0 auto;
+}
+
+div.row {
+    display: inline-block;
+    flex-wrap: wrap;
+}
+
+div.container {
+    border: 3px solid rgb(255, 148, 71);
+    background-color: rgb(255, 148, 71);
+    min-width: -moz-fit-content;
+    min-width: fit-content;
+    min-width: -webkit-fit-content;
+}
+
+div.container.dm {
+    border: 3px solid #712b06;
+    background-color: #712b06;
+}
+
+div.container.headerBox {
+    background-color: rgb(255, 148, 71);
+}
+
+div.container.headerBox.dm {
+    background-color: #712b06
+}
+
+p#plain.titleBox {
+    background-color: rgb(225, 225, 225)
+}
+
+p#error.titleBox {
+    background-color: rgb(168, 14, 14)
+}
+
+p#plain.titleBox.dm {
+    background-color: #262626;
+    color: #FFC0CB
+}
+
+p#error.titleBox.dm {
+    background-color: #570909;
+    color: #000000
+}
+
+div.letter {
+    width: 20%;
+    text-align: center
+}
+
+div.boxColor-1.letter {
+    background-color: rgb(225, 225, 225)
+}
+
+div.boxColor-1.letter.dm {
+    background-color: #262626;
+    color: #FFC0CB
+}
+
+div.boxColor0.letter {
+    background-color: rgb(255, 199, 30)
+}
+
+div.boxColor0.letter.dm {
+    background-color: #FFA500;
+    color: #892d2d
+}
+
+div.boxColor1.letter {
+    background-color: rgb(99, 190, 93)
+}
+
+div.boxColor1.letter.dm {
+    background-color: #004500;
+    color: #FFFFFF
+}
+
+div.container.wordContainer {
+    height: calc(5.5vh + 6px);
+    min-height: 50px;
+    max-height: 58px;
+    min-width: 180px;
+    width: 250px;
+}
+
+div#input.container {
+    background-color: #262626;
+    position: fixed;
+    bottom: 25vh;
+    height: 54px;
+    max-width: 300px;
+    min-width: 250px;
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 125%;
+}
+
+p,
+div.letter {
+    border: 2px solid black;
+    margin: 0;
+    font-family: "American Typewriter", serif;
+    height: 5.5vh;
+    min-height: 44px;
+    max-height: 52px;
+    font-size: 230%;
+    display: inline-block
+}
+
+p.titleBox {
+    font-family: "Times New Roman", serif;
+    font-size: 230%;
+    display: block;
+    width: 100%
+}
+
+div.letter.word {
+    border: 1px dashed rgb(255, 151, 169);
+    height: 100%;
+    color: pink;
+}
+
+input {
+    background-color: #313131;
+    display: inline-block;
+    color: #FFC0CB;
+    font-family: "American Typewriter", serif;
+    font-size: larger;
+    text-align: center;
+    text-transform: uppercase;
+    outline: none;
+    height: 100%;
+    border-radius: 0.33em;
+    -webkit-border-radius: 0.33em;
+    -moz-border-radius: 0.33em;
+    overflow: hidden;
+    text-overflow: clip;
+    -ms-text-overflow: clip;
+}
+
+input::selection {
+    background-color: transparent
+}
+
+
+input.dm {
+    border-color: #1f1f1f
+}
+
+input.headerButton:hover {
+    background-color: rgb(203, 168, 202);
+    transform: scale3d(0.98, 0.96, 1)
+}
+
+input.headerButton.dm {
+    background-color: #313131;
+    color: #ffcfcf;
+    border-color: #000000
+}
+
+input.headerButton:hover.dm {
+    background-color: #761929;
+    color: #ff6982;
+    transform: scale3d(0.96, 0.96, 1)
+}
+
+input.key.R0 {
+    width: 10%;
+}
+
+input.key.R1 {
+    width: 11.11%
+}
+
+input.key.R2 {
+    width: 10%
+}
+
+input.key.DL {
+    width: 15%;
+    background-image: url("../resources/backspace-icon.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    color: transparent;
+}
+
+input#answerBox.key {
+    width: 100%;
+    background-color: #262626;
+    border-color: #000000;
+    font-stretch: condensed;
+    height: 5.5vh;
+    min-height: 44px;
+    max-height: 52px;
+    text-indent: 0px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    overflow: hidden;
+}
+
+input.headerButton {
+    margin: unset;
+    background-color: unset;
+    display: inline-block;
+    color: #000000;
+    text-transform: unset;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-width: 2px;
+    font-size: 130%;
+    font-family: "Times New Roman", serif;
+    width: 33.33%;
+    height: 38px;
+    min-width: fit-content;
+    border-color: #000000;
+    background-color: rgb(225, 225, 225)
+}
