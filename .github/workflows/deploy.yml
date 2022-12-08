@@ -1,4 +1,4 @@
-name: Deploy
+name: Build and Deploy Main Branch
 on:
   push:
     branches: [ main ]
@@ -10,6 +10,5 @@ jobs:
       contents: write
       pull-requests: write 
     steps:
-    - name: Build and Deploy Main Branch
-      uses: ajbarga/deploy-gh-pages@main
+    - uses: ajbarga/deploy-gh-pages@main
 
