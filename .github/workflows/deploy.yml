@@ -10,6 +10,4 @@ jobs:
     - name: Build and Deploy Main Branch
       uses: ajbarga/deploy-gh-pages@main
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        prTitle: "Deploy PR for commit"
-        commit: "https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
+        token: ${{ secrets.MY_PAT }}
