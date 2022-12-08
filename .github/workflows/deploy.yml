@@ -6,9 +6,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write 
     steps:
-    - uses: ajbarga/deploy-gh-pages@main
-
+    - name: Build and Create PR
+      uses: ajbarga/deploy-gh-pages@main
