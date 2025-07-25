@@ -85,7 +85,7 @@ class WordGameApp extends Component<{}, WordGameProps>
 
         let divs: NodeListOf<HTMLElement> = document.querySelectorAll('input,p,div,button');
         divs.forEach(i => isDarkMode ? i.classList.remove('dm') : i.classList.add('dm'));
-        document.body.style.backgroundColor = (isDarkMode ? 'thistle' : '#262626');
+        document.body.style.backgroundColor = (isDarkMode ? 'var(--bg-light)' : 'var(--bg-dark)');
         this.setState({ isDarkMode: !this.state.isDarkMode });
     }
 
