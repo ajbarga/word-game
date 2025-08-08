@@ -16,6 +16,7 @@
     --green-dark: #66bb6a;
     --input-light: #ffffff;
     --input-dark: #424242;
+    --font-family: 'Inter', system-ui, sans-serif;
 }
 
 * {
@@ -28,7 +29,7 @@ body {
     text-align: center;
     background-color: var(--bg-light);
     color: var(--text-light);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-family);
 }
 
 div {
@@ -83,6 +84,8 @@ div.container {
     min-width: -moz-fit-content;
     min-width: fit-content;
     min-width: -webkit-fit-content;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 div.container.dm {
@@ -177,7 +180,7 @@ p,
 div.letter {
     border: 2px solid black;
     margin: 0;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-family);
     height: 5.5vh;
     min-height: 44px;
     max-height: 52px;
@@ -186,7 +189,7 @@ div.letter {
 }
 
 p.titleBox {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-family);
     font-size: 230%;
     display: block;
     width: 100%
@@ -202,7 +205,7 @@ input {
     background-color: var(--neutral-dark);
     display: inline-block;
     color: var(--text-dark);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-family);
     font-size: larger;
     text-align: center;
     text-transform: uppercase;
@@ -283,15 +286,15 @@ input.headerButton {
     display: inline-block;
     color: var(--text-light);
     text-transform: unset;
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
+    border-radius: 4px;
     border-width: 2px;
     font-size: 130%;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-family);
     width: 33.33%;
     height: 38px;
     min-width: fit-content;
     border-color: var(--text-light);
     background-color: var(--neutral-light);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
