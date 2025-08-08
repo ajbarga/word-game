@@ -2,20 +2,20 @@
  * Reproduction or transmission in whole or in part, in any form or by any means, electronic,
  * mechanical or otherwise, is prohibited without the prior  written consent of the owner.*/
 :root {
-    --bg-light: #f8f8f8;
-    --bg-dark: #121212;
-    --primary: #1976d2;
-    --primary-dark: #0d47a1;
-    --text-light: #000000;
-    --text-dark: #ffffff;
-    --neutral-light: #e0e0e0;
-    --neutral-dark: #424242;
-    --yellow-light: #ffeb3b;
-    --yellow-dark: #ffd54f;
-    --green-light: #4caf50;
-    --green-dark: #66bb6a;
+    --bg-light: #f9fafb;
+    --bg-dark: #111827;
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --text-light: #111827;
+    --text-dark: #f9fafb;
+    --neutral-light: #e5e7eb;
+    --neutral-dark: #374151;
+    --yellow-light: #fcd34d;
+    --yellow-dark: #fbbf24;
+    --green-light: #10b981;
+    --green-dark: #059669;
     --input-light: #ffffff;
-    --input-dark: #424242;
+    --input-dark: #374151;
 }
 
 * {
@@ -28,7 +28,8 @@ body {
     text-align: center;
     background-color: var(--bg-light);
     color: var(--text-light);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 div {
@@ -83,6 +84,9 @@ div.container {
     min-width: -moz-fit-content;
     min-width: fit-content;
     min-width: -webkit-fit-content;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 div.container.dm {
@@ -177,7 +181,7 @@ p,
 div.letter {
     border: 2px solid black;
     margin: 0;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     height: 5.5vh;
     min-height: 44px;
     max-height: 52px;
@@ -186,8 +190,9 @@ div.letter {
 }
 
 p.titleBox {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 230%;
+    font-weight: 600;
     display: block;
     width: 100%
 }
@@ -202,7 +207,7 @@ input {
     background-color: var(--neutral-dark);
     display: inline-block;
     color: var(--text-dark);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: larger;
     text-align: center;
     text-transform: uppercase;
@@ -283,15 +288,14 @@ input.headerButton {
     display: inline-block;
     color: var(--text-light);
     text-transform: unset;
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
+    border-radius: 0.5rem;
     border-width: 2px;
     font-size: 130%;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     width: 33.33%;
     height: 38px;
     min-width: fit-content;
     border-color: var(--text-light);
     background-color: var(--neutral-light);
+    transition: background-color 0.2s, transform 0.2s;
 }
