@@ -14,10 +14,22 @@ class Keyboard extends Component<KeyProps>
 {
     //#region Non-Public Interface
 
-    private constructor(props: any)
+    // Use a public constructor; attach listeners in lifecycle methods for reliability in production builds.
+    public constructor(props: any)
     {
         super(props);
-        window.addEventListener('keydown', e => this.listener(e));
+    }
+
+    private keydownHandler = (e: KeyboardEvent) => this.listener(e);
+
+    public componentDidMount(): void
+    {
+        window.addEventListener('keydown', this.keydownHandler);
+    }
+
+    public componentWillUnmount(): void
+    {
+        window.removeEventListener('keydown', this.keydownHandler);
     }
 
     private inputKey (e: string)
@@ -55,14 +67,22 @@ class Keyboard extends Component<KeyProps>
         this.disable(keyPress);
     }
 
-    private listener (e: any)
+    private listener (e: KeyboardEvent)
     {
-        let char: number = e.keyCode;
-        if (char === 8 || char === 13 || (char > 64 && char < 91) || (char > 96 && char < 123))
+        const k = e.key;
+        if (k === 'Backspace' || k === 'Enter')
         {
-            this.inputKey(e.key);
+            this.inputKey(k);
+            e.preventDefault();
+            return;
         }
-    };
+        // Accept only single alpha characters A-Z
+        if (/^[a-zA-Z]$/.test(k))
+        {
+            this.inputKey(k.toUpperCase());
+            e.preventDefault();
+        }
+    }
 
     private async disable (e: SyntheticEvent)
     {
